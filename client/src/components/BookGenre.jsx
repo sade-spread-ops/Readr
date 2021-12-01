@@ -2,6 +2,9 @@
 import axios from 'axios';
 import React from 'react';
 import useState from 'react';
+import { Button } from '@material-ui/core';
+import { TextField } from '@material-ui/core';
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 
 // we are going to utilize two api calls to get the books by genre then grab their title page
 
@@ -19,7 +22,7 @@ function BookByGenre() {
   };
 
 return (
-<div>
+    <div>
         <h1>Chat Room</h1>
         <div className='addFriend'>
           <div className="formClass">
@@ -35,9 +38,8 @@ return (
             </form>
           </div>
         </div>
-        </div>
+  </div>
 )
-
 
 }
 
