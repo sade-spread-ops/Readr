@@ -2,6 +2,7 @@
  * Includes navigatin.buttons- App logo Title  2..button to "To-Read" list,
  * 3. "Explore Books" (new book suggestion), 4. Logout button.
  */
+/* eslint-disable */
 import React from 'react';
 import {
   AppBar,
