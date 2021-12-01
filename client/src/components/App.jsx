@@ -41,6 +41,8 @@ class App extends React.Component {
     this.updateUser = this.updateUser.bind(this);
   }
 
+  // Working on axios request here;
+
   /* Sends request to server to get a book suggestion from google books API.
   * If the book suggestion is already in the logged in user's
   * "yes" or "no" list, resend the getBookSuggestion request.
@@ -65,6 +67,9 @@ class App extends React.Component {
     });
   }
 
+  // testing book genre functionality
+
+  /// //////////////
   updateUser(obj) {
     this.setState({ user: obj });
   }

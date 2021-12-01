@@ -1,5 +1,5 @@
 // Setup for passport google authentication
-
+/* eslint-disable */
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20');
 require('dotenv').config();
@@ -10,6 +10,7 @@ const dbHelpers = require('../sequelize/db-helpers');
 passport.serializeUser((user, next) => {
   next(null, user.googleId); // possibly change to user.id
 });
+
 
 // take id from stored cookie sent from browser and find user
 passport.deserializeUser((id, next) => {
@@ -26,8 +27,8 @@ passport.deserializeUser((id, next) => {
 passport.use(
   new GoogleStrategy({
     callbackURL: '/auth/google/redirect',
-    clientID: process.env.clientID,
-    clientSecret: process.env.clientSecret,
+    clientID: '831550743885-7a7f8m0t6pli22clvmresvbqg1uncdi1.apps.googleusercontent.com',
+    clientSecret: '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',
   }, (accessToken, refreshToken, profile, next) => {
     console.log('checking shit');
     // check if user already exists in DB

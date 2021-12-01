@@ -4,7 +4,6 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './components/App.jsx';
 import './styles.css';
 
-
 ReactDOM.render(
   // creates URLs with the following format: http://localhost:3000/route/subroute
   (
