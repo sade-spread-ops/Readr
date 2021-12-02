@@ -1,4 +1,5 @@
 // Express router for all main features of the Readr app
+/* eslint-disable */
 
 const router = require('express').Router();
 const { Users } = require('react-feather');

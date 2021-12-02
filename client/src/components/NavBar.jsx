@@ -66,7 +66,6 @@ const NavBar = (props) => {
           >
             <MenuBookIcon />
           </IconButton>
-          <Dropdown/>
           <Typography
             variant="h4"
             className={classes.title}
@@ -75,6 +74,7 @@ const NavBar = (props) => {
           >
             Readr 2.0
           </Typography>
+          <Dropdown/>
           <div className={classes.bigBar}>
             <BigBar />
           </div>
