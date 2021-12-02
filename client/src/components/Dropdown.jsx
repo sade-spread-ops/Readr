@@ -1,9 +1,7 @@
 /* eslint-disable */
 import axios from 'axios';
-import React from 'react';
-import useState from 'react';
-import useRef from 'react';
-import genrePicture from '../BookGenreDropdown.JPG';
+import React, { useEffect, useState, useRef }  from 'react';
+// import genrePicture from '../BookGenreDropdown.png';
 
 
 // we are going to utilize two api calls to get the books by genre then grab their title page
@@ -14,13 +12,30 @@ function Dropdown() {
   const [isActive, setIsActive] = useState(false);
   const onClick = () => setIsActive(!isActive);
 
+  useEffect(() => {
+    const pageClickEvent = (e) => {
+      if (dropdownRef.current !== null && !dropdownRef.current.contains(e.target)) {
+        setIsActive(!isActive);
+    }
+  };
+
+    if (isActive) {
+      window.addEventListener('click', pageClickEvent);
+    }
+
+    return () => {
+      window.removeEventListener('click', pageClickEvent);
+    };
+
+  }, [isActive]);
+
 
 return (
 
   <div className ="menu-container">
     <button onClick={onClick} className="menu-trigger">
       <span className="menu-trigger-text">Genres</span>
-      <img src={genrePicture} alt="Book Picture"/>
+      {/* <img src={genrePicture} alt="Book Picture"/> */}
     </button>
       <nav ref={dropdownRef} className={`menu ${isActive ? 'active' : 'inactive'}`}>
         <ul>

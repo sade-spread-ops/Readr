@@ -17,6 +17,7 @@ import { Link } from 'react-router-dom';
 import WelcomeToast from './SnackBar.jsx';
 import BigBar from './NavBarMenus/BigBar.jsx';
 import SmallBar from './NavBarMenus/SmallBar.jsx';
+import Dropdown from './Dropdown.jsx';
 
 // This allows custom styling of the buttons, over-riding the root theme
 const useStyles = makeStyles((theme) => ({
