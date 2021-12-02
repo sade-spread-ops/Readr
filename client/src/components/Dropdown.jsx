@@ -39,15 +39,15 @@ return (
     </button>
       <nav ref={dropdownRef} className={`menu ${isActive ? 'active' : 'inactive'}`}>
         <ul>
-          <li>Horror</li>
-          <li>Comedy</li>
-          <li>Fiction</li>
-          <li>Mystery</li>
-          <li>Romance</li>
-          <li>Poetry</li>
-          <li>Drama</li>
-          <li>Recipe</li>
-          <li>Fantasy</li>
+          <li><a href="/horror">Horror</a></li>
+          <li><a href="/comedy">Comedy</a></li>
+          <li><a href="/fiction">Fiction</a></li>
+          <li><a href="/mystery">Mystery</a></li>
+          <li><a href="/romance">Romance</a></li>
+          <li><a href="/poetry">Poetry</a></li>
+          <li><a href="/drama">Drama</a></li>
+          <li><a href="/recipes">Recipe</a></li>
+          <li><a href="/fantasy">Fantasy</a></li>
         </ul>
       </nav>
   </div>

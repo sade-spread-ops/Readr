@@ -66,6 +66,7 @@ const NavBar = (props) => {
           >
             <MenuBookIcon />
           </IconButton>
+          <Dropdown/>
           <Typography
             variant="h4"
             className={classes.title}
