@@ -3,6 +3,7 @@ import axios from 'axios';
 import React from 'react';
 import useState from 'react';
 import useRef from 'react';
+import genrePicture from '../BookGenreDropdown.JPG';
 
 
 // we are going to utilize two api calls to get the books by genre then grab their title page
@@ -15,12 +16,25 @@ function Dropdown() {
 
 
 return (
-  
+
   <div className ="menu-container">
     <button onClick={onClick} className="menu-trigger">
       <span className="menu-trigger-text">Genres</span>
-      <img src="..\BookGenreDropdown.JPG"/>
+      <img src={genrePicture} alt="Book Picture"/>
     </button>
+      <nav ref={dropdownRef} className={`menu ${isActive ? 'active' : 'inactive'}`}>
+        <ul>
+          <li>Horror</li>
+          <li>Comedy</li>
+          <li>Fiction</li>
+          <li>Mystery</li>
+          <li>Romance</li>
+          <li>Poetry</li>
+          <li>Drama</li>
+          <li>Recipe</li>
+          <li>Fantasy</li>
+        </ul>
+      </nav>
   </div>
 
   );
