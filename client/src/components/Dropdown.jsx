@@ -10,8 +10,17 @@ function Dropdown() {
 
   const dropdownRef = useRef(null);
   const [isActive, setIsActive] = useState(false);
-  const []
-  const onClick = () => setIsActive(!isActive);
+  const [genre, setGenre] = useState('');
+  const onClickActive = () => setIsActive(!isActive);
+  const onClickHorror = () => setGenre('horror');
+  const onClickRomance = () => setGenre('romance');
+  const onClickFantasy = () => setGenre('fantasy');
+  const onClickComedy = () => setGenre('comedy');
+  const onClickPoetry = () => setGenre('poetry');
+  const onClickRecipe = () => setGenre('recipe');
+  const onClickDrama = () => setGenre('drama');
+  const onClickMystery = () => setGenre('mystery');
+
 
   useEffect(() => {
     const pageClickEvent = (e) => {
@@ -34,21 +43,20 @@ function Dropdown() {
 return (
 
   <div className ="menu-container">
-    <button onClick={onClick} className="menu-trigger">
+    <button onClick={onClickActive} className="menu-trigger">
       <span className="menu-trigger-text">Genres</span>
       {/* <img src={genrePicture} alt="Book Picture"/> */}
     </button>
       <nav ref={dropdownRef} className={`menu ${isActive ? 'active' : 'inactive'}`}>
         <ul>
-          <li><a href="/horror">Horror</a></li>
-          <li><a href="/comedy">Comedy</a></li>
-          <li><a href="/fiction">Fiction</a></li>
-          <li><a href="/mystery">Mystery</a></li>
-          <li><a href="/romance">Romance</a></li>
-          <li><a href="/poetry">Poetry</a></li>
-          <li><a href="/drama">Drama</a></li>
-          <li><a href="/recipes">Recipe</a></li>
-          <li><a href="/fantasy">Fantasy</a></li>
+          <button onClick={onClickHorror}><li>Horror</li></button>
+          <button onClick={onClickRomance}><li>Romance</li></button>
+          <button onClick={onClickFantasy}><li>Fantasy</li></button>
+          <button onClick={onClickComedy}><li>Comedy</li></button>
+          <button onClick={onClickPoetry}><li>Poetry</li></button>
+          <button onClick={onClickRecipe}><li>Recipe</li></button>
+          <button onClick={onClickDrama}><li>Drama</li></button>
+          <button onClick={onClickMystery}><li>Mystery</li></button>
         </ul>
       </nav>
   </div>
