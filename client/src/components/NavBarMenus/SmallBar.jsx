@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
@@ -58,6 +59,14 @@ export default function SmallBar() {
         open={open}
         onClose={handleClose}
       >
+          <MenuItem
+          onClick={handleClose}
+          component={Link}
+          to="/genres"
+        >
+          Genres
+        </MenuItem>
+
         <MenuItem
           onClick={handleClose}
           component={Link}

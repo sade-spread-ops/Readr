@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import {
   makeStyles,
@@ -20,6 +21,14 @@ const Buttons = () => {
   const classes = useStyles();
   return (
     <div>
+      <Button
+        size="large"
+        component={Link}
+        to="/genres"
+        className={classes.button}
+      >
+        Explore Books
+      </Button>
       <Button
         size="large"
         component={Link}
