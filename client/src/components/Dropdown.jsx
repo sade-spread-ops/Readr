@@ -10,6 +10,7 @@ function Dropdown() {
 
   const dropdownRef = useRef(null);
   const [isActive, setIsActive] = useState(false);
+  const []
   const onClick = () => setIsActive(!isActive);
 
   useEffect(() => {
