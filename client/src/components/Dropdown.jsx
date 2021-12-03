@@ -12,7 +12,7 @@ function Dropdown() {
   const [isActive, setIsActive] = useState(false);
   const [genre, setGenre] = useState('');
   const onClickActive = () => setIsActive(!isActive);
-  const onClickHorror = () => setGenre('horror');
+  const onClickHorror = () => setGenre('horror') ;
   const onClickRomance = () => setGenre('romance');
   const onClickFantasy = () => setGenre('fantasy');
   const onClickComedy = () => setGenre('comedy');
@@ -49,14 +49,14 @@ return (
     </button>
       <nav ref={dropdownRef} className={`menu ${isActive ? 'active' : 'inactive'}`}>
         <ul>
-          <button onClick={onClickHorror}><li>Horror</li></button>
-          <button onClick={onClickRomance}><li>Romance</li></button>
-          <button onClick={onClickFantasy}><li>Fantasy</li></button>
-          <button onClick={onClickComedy}><li>Comedy</li></button>
-          <button onClick={onClickPoetry}><li>Poetry</li></button>
-          <button onClick={onClickRecipe}><li>Recipe</li></button>
-          <button onClick={onClickDrama}><li>Drama</li></button>
-          <button onClick={onClickMystery}><li>Mystery</li></button>
+          <button onClick={() => {onClickHorror()}}><li>Horror</li></button>
+          <button onClick={() => {onClickRomance()}}><li>Romance</li></button>
+          <button onClick={() => {onClickFantasy()}}><li>Fantasy</li></button>
+          <button onClick={() => {onClickComedy()}}><li>Comedy</li></button>
+          <button onClick={() => {onClickPoetry()}}><li>Poetry</li></button>
+          <button onClick={() => {onClickRecipe()}}><li>Recipe</li></button>
+          <button onClick={() => {onClickDrama()}}><li>Drama</li></button>
+          <button onClick={() => {onClickMystery()}}><li>Mystery</li></button>
         </ul>
       </nav>
   </div>
