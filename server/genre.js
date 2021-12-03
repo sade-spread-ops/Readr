@@ -1,11 +1,12 @@
 /* eslint-disable */
+const axios = require('axios');
 
 const grabBooksByGenre = (genre) => {
   let isbnNumber;
   let title = '';
   let author = '';
   let i = 0;
-    axios.get(`http://openlibrary.org/subjects/${genre}.json`)
+    return axios.get(`http://openlibrary.org/subjects/${genre}.json`)
       .then((data) => {
         while (data.works[i].availability.isbn === null) {
           i++;
@@ -30,3 +31,4 @@ const grabBookCover = (isbnNumber) => {
     });
 }
 
+module.exports.grabBooksByGenre = grabBooksByGenre;

@@ -13,6 +13,7 @@ const dbHelpers = require('../sequelize/db-helpers');
 const {
   User, UserFollower, UserHaveRead, UserBookClubs, Bookclubs,
 } = require('../sequelize/index');
+const { grabBooksByGenre } = require('./genre');
 
 const authCheck = (req, res, next) => {
   if (!req.user) {
@@ -414,5 +415,17 @@ router.post('/clubInvite', async (req, res) => {
   })));
   await joinUserBookclub();
 });
+
+router.get('/genre', ( req, res) => {
+  grabBooksByGenre('romance')
+    .then((data) => {
+      res.send(data);
+    }).catch((error) => {
+      console.log(error);
+      res.status(500).end();
+    });
+  });
+
+
 
 module.exports = router;
