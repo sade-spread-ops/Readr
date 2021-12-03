@@ -416,7 +416,7 @@ router.post('/clubInvite', async (req, res) => {
   await joinUserBookclub();
 });
 
-router.get('/genre', ( req, res) => {
+router.get('/genre/romance', ( req, res) => {
   grabBooksByGenre("romance")
     .then((data) => {
       res.send(data);
@@ -426,7 +426,7 @@ router.get('/genre', ( req, res) => {
     });
   });
 
-  router.get('/genre', ( req, res) => {
+  router.get('/genre/comedy', ( req, res) => {
     grabBooksByGenre("comedy")
       .then((data) => {
         res.send(data);
@@ -436,7 +436,7 @@ router.get('/genre', ( req, res) => {
       });
     });
 
-  router.get('/genre', ( req, res) => {
+  router.get('/genre/fiction', ( req, res) => {
   grabBooksByGenre("fiction")
     .then((data) => {
       res.send(data);
@@ -447,7 +447,7 @@ router.get('/genre', ( req, res) => {
   });
 
 
-  router.get('/genre', ( req, res) => {
+  router.get('/genre/mystery', ( req, res) => {
     grabBooksByGenre("mystery")
       .then((data) => {
         res.send(data);
@@ -458,7 +458,7 @@ router.get('/genre', ( req, res) => {
     });
 
 
-router.get('/genre', ( req, res) => {
+router.get('/genre/poetry', ( req, res) => {
   grabBooksByGenre("poetry")
     .then((data) => {
       res.send(data);
@@ -468,7 +468,7 @@ router.get('/genre', ( req, res) => {
     });
   });
 
-router.get('/genre', ( req, res) => {
+router.get('/genre/drama', ( req, res) => {
   grabBooksByGenre("drama")
     .then((data) => {
       res.send(data);
@@ -478,7 +478,7 @@ router.get('/genre', ( req, res) => {
     });
   });
 
-  router.get('/genre', ( req, res) => {
+  router.get('/genre/recipe', ( req, res) => {
   grabBooksByGenre("recipe")
     .then((data) => {
       res.send(data);
@@ -488,7 +488,7 @@ router.get('/genre', ( req, res) => {
     });
   });
 
-  router.get('/genre', ( req, res) => {
+  router.get('/genre/fantasy', ( req, res) => {
   grabBooksByGenre("fantasy")
     .then((data) => {
       res.send(data);

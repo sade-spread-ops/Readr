@@ -57,11 +57,3 @@ return (
 
 export default Dropdown;
 
- // const grabBooksByGenre = (genre) => {
-  //   axios.get(`http://openlibrary.org/subjects/${genre}.json`)
-  //     .then((response) => {
-  //       console.log(response);
-  //     }).catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
