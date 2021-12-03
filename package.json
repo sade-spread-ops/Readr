@@ -63,6 +63,7 @@
     "html-webpack-plugin": "^4.5.0",
     "husky": "^4.3.0",
     "lodash-es": "^4.17.15",
+    "material-ui-search-bar": "^1.0.0",
     "mocha": "^6.2.2",
     "nodemon": "^2.0.4",
     "passport": "^0.4.0",
