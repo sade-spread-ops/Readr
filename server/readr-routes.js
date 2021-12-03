@@ -426,6 +426,78 @@ router.get('/genre', ( req, res) => {
     });
   });
 
+  router.get('/genre', ( req, res) => {
+    grabBooksByGenre("comedy")
+      .then((data) => {
+        res.send(data);
+      }).catch((error) => {
+        console.log(error);
+        res.status(500).end();
+      });
+    });
+
+  router.get('/genre', ( req, res) => {
+  grabBooksByGenre("fiction")
+    .then((data) => {
+      res.send(data);
+    }).catch((error) => {
+      console.log(error);
+      res.status(500).end();
+    });
+  });
+
+
+  router.get('/genre', ( req, res) => {
+    grabBooksByGenre("mystery")
+      .then((data) => {
+        res.send(data);
+      }).catch((error) => {
+        console.log(error);
+        res.status(500).end();
+      });
+    });
+
+
+router.get('/genre', ( req, res) => {
+  grabBooksByGenre("poetry")
+    .then((data) => {
+      res.send(data);
+    }).catch((error) => {
+      console.log(error);
+      res.status(500).end();
+    });
+  });
+
+router.get('/genre', ( req, res) => {
+  grabBooksByGenre("drama")
+    .then((data) => {
+      res.send(data);
+    }).catch((error) => {
+      console.log(error);
+      res.status(500).end();
+    });
+  });
+
+  router.get('/genre', ( req, res) => {
+  grabBooksByGenre("recipe")
+    .then((data) => {
+      res.send(data);
+    }).catch((error) => {
+      console.log(error);
+      res.status(500).end();
+    });
+  });
+
+  router.get('/genre', ( req, res) => {
+  grabBooksByGenre("fantasy")
+    .then((data) => {
+      res.send(data);
+    }).catch((error) => {
+      console.log(error);
+      res.status(500).end();
+    });
+  });
+
 
 
 module.exports = router;
