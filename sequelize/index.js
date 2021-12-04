@@ -25,7 +25,7 @@ const {
 //   logging: false,
 // });
 
-const db = new Sequelize('postgres://postgres:hunt@localhost:5432/readr');
+const db = new Sequelize('postgres://postgres@localhost:5432/readr');
 // forces data base drop
 // db.sync({ force: true });
 
