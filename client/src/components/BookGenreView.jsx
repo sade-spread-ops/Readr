@@ -10,8 +10,6 @@ function BookGenreView() {
   return (
     <div>
       <Dropdown />
-      <div>Title: </div>
-      <div>Author: </div>
     </div>
   )
 }
