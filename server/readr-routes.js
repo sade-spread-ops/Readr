@@ -417,9 +417,10 @@ router.post('/clubInvite', async (req, res) => {
 
 /// ///////////////////////////////////////////////
 router.get('/books', (req, res) => {
+  // console.log(req.query.title, 'REQ');
   searchByBooks(req.query.title)
     .then(({ data }) => {
-      console.log(data, 'DATA');
+      // console.log(data, 'DATA');
       res.send((data.docs));
     }).catch((error) => {
       console.log('Get books fail');
