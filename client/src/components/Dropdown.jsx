@@ -75,18 +75,11 @@ function Dropdown() {
       </div>
   );
 } else {
-  // let bookObj = getBookInfo(genre);
-  // console.log(bookObj);
+
   getBookInfo(genre);
-// console.log(info);
+  console.log(!!info.data ? info.data : "Waiting to load....");
 
-// if (info.data === undefined) {
-//   setTimeout(function(){
-//  }, 2000);
-
-// } else {
-//   console.log(info.data);
-// };
+ 
 
   return (
     <div>
@@ -110,8 +103,9 @@ function Dropdown() {
       </div>
     <div>
     <div>
-    <div>Title: </div>
-    <div>Author:  </div>
+    <div>Title: {!!info.data ? info.data.title : "Loading"}</div>
+    <div>Author: {!!info.data ? info.data.author : "Loading"}  </div>
+     <img src={!! info.data ? `https://covers.openlibrary.org/b/isbn/${info.data.isbnNumber}-M.jpg` : "Loading..."} />
   </div>
   </div>
   </div>
