@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // Express router for all main features of the Readr app
 
 const router = require('express').Router();
@@ -12,6 +13,8 @@ const dbHelpers = require('../sequelize/db-helpers');
 const {
   User, UserFollower, UserHaveRead, UserBookClubs, Bookclubs,
 } = require('../sequelize/index');
+
+const { searchByBooks, getBookCover } = require('./search');
 
 const authCheck = (req, res, next) => {
   if (!req.user) {
@@ -126,7 +129,6 @@ router.post('/preferences', async (req, res) => {
   });
   res.sendStatus(201);
 });
-
 
 // sends have read data to server
 router.post('/haveread', (req, res) => {
@@ -323,7 +325,6 @@ router.get('/getFriends', async (req, res) => {
   res.send(response);
 });
 
-
 router.get('/getBookclubs', async (req, res) => {
   // get bookclub IDs
   const { user } = req.query;
@@ -412,6 +413,19 @@ router.post('/clubInvite', async (req, res) => {
     bookclubID: bcID,
   })));
   await joinUserBookclub();
+});
+
+/// ///////////////////////////////////////////////
+router.get('/books', (req, res) => {
+  // console.log(req.query.title, 'REQ');
+  searchByBooks(req.query.title)
+    .then(({ data }) => {
+      // console.log(data, 'DATA');
+      res.send((data.docs));
+    }).catch((error) => {
+      console.log('Get books fail');
+      res.status(500).end();
+    });
 });
 
 module.exports = router;

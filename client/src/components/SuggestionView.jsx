@@ -11,7 +11,7 @@ import Zoom from '@material-ui/core/Zoom';
 import Slider from './BookTinder.jsx';
 import LoadingSuggestion from './SuggestionView/LoadingSuggestion.jsx';
 import Book from './SuggestionView/Book.jsx';
-
+// import SearchList from './SearchList.jsx';
 class SuggestionView extends React.Component {
   constructor(props) {
     super(props);
@@ -124,6 +124,7 @@ class SuggestionView extends React.Component {
                         handleNoClick={this.handleNoClick}
                         handleYesClick={this.handleYesClick}
                       />
+                      {/* <SearchList handleYesClick={this.handleYesClick} /> */}
                     </div>
                   )}
                 />

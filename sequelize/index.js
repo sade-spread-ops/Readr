@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 const Sequelize = require('sequelize');
 
 require('dotenv').config();
@@ -13,16 +15,17 @@ const {
   DB_PORT,
 } = process.env;
 
-const db = new Sequelize({
-  database: DATABASE,
-  username: USER_NAME,
-  password: USER_PASSWORD,
-  host: HOST,
-  port: DB_PORT,
-  dialect: 'postgres',
-  logging: false,
-});
+// const db = new Sequelize({
+//   database: DATABASE,
+//   username: USER_NAME,
+//   password: USER_PASSWORD,
+//   host: HOST,
+//   port: DB_PORT,
+//   dialect: 'postgres',
+//   logging: false,
+// });
 
+const db = new Sequelize('postgres://postgres:hunt@localhost:5432/readr');
 // forces data base drop
 // db.sync({ force: true });
 

@@ -23,6 +23,14 @@ const Buttons = () => {
       <Button
         size="large"
         component={Link}
+        to="/books"
+        className={classes.button}
+      >
+        Search Books
+      </Button>
+      <Button
+        size="large"
+        component={Link}
         to="/suggestion"
         className={classes.button}
       >
