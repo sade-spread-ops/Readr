@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable no-undef */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
@@ -6,8 +7,9 @@
 /* eslint-disable react/jsx-closing-bracket-location */
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
-import SearchBar from 'material-ui-search-bar';
+import { Button, TextField } from '@material-ui/core';
+// import { Form, Button } from 'react-bootstrap';
+// import SearchBar from 'material-ui-search-bar';
 
 const SearchForm = (props) => {
   const [searchVal, setSearchVal] = useState('');
@@ -18,28 +20,20 @@ const SearchForm = (props) => {
   };
 
   const handleClick = (event) => {
-    console.log('click');
+    // console.log('click');
+    event.preventDefault();
     const { handleSearch } = props;
     handleSearch(searchVal);
+    setSearchVal('');
   };
   return (
     <div>
       <div>
-        <input placeholder="Search Book" value={searchVal} onChange={handleChange} />
-        <button onClick={handleClick} type="button">Search</button>
+        <TextField value={searchVal} onChange={handleChange} id="outlined-basic" label="Search Book" variant="outlined" size="small" />
+        <Button onClick={handleClick} variant="contained" id="outlined-basic">Search</Button>
       </div>
     </div>
   );
 };
 
 export default SearchForm;
-
-{ /* <div>
-<SearchBar
-  placeholder="Search books"
-  value={searchVal}
-  onChange={handleChange}
-  onSubmit={handleSearch}
-    // onRequestSearch={() => doSomethingWith(this.state.value)}
-  />
-</div> */ }
