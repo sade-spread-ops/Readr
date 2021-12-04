@@ -21,6 +21,17 @@ function Dropdown() {
   const onClickDrama = () => setGenre('drama');
   const onClickMystery = () => setGenre('mystery');
 
+  const getBookInfo  = (genre) => {
+    axios.post(`/readr/genre/${genre}`)
+      .then(({data}) => {
+        return data;
+      })
+      .catch((error) => {
+        window.alert('Book not found!');
+        console.error(error);
+      });
+  };
+
 
   useEffect(() => {
     const pageClickEvent = (e) => {
@@ -39,29 +50,39 @@ function Dropdown() {
 
   }, [isActive]);
 
-
-return (
-
-  <div className ="menu-container">
-    <button onClick={onClickActive} className="menu-trigger">
+  if (genre === '') {
+    return (
+      <div className ="menu-container">
+      <button onClick={onClickActive} className="menu-trigger">
       <span className="menu-trigger-text">Genres</span>
-      {/* <img src={genrePicture} alt="Book Picture"/> */}
-    </button>
-      <nav ref={dropdownRef} className={`menu ${isActive ? 'active' : 'inactive'}`}>
-        <ul>
-          <button onClick={() => {onClickHorror()}}><li>Horror</li></button>
-          <button onClick={() => {onClickRomance()}}><li>Romance</li></button>
-          <button onClick={() => {onClickFantasy()}}><li>Fantasy</li></button>
-          <button onClick={() => {onClickComedy()}}><li>Comedy</li></button>
-          <button onClick={() => {onClickPoetry()}}><li>Poetry</li></button>
-          <button onClick={() => {onClickRecipe()}}><li>Recipe</li></button>
-          <button onClick={() => {onClickDrama()}}><li>Drama</li></button>
-          <button onClick={() => {onClickMystery()}}><li>Mystery</li></button>
-        </ul>
-      </nav>
-  </div>
-
+        {/* <img src={genrePicture} alt="Book Picture"/> */}
+      </button>
+        <nav ref={dropdownRef} className={`menu ${isActive ? 'active' : 'inactive'}`}>
+          <ul>
+            <button onClick={() => {onClickHorror()}}><li>Horror</li></button>
+            <button onClick={() => {onClickRomance()}}><li>Romance</li></button>
+            <button onClick={() => {onClickFantasy()}}><li>Fantasy</li></button>
+            <button onClick={() => {onClickComedy()}}><li>Comedy</li></button>
+            <button onClick={() => {onClickPoetry()}}><li>Poetry</li></button>
+            <button onClick={() => {onClickRecipe()}}><li>Recipe</li></button>
+            <button onClick={() => {onClickDrama()}}><li>Drama</li></button>
+            <button onClick={() => {onClickMystery()}}><li>Mystery</li></button>
+          </ul>
+        </nav>
+      </div>
   );
+} else {
+  return (
+    <div>
+    {/* {console.log(genre)} */}
+    {console.log(getBookInfo(genre))}
+    <div>
+    <div>Title: </div>
+    <div>Author: </div>
+  </div>
+  </div>
+  )}
+
 };
 
 export default Dropdown;
