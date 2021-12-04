@@ -22,7 +22,7 @@ export default function SearchList({ bookData, handleYesClick }) {
               <CardMedia
                 component="img"
                 sx={{ width: 151 }}
-                // image={`https://covers.openlibrary.org/b/isbn/${book.isbn[0]}-M.jpg`}
+                image={`https://covers.openlibrary.org/b/isbn/${book.isbn[0]}-S.jpg`}
                 alt="Book cover"
               />
               <Box sx={{ display: 'flex', flexDirection: 'column' }}>
