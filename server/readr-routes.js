@@ -417,7 +417,7 @@ router.post('/clubInvite', async (req, res) => {
 });
 
 router.get('/genre/romance', ( req, res) => {
-  grabBooksByGenre("romance")
+   grabBooksByGenre("romance")
     .then((data) => {
       res.send(data);
     }).catch((error) => {

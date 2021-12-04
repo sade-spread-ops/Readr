@@ -21,10 +21,11 @@ function Dropdown() {
   const onClickDrama = () => setGenre('drama');
   const onClickMystery = () => setGenre('mystery');
 
-  const getBookInfo  = (genre) => {
-    axios.post(`/readr/genre/${genre}`)
+   const getBookInfo = (genre) => {
+     return axios.get(`/readr/genre/${genre}`)
       .then(({data}) => {
-        return data;
+        console.log(JSON.stringify(data));
+         return(JSON.stringify(data));
       })
       .catch((error) => {
         window.alert('Book not found!');
@@ -74,12 +75,13 @@ function Dropdown() {
 } else {
   return (
     <div>
-    {/* {console.log(genre)} */}
+    {/* {console.log(genre)}
     {console.log(getBookInfo(genre))}
+    
     <div>
     <div>Title: </div>
     <div>Author: </div>
-  </div>
+  </div> */}
   </div>
   )}
 

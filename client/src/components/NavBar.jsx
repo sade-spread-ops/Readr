@@ -74,7 +74,6 @@ const NavBar = (props) => {
           >
             Readr 2.0
           </Typography>
-          <Dropdown/>
           <div className={classes.bigBar}>
             <BigBar />
           </div>

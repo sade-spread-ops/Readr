@@ -18,6 +18,7 @@ import ClubList from './Chatroom/ClubList.jsx';
 import BookClub from './BookClub/BookClub.jsx';
 import Followers from './Followers.jsx';
 import Dropdown from './Dropdown.jsx';
+import BookGenreView from './BookGenreView.jsx';
 
 const theme = createMuiTheme({
   palette: {
@@ -122,7 +123,7 @@ class App extends React.Component {
                     <Route exact path="/bookclubs" render={(props) => <ClubList {...props} user={user} />} />
                     <Route exact path="/bookclubinvite" render={(props) => <BookClub {...props} user={user} />} />
                     <Route exact path="/followers" render={(props) => <Followers {...props} user={user} />} />
-                    <Route exact path="/genres" render={() => <Dropdown/>} />
+                    <Route exact path="/genres" render={() => <BookGenreView/>} />
                   </Switch>
                 </div>
               </div>
