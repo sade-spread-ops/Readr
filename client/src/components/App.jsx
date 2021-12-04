@@ -26,7 +26,7 @@ const themeLight = createTheme({
     primary: { main: '#ff4400' },
     secondary: {
       background: '#0ffc03',
-      light: '#0066ff',
+      theme: '#0066ff',
       main: '#0044ff',
       // dark: will be calculated from palette.secondary.main,
       contrastText: '#ffcc00',
@@ -43,7 +43,7 @@ const themeDark = createTheme({
     secondary: {
       background: '#09050f',
       light: '#0066ff',
-      main: '#05102e',
+      main: '#a18e18',
       // dark: will be calculated from palette.secondary.main,
       contrastText: '#ffcc00',
     },
@@ -52,10 +52,14 @@ const themeDark = createTheme({
         color: "pink"
       },
     },
+    text: {
+      primary: '#a88132',
+      secondary: '#a88132',
+      disabled: '#a88132',
+      hint: '#a88132',
+    },
   },
 });
-
-
 
 class App extends React.Component {
   constructor(props) {
@@ -64,7 +68,8 @@ class App extends React.Component {
       isLoggedIn: false,
       user: null,
       urlSnippet: 'shakespearescom000shak',
-      light: true,
+      checked: false,
+      currentTheme: themeLight,
     };
     this.updateUrlSnippet = this.updateUrlSnippet.bind(this);
     this.updateUser = this.updateUser.bind(this);
@@ -82,7 +87,6 @@ class App extends React.Component {
   componentDidMount() {
     axios.get('/auth/user').then((response) => {
       if (response.data.user) {
-        console.log(response.data.user);
         this.setState({
           isLoggedIn: true,
           user: response.data.user,
@@ -105,16 +109,20 @@ class App extends React.Component {
   }
 
   setTheme(){
-    this.setState({light: !prev});
+    if(this.state.currentTheme === themeLight){
+      this.setState({currentTheme: themeDark});
+    }
+    if(this.state.currentTheme === themeDark){
+      this.setState({currentTheme: themeLight});
+    }
   }
 
   render() {
     const {
       isLoggedIn, user, userBookList, urlSnippet,
     } = this.state;
-    console.log(user, 'user in app render');
     return (
-      <MuiThemeProvider theme={this.state.light ? themeLight : themeDark}>
+      <MuiThemeProvider theme={this.state.currentTheme}>
         <CssBaseline />
         <div className="App">
           {/* this container centers content on the page. Width is inherited by the rest of app. */}
@@ -125,9 +133,8 @@ class App extends React.Component {
             {/* conditional rendering of the components based on if the user is logged in */}
             {isLoggedIn ? (
               <div>
-                <NavBar user={user} />
+                <NavBar user={user} setTheme={this.setTheme}/>
                 <div className="mainViews">
-                  <Switch className='toggleTheme' onClick={() => setTheme(prev => !prev)}>Toggle Theme</Switch>
                     {/* // this is our default route */}
                     <Route
                       exact

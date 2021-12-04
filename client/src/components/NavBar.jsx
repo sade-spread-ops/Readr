@@ -46,10 +46,24 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 const NavBar = (props) => {
   const classes = useStyles();
   const { username, id } = props.user;
   const firstName = username.split(' ')[0];
+  
+
+
+  const handleToggle = () => {
+    props.setTheme();
+  };
+
+
+
+
+
+
+
   return (
     <div className={classes.root}>
       <WelcomeToast message={`Hi ${username}!`} />
@@ -74,7 +88,7 @@ const NavBar = (props) => {
           >
             Readr 2.0
           </Typography>
-          <Switch />
+          <Switch className='toggleTheme' onChange={() => handleToggle()}/>
           <div className={classes.bigBar}>
             <BigBar />
           </div>
