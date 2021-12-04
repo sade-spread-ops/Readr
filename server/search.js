@@ -7,6 +7,9 @@ const searchByBooks = (title) => {
     headers: {
       'Content-Type': 'application/json',
     },
+    params: {
+      limit: 10,
+    },
   };
   return axios(options);
 };

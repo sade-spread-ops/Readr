@@ -7,7 +7,8 @@
 /* eslint-disable react/jsx-closing-bracket-location */
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
-import { Button, TextField } from '@material-ui/core';
+import Button from '@mui/material/Button';
+import { TextField } from '@material-ui/core';
 // import { Form, Button } from 'react-bootstrap';
 // import SearchBar from 'material-ui-search-bar';
 
@@ -30,7 +31,7 @@ const SearchForm = (props) => {
     <div>
       <div>
         <TextField value={searchVal} onChange={handleChange} id="outlined-basic" label="Search Book" variant="outlined" size="small" />
-        <Button onClick={handleClick} variant="contained" id="outlined-basic">Search</Button>
+        <Button onClick={handleClick} variant="contained" id="outlined-basic" color="success">Search</Button>
       </div>
     </div>
   );
