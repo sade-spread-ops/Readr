@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import { Container, Typography } from '@material-ui/core';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { Container, CssBaseline, Typography } from '@material-ui/core';
+import { MuiThemeProvider, createTheme } from '@material-ui/core/styles';
 import { Route, Switch } from 'react-router-dom';
 import Login from './Login.jsx';
 import NavBar from './NavBar.jsx';
@@ -16,11 +16,16 @@ import AddFriend from './AddFriend.jsx';
 import ClubList from './Chatroom/ClubList.jsx';
 import BookClub from './BookClub/BookClub.jsx';
 import Followers from './Followers.jsx';
+// import ThemeSwitcher from '/ThemeSwitcher.jsx';
 
-const theme = createMuiTheme({
+const themeLight = createTheme({
   palette: {
+    background: {
+      default: "#FFFFFF",
+    },
     primary: { main: '#ff4400' },
     secondary: {
+      background: '#0ffc03',
       light: '#0066ff',
       main: '#0044ff',
       // dark: will be calculated from palette.secondary.main,
@@ -29,6 +34,29 @@ const theme = createMuiTheme({
   },
 });
 
+const themeDark = createTheme({
+  palette: {
+    background: {
+      default: "#000000",
+    },
+    primary: { main: '#180830' },
+    secondary: {
+      background: '#09050f',
+      light: '#0066ff',
+      main: '#05102e',
+      // dark: will be calculated from palette.secondary.main,
+      contrastText: '#ffcc00',
+    },
+    typography: {
+      allVariants: {
+        color: "pink"
+      },
+    },
+  },
+});
+
+
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -36,10 +64,13 @@ class App extends React.Component {
       isLoggedIn: false,
       user: null,
       urlSnippet: 'shakespearescom000shak',
+      light: true,
     };
     this.updateUrlSnippet = this.updateUrlSnippet.bind(this);
     this.updateUser = this.updateUser.bind(this);
+    this.setTheme = this.setTheme.bind(this);
   }
+
 
   /* Sends request to server to get a book suggestion from google books API.
   * If the book suggestion is already in the logged in user's
@@ -73,13 +104,18 @@ class App extends React.Component {
     this.setState({ urlSnippet });
   }
 
+  setTheme(){
+    this.setState({light: !prev});
+  }
+
   render() {
     const {
       isLoggedIn, user, userBookList, urlSnippet,
     } = this.state;
     console.log(user, 'user in app render');
     return (
-      <MuiThemeProvider theme={theme}>
+      <MuiThemeProvider theme={this.state.light ? themeLight : themeDark}>
+        <CssBaseline />
         <div className="App">
           {/* this container centers content on the page. Width is inherited by the rest of app. */}
           <Container component="main" maxWidth="lg">
@@ -91,7 +127,7 @@ class App extends React.Component {
               <div>
                 <NavBar user={user} />
                 <div className="mainViews">
-                  <Switch>
+                  <Switch className='toggleTheme' onClick={() => setTheme(prev => !prev)}>Toggle Theme</Switch>
                     {/* // this is our default route */}
                     <Route
                       exact
@@ -115,7 +151,6 @@ class App extends React.Component {
                     <Route exact path="/bookclubs" render={(props) => <ClubList {...props} user={user} />} />
                     <Route exact path="/bookclubinvite" render={(props) => <BookClub {...props} user={user} />} />
                     <Route exact path="/followers" render={(props) => <Followers {...props} user={user} />} />
-                  </Switch>
                 </div>
               </div>
             ) : null }

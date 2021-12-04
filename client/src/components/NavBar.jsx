@@ -10,6 +10,7 @@ import {
   makeStyles,
   Button,
   IconButton,
+  Switch,
 } from '@material-ui/core';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import { Link } from 'react-router-dom';
@@ -64,6 +65,7 @@ const NavBar = (props) => {
           >
             <MenuBookIcon />
           </IconButton>
+          
           <Typography
             variant="h4"
             className={classes.title}
@@ -72,6 +74,7 @@ const NavBar = (props) => {
           >
             Readr 2.0
           </Typography>
+          <Switch />
           <div className={classes.bigBar}>
             <BigBar />
           </div>

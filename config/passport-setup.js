@@ -29,6 +29,8 @@ passport.use(
     clientID: process.env.clientID,
     clientSecret: process.env.clientSecret,
   }, (accessToken, refreshToken, profile, next) => {
+    console.log(accessToken);
+    console.log(profile);
     console.log('checking shit');
     // check if user already exists in DB
     // find user with matching googleId and profile.id
@@ -40,11 +42,13 @@ passport.use(
       .then((currentUser) => {
         if (currentUser) {
           // if user exists
+          console.log('if the user exists')
           next(null, currentUser);
         } else {
           // if user doesn't exist
           // use profile.id & profile.displayName for saving in db
           // create new sequelize User given ^
+          console.log('didnt have user');
           User.create({
             username: profile.displayName,
             googleId: profile.id,
