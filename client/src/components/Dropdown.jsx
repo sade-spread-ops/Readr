@@ -1,7 +1,6 @@
 /* eslint-disable */
 import axios from 'axios';
 import React, { useEffect, useState, useRef }  from 'react';
-// import genrePicture from '../BookGenreDropdown.png';
 
 
 // we are going to utilize two api calls to get the books by genre then grab their title page
