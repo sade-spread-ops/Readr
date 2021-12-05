@@ -15,10 +15,10 @@ function Dropdown() {
   const onClickActive = () => setIsActive(!isActive);
   const onClickHorror = () => setGenre('horror') ;
   const onClickRomance = () => setGenre('romance');
-  const onClickFantasy = () => setGenre('fantasy');
-  const onClickComedy = () => setGenre('comedy');
-  const onClickPoetry = () => setGenre('poetry');
-  const onClickRecipe = () => setGenre('recipe');
+  const onClickSatire = () => setGenre('satire');
+  const onClickComedy = () => setGenre('comic');
+  const onClickWestern = () => setGenre('western');
+  const onClickCrime = () => setGenre('crime');
   const onClickDrama = () => setGenre('drama');
   const onClickMystery = () => setGenre('mystery');
 
@@ -63,20 +63,20 @@ function Dropdown() {
         <nav ref={dropdownRef} className={`menu ${isActive ? 'active' : 'inactive'}`}>
           <ul>
             <button onClick={() => {onClickHorror()}}><li>Horror</li></button>
-            <button onClick={() => {onClickRomance()}}><li>Romance</li></button>
-            <button onClick={() => {onClickFantasy()}}><li>Fantasy</li></button>
-            <button onClick={() => {onClickComedy()}}><li>Comedy</li></button>
-            <button onClick={() => {onClickPoetry()}}><li>Poetry</li></button>
-            <button onClick={() => {onClickRecipe()}}><li>Recipe</li></button>
-            <button onClick={() => {onClickDrama()}}><li>Drama</li></button>
             <button onClick={() => {onClickMystery()}}><li>Mystery</li></button>
+            <button onClick={() => {onClickRomance()}}><li>Romance</li></button>
+            <button onClick={() => {onClickSatire()}}><li>Satire</li></button>
+            <button onClick={() => {onClickComedy()}}><li>Comic</li></button>
+            <button onClick={() => {onClickWestern()}}><li>Western</li></button>
+            <button onClick={() => {onClickCrime()}}><li>Crime</li></button>
+            <button onClick={() => {onClickDrama()}}><li>Drama</li></button>
           </ul>
         </nav>
       </div>
   );
 } else {
 
-  getBookInfo(genre);
+  {getBookInfo(genre);}
   console.log(!!info.data ? info.data : "Waiting to load....");
 
  
@@ -91,13 +91,13 @@ function Dropdown() {
         <nav ref={dropdownRef} className={`menu ${isActive ? 'active' : 'inactive'}`}>
           <ul>
             <button onClick={() => {onClickHorror()}}><li>Horror</li></button>
-            <button onClick={() => {onClickRomance()}}><li>Romance</li></button>
-            <button onClick={() => {onClickFantasy()}}><li>Fantasy</li></button>
-            <button onClick={() => {onClickComedy()}}><li>Comedy</li></button>
-            <button onClick={() => {onClickPoetry()}}><li>Poetry</li></button>
-            <button onClick={() => {onClickRecipe()}}><li>Recipe</li></button>
-            <button onClick={() => {onClickDrama()}}><li>Drama</li></button>
             <button onClick={() => {onClickMystery()}}><li>Mystery</li></button>
+            <button onClick={() => {onClickRomance()}}><li>Romance</li></button>
+            <button onClick={() => {onClickSatire()}}><li>Satire</li></button>
+            <button onClick={() => {onClickComedy()}}><li>Comic</li></button>
+            <button onClick={() => {onClickWestern()}}><li>Western</li></button>
+            <button onClick={() => {onClickCrime()}}><li>Crime</li></button>
+            <button onClick={() => {onClickDrama()}}><li>Drama</li></button>
           </ul>
         </nav>
       </div>

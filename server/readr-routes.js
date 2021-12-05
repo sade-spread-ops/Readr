@@ -426,8 +426,8 @@ router.get('/genre/romance', ( req, res) => {
     });
   });
 
-  router.get('/genre/comedy', ( req, res) => {
-    grabBooksByGenre("comedy")
+  router.get('/genre/comic', ( req, res) => {
+    grabBooksByGenre("comic")
       .then((data) => {
         res.send(data);
       }).catch((error) => {
@@ -436,8 +436,8 @@ router.get('/genre/romance', ( req, res) => {
       });
     });
 
-  router.get('/genre/fiction', ( req, res) => {
-  grabBooksByGenre("fiction")
+  router.get('/genre/satire', ( req, res) => {
+  grabBooksByGenre("satire")
     .then((data) => {
       res.send(data);
     }).catch((error) => {
@@ -458,8 +458,8 @@ router.get('/genre/romance', ( req, res) => {
     });
 
 
-router.get('/genre/poetry', ( req, res) => {
-  grabBooksByGenre("poetry")
+router.get('/genre/western', ( req, res) => {
+  grabBooksByGenre("western")
     .then((data) => {
       res.send(data);
     }).catch((error) => {
@@ -478,8 +478,8 @@ router.get('/genre/drama', ( req, res) => {
     });
   });
 
-  router.get('/genre/recipe', ( req, res) => {
-  grabBooksByGenre("recipe")
+  router.get('/genre/crime', ( req, res) => {
+  grabBooksByGenre("crime")
     .then((data) => {
       res.send(data);
     }).catch((error) => {
@@ -488,8 +488,8 @@ router.get('/genre/drama', ( req, res) => {
     });
   });
 
-  router.get('/genre/fantasy', ( req, res) => {
-  grabBooksByGenre("fantasy")
+  router.get('/genre/horror', ( req, res) => {
+  grabBooksByGenre("horror")
     .then((data) => {
       res.send(data);
     }).catch((error) => {
