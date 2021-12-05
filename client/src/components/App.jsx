@@ -116,7 +116,7 @@ class App extends React.Component {
                     <Route exact path="/bookclubs" render={(props) => <ClubList {...props} user={user} />} />
                     <Route exact path="/bookclubinvite" render={(props) => <BookClub {...props} user={user} />} />
                     <Route exact path="/followers" render={(props) => <Followers {...props} user={user} />} />
-                    <Route exact path="/books" render={() => <Search />} />
+                    <Route exact path="/books" render={(props) => <Search {...props} user={user} />} />
                   </Switch>
                 </div>
               </div>

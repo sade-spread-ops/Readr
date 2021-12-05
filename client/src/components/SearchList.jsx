@@ -8,21 +8,20 @@ import CardActions from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-export default function SearchList({ bookData, handleYesClick }) {
-  // console.log(handleYesClick, 'YES');
+export default function SearchList({ bookData, addToList }) {
   return (
     <div>
       {
         bookData.map((book) => {
           // const isbnNum = book.isbn;
           // console.log(book.isbn[0]);
-          console.log(book.title, book.isbn);
+          // console.log(book.title, book.isbn);
           return (
             <Card sx={{ display: 'flex' }}>
               <CardMedia
                 component="img"
                 sx={{ width: 151 }}
-                // image={`https://covers.openlibrary.org/b/isbn/${book.isbn[0]}-L.jpg`}
+                image={`https://covers.openlibrary.org/b/isbn/${book.isbn[2]}-L.jpg`}
                 alt="Book cover"
               />
               <Box sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -39,7 +38,7 @@ export default function SearchList({ bookData, handleYesClick }) {
                 }}
                 >
                   <CardActions>
-                    <Button size="small" variant="contained" color="success">Want to read</Button>
+                    <Button size="small" variant="contained" color="success" onClick={() => addToList(true)}>Want to read</Button>
                   </CardActions>
                 </Box>
               </Box>

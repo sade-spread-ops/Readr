@@ -49,6 +49,7 @@ router.get('/suggestion', (req, res) => {
       return getInfo(book.title, book.author);
     })
     .then((bookInfo) => {
+      console.log(bookInfo);
       book.isbn = bookInfo.isbn;
       book.description = bookInfo.description;
       book.coverURL = bookInfo.coverURL;
@@ -159,15 +160,20 @@ router.get('/haveread', async (req, res) => {
 });
 
 router.post('/interest', (req, res) => {
+  console.log(req);
   const {
     userID, isbn, toRead,
   } = req.body;
   dbHelpers.createUserBook(userID, isbn, toRead)
     .then(() => dbHelpers.findBook(isbn))
-    .then((bookData) => { dbHelpers.updatePreferences(userID, bookData.genre, toRead); })
-    .then(() => {
-      res.sendStatus(201);
+    .then((bookData) => {
+      console.log(bookData, 'DAta');
+      res.status(201).send(bookData);
+      // dbHelpers.updatePreferences(userID, bookData.genre, toRead);
     })
+    // .then(() => {
+    //   res.sendStatus(201);
+    // })
     .catch((error) => console.error(error));
 });
 
