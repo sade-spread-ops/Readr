@@ -13,7 +13,7 @@ const dbHelpers = require('../sequelize/db-helpers');
 const {
   User, UserFollower, UserHaveRead, UserBookClubs, Bookclubs,
 } = require('../sequelize/index');
-const { grabBooksByGenre } = require('./genre');
+const { grabBooksByGenre, createBook } = require('./genre');
 
 const authCheck = (req, res, next) => {
   if (!req.user) {
@@ -498,6 +498,7 @@ router.get('/genre/drama', ( req, res) => {
     });
   });
 
+  router.post('/save', createBook);
 
 
 module.exports = router;

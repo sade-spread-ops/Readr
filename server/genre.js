@@ -30,7 +30,7 @@ const grabBooksByGenre = (genre) => {
 
   const createBook = (request, response) => {
     const {isbnNumber, title, author} = request.body;
-    pool.query('INSERT INTO readr (isbn, title, author) VALUES ($1, $2, $3)', [isbnNumber, title, author], (error, results) => {
+    ('INSERT INTO readr (isbn, title, author) VALUES ($1, $2, $3)', [isbnNumber, title, author], (error, results) => {
       if (error) {
         throw error;
       }
@@ -38,6 +38,6 @@ const grabBooksByGenre = (genre) => {
     });
   }
 
-
+module.exports.createBook = createBook;
 module.exports.grabBooksByGenre = grabBooksByGenre;
 module.exports.grabBookCover = grabBookCover;

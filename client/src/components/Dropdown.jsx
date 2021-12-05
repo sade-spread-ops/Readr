@@ -35,6 +35,13 @@ function Dropdown() {
       });
   };
 
+  const saveBook = () => {
+    return axios.post('/readr/save', {
+      title: info.data.title,
+      author: info.data.author,
+      genre: info.data.genre,
+    })
+  }
 
   useEffect(() => {
     const pageClickEvent = (e) => {
@@ -107,7 +114,7 @@ function Dropdown() {
     <div>Author: {!!info.data ? info.data.author : "Loading"}  </div>
      <img src={!! info.data ? `https://covers.openlibrary.org/b/isbn/${info.data.isbnNumber}-M.jpg` : "Loading..."} />
   </div>
-  <Button variant="contained" color="primary">Save Books{console.log("Book saved to database")}</Button>
+  <Button onClick={() => {saveBook()}} variant="contained" color="primary">Save Books{console.log("Book saved to database")}</Button>
   </div>
   </div>
   )}
