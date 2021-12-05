@@ -36,12 +36,12 @@ function Dropdown() {
   };
 
   const saveBook = () => {
-    return axios.post('/readr/save', {
+    axios.post('/readr/insertIntoBookDb', {
+      isbn: info.data.isbnNumber,
       title: info.data.title,
-      author: info.data.author,
-      genre: info.data.genre,
-    })
-  }
+      author: info.data.author
+    });
+  };
 
   useEffect(() => {
     const pageClickEvent = (e) => {
