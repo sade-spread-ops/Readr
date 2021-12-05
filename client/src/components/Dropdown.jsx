@@ -77,7 +77,7 @@ function Dropdown() {
 } else {
 
   {getBookInfo(genre);}
-  console.log(!!info.data ? info.data : "Waiting to load....");
+  // console.log(!!info.data ? info.data : "Waiting to load....");
 
  
 
@@ -107,7 +107,7 @@ function Dropdown() {
     <div>Author: {!!info.data ? info.data.author : "Loading"}  </div>
      <img src={!! info.data ? `https://covers.openlibrary.org/b/isbn/${info.data.isbnNumber}-M.jpg` : "Loading..."} />
   </div>
-  <Button variant="contained" color="primary">Save Books</Button>
+  <Button variant="contained" color="primary">Save Books{console.log("Book saved to database")}</Button>
   </div>
   </div>
   )}
