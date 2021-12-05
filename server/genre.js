@@ -30,7 +30,7 @@ const grabBooksByGenre = (genre) => {
 
   const createBook = (request, response) => {
     const {isbnNumber, title, author} = request.body;
-    ('INSERT INTO readr (isbn, title, author) VALUES ($1, $2, $3)', [isbnNumber, title, author], (error, results) => {
+    (`INSERT INTO readr (isbn, title, author) VALUES (${isbnNumber}, ${title}, ${author})`, [isbnNumber, title, author], (error, results) => {
       if (error) {
         throw error;
       }
