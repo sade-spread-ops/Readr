@@ -163,24 +163,9 @@ router.post('/interest', (req, res) => {
   // console.log(req.body);
   const { userID, isbn, toRead } = req.body;
   dbHelpers.createUserBook(userID, isbn, toRead)
-    // .then(() => dbHelpers.findBook(isbn))
     .then((data) => {
-      // console.log(data, 'DATA ADD');
-      // dbHelpers.findBook(data.dataValues.isbn);
       res.status(201).send(data);
     })
-    // .then(() => {
-    //   res.sendStatus(201);
-    // })
-    // .then(() => dbHelpers.findBook(isbn))
-    // .then((bookData) => {
-    //   console.log(bookData, 'DAta');
-    //   res.status(201).send(bookData);
-    //   // dbHelpers.updatePreferences(userID, bookData.genre, toRead);
-    // })
-    // // .then(() => {
-    // //   res.sendStatus(201);
-    // // })
     .catch((error) => console.error('POST ERROR'));
 });
 
@@ -447,13 +432,13 @@ router.post('/insertIntoBookDb', (req, res) => {
   const book = {
     isbn: req.body.isbn,
     title: req.body.title,
-    author: '',
-    description: '',
-    coverURL: '',
-    buyLink: '',
-    genre: '',
-    urlSnippet: '',
-    availability: '',
+    author: req.body.author,
+    description: req.body.description,
+    coverURL: req.body.coverURL,
+    buyLink: req.body.buyLink,
+    genre: req.body.genre,
+    urlSnippet: req.body.urlSnippet,
+    availability: req.body.availability,
   };
   return dbHelpers.insertBook(book);
 });

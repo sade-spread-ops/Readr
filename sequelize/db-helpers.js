@@ -1,4 +1,4 @@
-/* eslint-disable camelcase */
+/* eslint-disable no-unused-vars */
 const models = require('./index');
 
 // ----------BOOKS----------
@@ -91,30 +91,26 @@ const userBookList = (user_ID, toRead) => models.UserBook.findAll({
     is_interested: true,
   },
 })
-  .then((bookIdentifiers) =>
-    // console.log(bookIdentifiers.length, '????');
-    bookIdentifiers.map((bookIdentifier) =>
-    // console.log(bookIdentifier, 'ISBN');
-      bookIdentifier.isbn))
+  .then((bookIdentifiers) => bookIdentifiers.map((bookIdentifier) => bookIdentifier.isbn))
   .then((data) => {
-    // console.log(data);
     resultIsbn = data;
     return models.Book.findAll({
-      // where: {
-      //   isbn: data,
-      // },
+      where: {
+        isbn: data,
+      },
     });
-  })
-  .then((data) => {
-    // console.log(resultIsbn, 'userbook');
-    const filterResult = data.filter((val) => {
-      console.log(val.dataValues.isbn);
-      console.log(val);
-      return resultIsbn.includes(val.dataValues.isbn);
-    });
-    console.log(filterResult, 'filter');
-    return filterResult;
   });
+
+// .then((data) => {
+//   // console.log(resultIsbn, 'userbook');
+//   const filterResult = data.filter((val) => {
+//     console.log(val.dataValues.isbn);
+//     console.log(val);
+//     return resultIsbn.includes(val.dataValues.isbn);
+//   });
+//   console.log(filterResult, 'filter');
+//   return filterResult;
+// });
 
 const createUserRead = async (userID, isbn, coverURL, title, author, description, haveRead) => await models.UserHaveRead.create({
   userID,

@@ -39,8 +39,8 @@ function BookListItem(props) {
   const {
     book, handleRemoveClick, handleReadNow, handleAddToReadList,
   } = props;
-  console.log(book, 'BOOOOOOOOK');
-  console.log(`https://covers.openlibrary.org/b/isbn/${book.isbn}-M.jpg`);
+  // console.log(book, 'BOOOOOOOOK');
+  // console.log(`https://covers.openlibrary.org/b/isbn/${book.isbn}-M.jpg`);
   const availabilityCheck = (book) => {
     switch (book.availability) {
       case 'open': return (
@@ -119,7 +119,7 @@ function BookListItem(props) {
             {book.author}
           </Typography>
           <Typography variant="body2" color="textSecondary">
-            {book.genre}
+            {/* {book.genre} */}
           </Typography>
         </Grid>
       </Grid>
