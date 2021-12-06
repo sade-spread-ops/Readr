@@ -27,7 +27,9 @@ const useStyles = makeStyles({
 });
 
 const Book = (props) => {
-  const { title, author, description, coverURL } = props.bookSuggestion;
+  const {
+    title, author, description, coverURL,
+  } = props.bookSuggestion;
   const { handleNoClick, handleYesClick } = props;
   const classes = useStyles();
 
@@ -56,7 +58,9 @@ const Book = (props) => {
               style={{ textAlign: 'left' }}
               variant="subtitle1"
             >
-              {author}
+              <div onClick={() => { props.handleAuthorClick(author); }}>
+                {author}
+              </div>
             </Typography>
             <Typography
               className="container description"

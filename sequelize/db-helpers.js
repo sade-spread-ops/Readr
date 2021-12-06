@@ -101,16 +101,6 @@ const userBookList = (user_ID, toRead) => models.UserBook.findAll({
     });
   });
 
-// .then((data) => {
-//   // console.log(resultIsbn, 'userbook');
-//   const filterResult = data.filter((val) => {
-//     console.log(val.dataValues.isbn);
-//     console.log(val);
-//     return resultIsbn.includes(val.dataValues.isbn);
-//   });
-//   console.log(filterResult, 'filter');
-//   return filterResult;
-// });
 
 const createUserRead = async (userID, isbn, coverURL, title, author, description, haveRead) => await models.UserHaveRead.create({
   userID,

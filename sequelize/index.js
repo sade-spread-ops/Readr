@@ -15,19 +15,19 @@ const {
   DB_PORT,
 } = process.env;
 
-// const db = new Sequelize({
-//   database: 'readr',
-//   username: 'root',
-//   password: 'pw',
-//   host: 'localhost',
-//   port: '5432',
-//   dialect: 'postgres',
-//   logging: false,
-// });
-const db = new Sequelize('readr', 'root', 'pw', {
-  host: 'localhost',
-  dialect: 'postgres'
+const db = new Sequelize({
+  database: DATABASE,
+  username: USER_NAME,
+  password: USER_PASSWORD,
+  host: HOST,
+  port: DB_PORT,
+  dialect: 'postgres',
+  logging: false,
 });
+// const db = new Sequelize('readr', 'root', 'pw', {
+//   host: 'localhost',
+//   dialect: 'postgres'
+// });
 
 // console.log(db.authenticate());
 db.authenticate().then(() => {
