@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import { Container, Typography } from '@material-ui/core';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { Container, CssBaseline, Typography } from '@material-ui/core';
+import { MuiThemeProvider, createTheme } from '@material-ui/core/styles';
 import { Route, Switch } from 'react-router-dom';
 import Login from './Login.jsx';
 import NavBar from './NavBar.jsx';
@@ -18,14 +18,45 @@ import BookClub from './BookClub/BookClub.jsx';
 import Followers from './Followers.jsx';
 import Search from './SearchByBook.jsx';
 
-const theme = createMuiTheme({
+const themeLight = createTheme({
   palette: {
+    background: {
+      default: "#FFFFFF",
+    },
     primary: { main: '#ff4400' },
     secondary: {
-      light: '#0066ff',
+      background: '#0ffc03',
+      theme: '#0066ff',
       main: '#0044ff',
       // dark: will be calculated from palette.secondary.main,
       contrastText: '#ffcc00',
+    },
+  },
+});
+
+const themeDark = createTheme({
+  palette: {
+    background: {
+      default: "#000000",
+    },
+    primary: { main: '#180830' },
+    secondary: {
+      background: '#09050f',
+      light: '#0066ff',
+      main: '#a18e18',
+      // dark: will be calculated from palette.secondary.main,
+      contrastText: '#ffcc00',
+    },
+    typography: {
+      allVariants: {
+        color: "pink"
+      },
+    },
+    text: {
+      primary: '#a88132',
+      secondary: '#a88132',
+      disabled: '#a88132',
+      hint: '#a88132',
     },
   },
 });
@@ -37,9 +68,14 @@ class App extends React.Component {
       isLoggedIn: false,
       user: null,
       urlSnippet: 'shakespearescom000shak',
+      checked: false,
+      currentTheme: themeLight,
     };
     this.updateUrlSnippet = this.updateUrlSnippet.bind(this);
     this.updateUser = this.updateUser.bind(this);
+    this.setTheme = this.setTheme.bind(this);
+    this.themePatch = this.themePatch.bind(this);
+    this.themeGet = this.themeGet.bind(this);
   }
 
   /* Sends request to server to get a book suggestion from google books API.
@@ -48,15 +84,38 @@ class App extends React.Component {
   * We could also do this server side, by getting the response and checking
   * the user's database. Send back the first item in the Query to Googls API
   * */
+  themeGet(){
+    if(this.state.user !== null){
+      return Boolean(this.state.user.theme);
+    }
+    return false;
+  }
+
+  setTheme(theme){
+    if(theme === true){
+      this.setState({currentTheme: themeDark});
+    }
+    else{
+      this.setState({currentTheme: themeLight});
+    }
+  }
+
+  themePatch(bool){
+    const { id } = this.state.user;
+    return axios.patch('readr/theme', {'user_id': `${id}`, 'theme': bool})
+    .catch((err) => {
+      console.error(err);
+    })
+  }
 
   componentDidMount() {
     axios.get('/auth/user').then((response) => {
       if (response.data.user) {
-        console.log(response.data.user);
         this.setState({
           isLoggedIn: true,
           user: response.data.user,
         });
+        this.setTheme(this.themeGet());
       } else {
         this.setState({
           isLoggedIn: false,
@@ -78,9 +137,9 @@ class App extends React.Component {
     const {
       isLoggedIn, user, userBookList, urlSnippet,
     } = this.state;
-    console.log(user, 'user in app render');
     return (
-      <MuiThemeProvider theme={theme}>
+      <MuiThemeProvider theme={this.state.currentTheme}>
+        <CssBaseline />
         <div className="App">
           {/* this container centers content on the page. Width is inherited by the rest of app. */}
           <Container component="main" maxWidth="lg">
@@ -90,9 +149,8 @@ class App extends React.Component {
             {/* conditional rendering of the components based on if the user is logged in */}
             {isLoggedIn ? (
               <div>
-                <NavBar user={user} />
+                <NavBar user={user} setTheme={this.setTheme} themePatch={this.themePatch} themeGet={this.themeGet}/>
                 <div className="mainViews">
-                  <Switch>
                     {/* // this is our default route */}
                     <Route
                       exact
