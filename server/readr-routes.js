@@ -498,7 +498,6 @@ router.get('/genre/drama', ( req, res) => {
     });
   });
 
-  router.post('/save', createBook);
 
 
 module.exports = router;
