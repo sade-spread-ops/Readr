@@ -39,6 +39,8 @@ function BookListItem(props) {
   const {
     book, handleRemoveClick, handleReadNow, handleAddToReadList,
   } = props;
+  console.log(book, 'BOOOOOOOOK');
+  console.log(`https://covers.openlibrary.org/b/isbn/${book.isbn}-M.jpg`);
   const availabilityCheck = (book) => {
     switch (book.availability) {
       case 'open': return (
@@ -103,12 +105,11 @@ function BookListItem(props) {
   )
     : null);
 
-
   return (
     <Paper className={classes.paper}>
       <Grid container>
         <Grid item md={5} className={classes.image}>
-          <img className={classes.img} alt="complex" src={book.coverURL} />
+          <img className={classes.img} alt="complex" src={book.coverURL ? book.coverURL : `https://covers.openlibrary.org/b/isbn/${book.isbn}-M.jpg`} />
         </Grid>
         <Grid item md={7}>
           <Typography gutterBottom variant="subtitle1">

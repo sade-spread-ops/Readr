@@ -27,6 +27,7 @@ const SearchForm = (props) => {
     handleSearch(searchVal);
     setSearchVal('');
   };
+  
   return (
     <div>
       <div>

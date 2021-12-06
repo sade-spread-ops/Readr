@@ -1,5 +1,5 @@
+/* eslint-disable camelcase */
 const models = require('./index');
-
 
 // ----------BOOKS----------
 // Takes a book object and creates a new books
@@ -13,7 +13,13 @@ const insertBook = (book) => models.Book.create({
   urlSnippet: book.urlSnippet,
   availability: book.availability,
   buyLink: book.buyLink,
-});
+}).then((data) => {
+  console.log('success', data.toJSON());
+})
+  .catch((err) => {
+  // print the error details
+    console.log(err);
+  });
 
 // Takes an identifying number and returns the book info
 const findBook = (isbn) => models.Book.findOne({
@@ -21,7 +27,6 @@ const findBook = (isbn) => models.Book.findOne({
     isbn,
   },
 });
-
 
 // ----------USER_PREFERENCES----------
 const defaultPref = 0.50;
@@ -78,21 +83,38 @@ const getPreferences = (userID) => models.UserPreference.findOne({
 
 // ----------USER_BOOKS----------
 // Takes a userID and a toRead boolean and returns list of all books on toRead / not toRead list
-const userBookList = (userID, toRead) => models.UserBook.findAll({
+let resultIsbn;
+const userBookList = (user_ID, toRead) => models.UserBook.findAll({
   attributes: ['isbn'],
   where: {
-    userID,
-    is_interested: toRead,
+    userID: user_ID,
+    is_interested: true,
   },
 })
-  .then((bookIdentifiers) => bookIdentifiers.map(
-    (bookIdentifier) => bookIdentifier.isbn,
-  ))
-  .then((identifiers) => models.Book.findAll({
-    where: {
-      isbn: identifiers,
-    },
-  }));
+  .then((bookIdentifiers) =>
+    // console.log(bookIdentifiers.length, '????');
+    bookIdentifiers.map((bookIdentifier) =>
+    // console.log(bookIdentifier, 'ISBN');
+      bookIdentifier.isbn))
+  .then((data) => {
+    // console.log(data);
+    resultIsbn = data;
+    return models.Book.findAll({
+      // where: {
+      //   isbn: data,
+      // },
+    });
+  })
+  .then((data) => {
+    // console.log(resultIsbn, 'userbook');
+    const filterResult = data.filter((val) => {
+      console.log(val.dataValues.isbn);
+      console.log(val);
+      return resultIsbn.includes(val.dataValues.isbn);
+    });
+    console.log(filterResult, 'filter');
+    return filterResult;
+  });
 
 const createUserRead = async (userID, isbn, coverURL, title, author, description, haveRead) => await models.UserHaveRead.create({
   userID,
@@ -180,7 +202,6 @@ const createUser = (username, googleId) => models.User.create({
   username,
   googleId,
 });
-
 
 module.exports.insertBook = insertBook;
 module.exports.findBook = findBook;

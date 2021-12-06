@@ -6,7 +6,8 @@ import axios from 'axios';
 import SearchForm from './SearchForm.jsx';
 import SearchList from './SearchList.jsx';
 
-const Search = () => {
+const Search = ({ user }) => {
+
   const [bookData, setBookData] = useState([]);
 
   const handleSearch = (title) => {
@@ -17,16 +18,31 @@ const Search = () => {
         setBookData(data);
       }).catch((err) => console.error('Err'));
   };
+  // const isbn = bookData.map((book) => {
+  //   return book.isbn[0];
+  // });
 
+  // const addToList = (isInterested) => {
+  //   axios.post('/readr/interest', {
+  //     userID: user.id,
+  //     isbn: isbn[0],
+  //     toRead: isInterested,
+  //   })
+  //     .then((data) => console.log(data, 'Success'))
+  //     .catch((err) => console.error(err));
+  // };
+
+  // console.log(isbn , user.id);
   // useEffect(() => {
   //   handleSearch();
+  //   // addToList();
   // }, []);
 
   return (
   <div>
     <h1>Search</h1>
     <SearchForm handleSearch={handleSearch} />
-    <SearchList bookData={bookData} />
+    <SearchList bookData={bookData} user={user} />
   </div>
   );
 };
