@@ -1,5 +1,5 @@
 /* Renders the books to be shown on login page */
-
+/* eslint-disable */
 import React from 'react';
 import axios from 'axios';
 import { Typography, CircularProgress, Grid } from '@material-ui/core';

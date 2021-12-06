@@ -1,9 +1,11 @@
+/* eslint-disable */
 import React from 'react';
 import {
   makeStyles,
   Button,
 } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import Dropdown from '../Dropdown';
 
 // This allows custom styling of the buttons, over-riding the root theme
 const useStyles = makeStyles((theme) => ({
@@ -23,6 +25,11 @@ const Buttons = () => {
       <Button
         size="large"
         component={Link}
+        to="/genres"
+        className={classes.button}
+      >
+        {/* changed from dropwdown menu */}
+        Genres
         to="/books"
         className={classes.button}
       >

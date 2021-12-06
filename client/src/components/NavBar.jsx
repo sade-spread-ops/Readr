@@ -2,6 +2,7 @@
  * Includes navigatin.buttons- App logo Title  2..button to "To-Read" list,
  * 3. "Explore Books" (new book suggestion), 4. Logout button.
  */
+/* eslint-disable */
 import React from 'react';
 import {
   AppBar,
@@ -17,6 +18,7 @@ import { Link } from 'react-router-dom';
 import WelcomeToast from './SnackBar.jsx';
 import BigBar from './NavBarMenus/BigBar.jsx';
 import SmallBar from './NavBarMenus/SmallBar.jsx';
+import Dropdown from './Dropdown.jsx';
 import axios from 'axios';
 import { ContactsOutlined } from '@material-ui/icons';
 import { useState } from 'react';

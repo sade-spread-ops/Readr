@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 // Express router for all main features of the Readr app
+/* eslint-disable */
 
 const router = require('express').Router();
 const { Users } = require('react-feather');
@@ -13,6 +14,7 @@ const dbHelpers = require('../sequelize/db-helpers');
 const {
   User, UserFollower, UserHaveRead, UserBookClubs, Bookclubs,
 } = require('../sequelize/index');
+const { grabBooksByGenre, createBook } = require('./genre');
 
 const { searchByBooks, getBookCover } = require('./search');
 
@@ -415,6 +417,89 @@ router.post('/clubInvite', async (req, res) => {
   await joinUserBookclub();
 });
 
+
+router.get('/genre/romance', ( req, res) => {
+   grabBooksByGenre("romance")
+    .then((data) => {
+      res.send(data);
+    }).catch((error) => {
+      console.log(error);
+      res.status(500).end();
+    });
+  });
+
+  router.get('/genre/comic', ( req, res) => {
+    grabBooksByGenre("comic")
+      .then((data) => {
+        res.send(data);
+      }).catch((error) => {
+        console.log(error);
+        res.status(500).end();
+      });
+    });
+
+  router.get('/genre/satire', ( req, res) => {
+  grabBooksByGenre("satire")
+    .then((data) => {
+      res.send(data);
+    }).catch((error) => {
+      console.log(error);
+      res.status(500).end();
+    });
+  });
+
+
+  router.get('/genre/mystery', ( req, res) => {
+    grabBooksByGenre("mystery")
+      .then((data) => {
+        res.send(data);
+      }).catch((error) => {
+        console.log(error);
+        res.status(500).end();
+      });
+    });
+
+
+router.get('/genre/western', ( req, res) => {
+  grabBooksByGenre("western")
+    .then((data) => {
+      res.send(data);
+    }).catch((error) => {
+      console.log(error);
+      res.status(500).end();
+    });
+  });
+
+router.get('/genre/drama', ( req, res) => {
+  grabBooksByGenre("drama")
+    .then((data) => {
+      res.send(data);
+    }).catch((error) => {
+      console.log(error);
+      res.status(500).end();
+    });
+  });
+
+  router.get('/genre/crime', ( req, res) => {
+  grabBooksByGenre("crime")
+    .then((data) => {
+      res.send(data);
+    }).catch((error) => {
+      console.log(error);
+      res.status(500).end();
+    });
+  });
+
+  router.get('/genre/horror', ( req, res) => {
+  grabBooksByGenre("horror")
+    .then((data) => {
+      res.send(data);
+    }).catch((error) => {
+      console.log(error);
+      res.status(500).end();
+    });
+  });
+
 router.patch('/theme', (req, res) => {
   let { theme, user_id } = req.body;
   User.update(
@@ -452,5 +537,6 @@ router.post('/insertIntoBookDb', (req, res) => {
   };
   return dbHelpers.insertBook(book);
 });
+
 
 module.exports = router;

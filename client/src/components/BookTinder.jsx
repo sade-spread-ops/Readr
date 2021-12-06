@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import { useSpring, animated } from 'react-spring';
 import { useGestureResponder } from 'react-gesture-responder';

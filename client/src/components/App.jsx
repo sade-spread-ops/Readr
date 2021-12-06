@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+
+/* eslint-disable */
+import React from 'react';
 import axios from 'axios';
 import { Container, CssBaseline, Typography } from '@material-ui/core';
 import { MuiThemeProvider, createTheme } from '@material-ui/core/styles';
@@ -16,7 +18,11 @@ import AddFriend from './AddFriend.jsx';
 import ClubList from './Chatroom/ClubList.jsx';
 import BookClub from './BookClub/BookClub.jsx';
 import Followers from './Followers.jsx';
+
+import Dropdown from './Dropdown.jsx';
+import BookGenreView from './BookGenreView.jsx';
 import Search from './SearchByBook.jsx';
+
 
 const themeLight = createTheme({
   palette: {
@@ -78,6 +84,8 @@ class App extends React.Component {
     this.themeGet = this.themeGet.bind(this);
   }
 
+  // Working on axios request here;
+
   /* Sends request to server to get a book suggestion from google books API.
   * If the book suggestion is already in the logged in user's
   * "yes" or "no" list, resend the getBookSuggestion request.
@@ -125,6 +133,9 @@ class App extends React.Component {
     });
   }
 
+  // testing book genre functionality
+
+  /// //////////////
   updateUser(obj) {
     this.setState({ user: obj });
   }
@@ -176,7 +187,9 @@ class App extends React.Component {
                     <Route exact path="/bookclubs" render={(props) => <ClubList {...props} user={user} />} />
                     <Route exact path="/bookclubinvite" render={(props) => <BookClub {...props} user={user} />} />
                     <Route exact path="/followers" render={(props) => <Followers {...props} user={user} />} />
+                    <Route exact path="/genres" render={() => <BookGenreView/>} />
                     <Route exact path="/books" render={(props) => <Search {...props} user={user} />} />
+
                   </Switch>
                 </div>
               </div>

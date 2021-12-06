@@ -3,6 +3,8 @@
  * It renders a large image of the book cover along with description and the three button
  * choices above. The user should not see a book they have already said yes or no to.
  */
+
+/* eslint-disable */
 import React from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
