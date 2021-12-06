@@ -98,7 +98,7 @@ class SuggestionView extends React.Component {
 
   render() {
     const { bookSuggestion } = this.state;
-    console.log(bookSuggestion, 'SUGGEST');
+    // console.log(bookSuggestion, 'SUGGEST');
     // check if no book description
     if (bookSuggestion) {
       if (!bookSuggestion.description) {

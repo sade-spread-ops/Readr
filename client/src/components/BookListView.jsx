@@ -33,6 +33,7 @@ class BookListView extends React.Component {
       toRead: true,
     })
       .then((books) => {
+        // console.log(books, 'booklist');
         this.setState({ bookList: books.data });
       })
       .catch((error) => console.log(error));

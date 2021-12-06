@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import * as React from 'react';
+import axios from 'axios';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -7,21 +8,42 @@ import CardMedia from '@mui/material/CardMedia';
 import CardActions from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+// const { insertBook } = require('../../../sequelize/db-helpers');
 
-export default function SearchList({ bookData, addToList }) {
+export default function SearchList({ bookData, user }) {
+  // console.log(bookData);
+  const isbn = bookData.map((book) => (book.isbn ? book.isbn[0] : null));
+
+  const addToList = (book) => {
+    // console.log(book, 'book');
+    axios.post('/readr/interest', {
+      userID: user.id,
+      isbn: book.isbn[0],
+      toRead: true,
+    })
+      .then((data) => console.log(data, 'Success'))
+      .catch((err) => console.error(err));
+  };
+
+  const addNewBook = (book) => {
+    axios.post('/readr/insertIntoBookDb', {
+      isbn: book.isbn[0],
+      title: book.title,
+    });
+  };
   return (
     <div>
       {
-        bookData.map((book) => {
+        bookData.map((book) =>
           // const isbnNum = book.isbn;
           // console.log(book.isbn[0]);
           // console.log(book.title, book.isbn);
-          return (
+          (
             <Card sx={{ display: 'flex' }}>
               <CardMedia
                 component="img"
                 sx={{ width: 151 }}
-                image={`https://covers.openlibrary.org/b/isbn/${book.isbn[2]}-L.jpg`}
+                // image={`https://covers.openlibrary.org/b/isbn/${book.isbn[2]}-L.jpg`}
                 alt="Book cover"
               />
               <Box sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -38,13 +60,21 @@ export default function SearchList({ bookData, addToList }) {
                 }}
                 >
                   <CardActions>
-                    <Button size="small" variant="contained" color="success" onClick={() => addToList(true)}>Want to read</Button>
+                    <Button
+                      size="small"
+                      variant="contained"
+                      color="success"
+                      onClick={() => {
+                        addNewBook(book);
+                        addToList(book);
+                      }}
+                    >Want to read
+                    </Button>
                   </CardActions>
                 </Box>
               </Box>
             </Card>
-          );
-        })
+          ))
       }
     </div>
   );

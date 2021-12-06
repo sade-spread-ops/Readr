@@ -18,23 +18,19 @@ const Search = ({ user }) => {
         setBookData(data);
       }).catch((err) => console.error('Err'));
   };
-  const isbn = bookData.map((book) => {
-    // console.log(book.isbn[0]);
-    // book.isbn.forEach((val) => {
-    //   console.log(val);
-    // })
-    return book.isbn[0];
-  });
+  // const isbn = bookData.map((book) => {
+  //   return book.isbn[0];
+  // });
 
-  const addToList = (isInterested) => {
-    axios.post('/readr/interest', {
-      userID: user.id,
-      isbn: isbn[0],
-      toRead: isInterested,
-    })
-      .then(() => console.log('Success'))
-      .catch((err) => console.error(err));
-  };
+  // const addToList = (isInterested) => {
+  //   axios.post('/readr/interest', {
+  //     userID: user.id,
+  //     isbn: isbn[0],
+  //     toRead: isInterested,
+  //   })
+  //     .then((data) => console.log(data, 'Success'))
+  //     .catch((err) => console.error(err));
+  // };
 
   // console.log(isbn , user.id);
   // useEffect(() => {
@@ -46,7 +42,7 @@ const Search = ({ user }) => {
   <div>
     <h1>Search</h1>
     <SearchForm handleSearch={handleSearch} />
-    <SearchList bookData={bookData} addToList={addToList} />
+    <SearchList bookData={bookData} user={user} />
   </div>
   );
 };

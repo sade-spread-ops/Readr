@@ -49,7 +49,7 @@ router.get('/suggestion', (req, res) => {
       return getInfo(book.title, book.author);
     })
     .then((bookInfo) => {
-      console.log(bookInfo);
+      // console.log(bookInfo);
       book.isbn = bookInfo.isbn;
       book.description = bookInfo.description;
       book.coverURL = bookInfo.coverURL;
@@ -160,21 +160,28 @@ router.get('/haveread', async (req, res) => {
 });
 
 router.post('/interest', (req, res) => {
-  console.log(req);
-  const {
-    userID, isbn, toRead,
-  } = req.body;
+  // console.log(req.body);
+  const { userID, isbn, toRead } = req.body;
   dbHelpers.createUserBook(userID, isbn, toRead)
-    .then(() => dbHelpers.findBook(isbn))
-    .then((bookData) => {
-      console.log(bookData, 'DAta');
-      res.status(201).send(bookData);
-      // dbHelpers.updatePreferences(userID, bookData.genre, toRead);
+    // .then(() => dbHelpers.findBook(isbn))
+    .then((data) => {
+      // console.log(data, 'DATA ADD');
+      // dbHelpers.findBook(data.dataValues.isbn);
+      res.status(201).send(data);
     })
     // .then(() => {
     //   res.sendStatus(201);
     // })
-    .catch((error) => console.error(error));
+    // .then(() => dbHelpers.findBook(isbn))
+    // .then((bookData) => {
+    //   console.log(bookData, 'DAta');
+    //   res.status(201).send(bookData);
+    //   // dbHelpers.updatePreferences(userID, bookData.genre, toRead);
+    // })
+    // // .then(() => {
+    // //   res.sendStatus(201);
+    // // })
+    .catch((error) => console.error('POST ERROR'));
 });
 
 router.patch('/interest', (req, res) => {
@@ -190,8 +197,10 @@ router.patch('/interest', (req, res) => {
 
 router.post('/booklist', (req, res) => {
   const { userID, toRead } = req.body;
+  // console.log(userID);
   dbHelpers.userBookList(userID, toRead)
     .then((bookList) => {
+      // console.log(bookList, 'bookpost');
       res.send(bookList);
     })
     .catch((error) => console.error(error));
@@ -432,6 +441,21 @@ router.get('/books', (req, res) => {
       console.log('Get books fail');
       res.status(500).end();
     });
+});
+
+router.post('/insertIntoBookDb', (req, res) => {
+  const book = {
+    isbn: req.body.isbn,
+    title: req.body.title,
+    author: '',
+    description: '',
+    coverURL: '',
+    buyLink: '',
+    genre: '',
+    urlSnippet: '',
+    availability: '',
+  };
+  return dbHelpers.insertBook(book);
 });
 
 module.exports = router;
