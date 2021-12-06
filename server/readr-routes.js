@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // Express router for all main features of the Readr app
 /* eslint-disable */
 
@@ -14,6 +15,8 @@ const {
   User, UserFollower, UserHaveRead, UserBookClubs, Bookclubs,
 } = require('../sequelize/index');
 const { grabBooksByGenre, createBook } = require('./genre');
+
+const { searchByBooks, getBookCover } = require('./search');
 
 const authCheck = (req, res, next) => {
   if (!req.user) {
@@ -48,6 +51,7 @@ router.get('/suggestion', (req, res) => {
       return getInfo(book.title, book.author);
     })
     .then((bookInfo) => {
+      // console.log(bookInfo);
       book.isbn = bookInfo.isbn;
       book.description = bookInfo.description;
       book.coverURL = bookInfo.coverURL;
@@ -129,7 +133,6 @@ router.post('/preferences', async (req, res) => {
   res.sendStatus(201);
 });
 
-
 // sends have read data to server
 router.post('/haveread', (req, res) => {
   const {
@@ -159,16 +162,13 @@ router.get('/haveread', async (req, res) => {
 });
 
 router.post('/interest', (req, res) => {
-  const {
-    userID, isbn, toRead,
-  } = req.body;
+  // console.log(req.body);
+  const { userID, isbn, toRead } = req.body;
   dbHelpers.createUserBook(userID, isbn, toRead)
-    .then(() => dbHelpers.findBook(isbn))
-    .then((bookData) => { dbHelpers.updatePreferences(userID, bookData.genre, toRead); })
-    .then(() => {
-      res.sendStatus(201);
+    .then((data) => {
+      res.status(201).send(data);
     })
-    .catch((error) => console.error(error));
+    .catch((error) => console.error('POST ERROR'));
 });
 
 router.patch('/interest', (req, res) => {
@@ -184,8 +184,10 @@ router.patch('/interest', (req, res) => {
 
 router.post('/booklist', (req, res) => {
   const { userID, toRead } = req.body;
+  // console.log(userID);
   dbHelpers.userBookList(userID, toRead)
     .then((bookList) => {
+      // console.log(bookList, 'bookpost');
       res.send(bookList);
     })
     .catch((error) => console.error(error));
@@ -325,7 +327,6 @@ router.get('/getFriends', async (req, res) => {
   res.send(response);
 });
 
-
 router.get('/getBookclubs', async (req, res) => {
   // get bookclub IDs
   const { user } = req.query;
@@ -416,6 +417,7 @@ router.post('/clubInvite', async (req, res) => {
   await joinUserBookclub();
 });
 
+
 router.get('/genre/romance', ( req, res) => {
    grabBooksByGenre("romance")
     .then((data) => {
@@ -498,6 +500,43 @@ router.get('/genre/drama', ( req, res) => {
     });
   });
 
+router.patch('/theme', (req, res) => {
+  let { theme, user_id } = req.body;
+  User.update(
+    { theme: theme },
+    { where: { id: user_id }},
+  )
+  .then(() => {
+    res.sendStatus(204);
+  })
+})
+
+router.get('/books', (req, res) => {
+  // console.log(req.query.title, 'REQ');
+  searchByBooks(req.query.title)
+    .then(({ data }) => {
+      // console.log(data, 'DATA');
+      res.send((data.docs));
+    }).catch((error) => {
+      console.log('Get books fail');
+      res.status(500).end();
+    });
+});
+
+router.post('/insertIntoBookDb', (req, res) => {
+  const book = {
+    isbn: req.body.isbn,
+    title: req.body.title,
+    author: req.body.author,
+    description: req.body.description,
+    coverURL: req.body.coverURL,
+    buyLink: req.body.buyLink,
+    genre: req.body.genre,
+    urlSnippet: req.body.urlSnippet,
+    availability: req.body.availability,
+  };
+  return dbHelpers.insertBook(book);
+});
 
 
 module.exports = router;

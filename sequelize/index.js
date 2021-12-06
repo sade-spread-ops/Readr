@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 const Sequelize = require('sequelize');
 
 require('dotenv').config();
@@ -13,18 +15,29 @@ const {
   DB_PORT,
 } = process.env;
 
-const db = new Sequelize({
-  database: DATABASE,
-  username: USER_NAME,
-  password: USER_PASSWORD,
-  host: HOST,
-  port: DB_PORT,
-  dialect: 'postgres',
-  logging: false,
+// const db = new Sequelize({
+//   database: 'readr',
+//   username: 'root',
+//   password: 'pw',
+//   host: 'localhost',
+//   port: '5432',
+//   dialect: 'postgres',
+//   logging: false,
+// });
+const db = new Sequelize('readr', 'root', 'pw', {
+  host: 'localhost',
+  dialect: 'postgres'
 });
+
+// console.log(db.authenticate());
+db.authenticate().then(() => {
+  console.log('connected to database');
+}).catch((err) => console.log(err, 'error hitting'));
+// const db = new Sequelize('postgres://postgres@localhost:5432/readr');
 
 // forces data base drop
 // db.sync({ force: true });
+
 
 // creating the table for the user
 const User = db.define('user', {
@@ -38,7 +51,10 @@ const User = db.define('user', {
   isQuizzed: Sequelize.BOOLEAN,
   chosenName: Sequelize.STRING,
   email: Sequelize.STRING,
+  theme: Sequelize.BOOLEAN,
 });
+
+
 
 // creating the table for the books api informations
 const Book = db.define('book', {
@@ -239,10 +255,10 @@ UserBookClubs.sync();
 
 // forces data base drop
 // db.sync({ force: true });
-
-db.authenticate().then(() => {
-  console.log('connected to database');
-}).catch((err) => console.log(err));
+// console.log(db.authenticate());
+// db.authenticate().then(() => {
+//   console.log('connected to database');
+// }).catch((err) => console.log(err));
 
 module.exports.User = User;
 module.exports.Book = Book;

@@ -30,6 +30,10 @@ const Buttons = () => {
       >
         {/* changed from dropwdown menu */}
         Genres
+        to="/books"
+        className={classes.button}
+      >
+        Search Books
       </Button>
       <Button
         size="large"

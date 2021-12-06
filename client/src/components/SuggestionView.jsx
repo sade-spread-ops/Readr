@@ -13,7 +13,6 @@ import Zoom from '@material-ui/core/Zoom';
 import Slider from './BookTinder.jsx';
 import LoadingSuggestion from './SuggestionView/LoadingSuggestion.jsx';
 import Book from './SuggestionView/Book.jsx';
-
 class SuggestionView extends React.Component {
   constructor(props) {
     super(props);
@@ -101,6 +100,7 @@ class SuggestionView extends React.Component {
 
   render() {
     const { bookSuggestion } = this.state;
+    // console.log(bookSuggestion, 'SUGGEST');
     // check if no book description
     if (bookSuggestion) {
       if (!bookSuggestion.description) {

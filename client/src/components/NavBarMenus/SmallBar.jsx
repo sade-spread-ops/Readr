@@ -70,6 +70,13 @@ export default function SmallBar() {
         <MenuItem
           onClick={handleClose}
           component={Link}
+          to="/books"
+        >
+          Search Books
+        </MenuItem>
+        <MenuItem
+          onClick={handleClose}
+          component={Link}
           to="/suggestion"
         >
           Explore Books

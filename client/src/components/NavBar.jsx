@@ -11,6 +11,7 @@ import {
   makeStyles,
   Button,
   IconButton,
+  Switch,
 } from '@material-ui/core';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import { Link } from 'react-router-dom';
@@ -18,6 +19,11 @@ import WelcomeToast from './SnackBar.jsx';
 import BigBar from './NavBarMenus/BigBar.jsx';
 import SmallBar from './NavBarMenus/SmallBar.jsx';
 import Dropdown from './Dropdown.jsx';
+import axios from 'axios';
+import { ContactsOutlined } from '@material-ui/icons';
+import { useState } from 'react';
+import Search from './SearchByBook.jsx';
+
 
 // This allows custom styling of the buttons, over-riding the root theme
 const useStyles = makeStyles((theme) => ({
@@ -48,9 +54,19 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const NavBar = (props) => {
+
+  const [checked, setChecked] = React.useState(props.themeGet());
+
   const classes = useStyles();
   const { username, id } = props.user;
   const firstName = username.split(' ')[0];
+
+  const handleToggle = (event) => {
+    setChecked(event.target.checked);
+    props.setTheme(event.target.checked);
+    props.themePatch(event.target.checked);
+  };
+
   return (
     <div className={classes.root}>
       <WelcomeToast message={`Hi ${username}!`} />
@@ -66,6 +82,7 @@ const NavBar = (props) => {
           >
             <MenuBookIcon />
           </IconButton>
+          
           <Typography
             variant="h4"
             className={classes.title}
@@ -74,6 +91,7 @@ const NavBar = (props) => {
           >
             Readr 2.0
           </Typography>
+          <Switch className='toggleTheme' checked={checked} onChange={handleToggle}/>
           <div className={classes.bigBar}>
             <BigBar />
           </div>
