@@ -25,6 +25,8 @@ class SuggestionView extends React.Component {
        * isbn: "9781459247925"
        * title: "THE CHARM SCHOOL"
        */
+      authorClicked: false,
+      authorBooks: [],
     };
 
     this.getBookSuggestion = this.getBookSuggestion.bind(this);
@@ -32,7 +34,7 @@ class SuggestionView extends React.Component {
     this.handleYesClick = this.handleYesClick.bind(this);
     this.handleNoClick = this.handleNoClick.bind(this);
     this.clearBookSuggestion = this.clearBookSuggestion.bind(this);
-    // this.handleReadNowClick = this.handleReadNowClick.bind(this);
+    this.handleAuthorClick = this.handleAuthorClick.bind(this);
   }
 
   componentDidMount() {
@@ -92,14 +94,66 @@ class SuggestionView extends React.Component {
     this.getBookSuggestion();
   }
 
-  // handleReadNowClick() {
-  //   console.log('Clicked Read Now!');
-  //   // sends users to a view or link to openURL
-  //   // *************************** FIX ME
-  // }
+  handleAuthorClick(author) {
+    // console.log('clicked');
+    // console.log(author);
+    const optionsAuthor = {
+      url: 'https://openlibrary.org/search/authors.json',
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      params: {
+        q: author,
+        limit: 5,
+      },
+    };
+
+    axios(optionsAuthor)
+      .then(({ data }) => {
+        // console.log(data);
+        // const { key } = data.data.docs[0];
+        // console.log(data.docs[0].key);
+        const { key } = data.docs[0];
+        return key;
+      })
+      .then((key) => {
+        // console.log(key);
+        const optionsAuthorWorks = {
+          url: `https://openlibrary.org/authors/${key}/works.json`,
+          method: 'GET',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          params: {
+            limit: 5,
+          },
+        };
+        axios(optionsAuthorWorks)
+          .then(({ data }) => {
+            // console.log(data.entries);
+            // console.log(author);
+            const newAuthorBooks = data.entries.map((entry) => ({
+              title: entry.title,
+              author,
+              description: '',
+              coverURL: 'https://covers.openlibrary.org/b/id/240727-L.jpg',
+            }));
+            console.log(newAuthorBooks);
+            this.setState({
+              authorClicked: true,
+              authorBooks: newAuthorBooks,
+            });
+          });
+      });
+    // things i ned to make a book component
+    // title, author, description, coverURL
+  }
 
   render() {
-    const { bookSuggestion } = this.state;
+    const { bookSuggestion, authorBooks } = this.state;
     // console.log(bookSuggestion, 'SUGGEST');
     // check if no book description
     if (bookSuggestion) {
@@ -125,10 +179,12 @@ class SuggestionView extends React.Component {
                         bookSuggestion={bookSuggestion}
                         handleNoClick={this.handleNoClick}
                         handleYesClick={this.handleYesClick}
+                        handleAuthorClick={this.handleAuthorClick}
                       />
                     </div>
                   )}
                 />
+                {authorBooks.length ? authorBooks.map((entry) => <Book bookSuggestion={entry} />) : null}
               </Grid>
             </Grid>
           </Zoom>

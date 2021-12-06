@@ -30,7 +30,6 @@ function Dropdown() {
         //  return (JSON.stringify(data));
       })
       .catch((error) => {
-        window.alert('Book not found!');
         console.error(error);
       });
   };
