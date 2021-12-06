@@ -8,7 +8,6 @@ import CardMedia from '@mui/material/CardMedia';
 import CardActions from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-// const { insertBook } = require('../../../sequelize/db-helpers');
 
 export default function SearchList({ bookData, user }) {
   // console.log(bookData);
@@ -29,21 +28,25 @@ export default function SearchList({ bookData, user }) {
     axios.post('/readr/insertIntoBookDb', {
       isbn: book.isbn[0],
       title: book.title,
+      author: book.author_name[0],
+      description: null,
+      coverURL: null,
+      buyLink: null,
+      genre: null,
+      urlSnippet: null,
+      availability: null,
     });
   };
   return (
     <div>
       {
-        bookData.map((book) =>
-          // const isbnNum = book.isbn;
-          // console.log(book.isbn[0]);
-          // console.log(book.title, book.isbn);
-          (
+        bookData.map((book) => {
+          return (
             <Card sx={{ display: 'flex' }}>
               <CardMedia
                 component="img"
                 sx={{ width: 151 }}
-                // image={`https://covers.openlibrary.org/b/isbn/${book.isbn[2]}-L.jpg`}
+                image={book.isbn ? `https://covers.openlibrary.org/b/isbn/${book.isbn[2]}-L.jpg` : 'https://covers.openlibrary.org/b/isbn/9780307386861-M.jpg'}
                 alt="Book cover"
               />
               <Box sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -74,7 +77,8 @@ export default function SearchList({ bookData, user }) {
                 </Box>
               </Box>
             </Card>
-          ))
+          );
+        })
       }
     </div>
   );
