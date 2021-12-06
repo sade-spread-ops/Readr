@@ -35,6 +35,7 @@ class SuggestionView extends React.Component {
     this.handleNoClick = this.handleNoClick.bind(this);
     this.clearBookSuggestion = this.clearBookSuggestion.bind(this);
     this.handleAuthorClick = this.handleAuthorClick.bind(this);
+    this.handleYesClickAuthor = this.handleYesClickAuthor.bind(this);
   }
 
   componentDidMount() {
@@ -94,11 +95,36 @@ class SuggestionView extends React.Component {
     this.getBookSuggestion();
   }
 
+  handleYesClickAuthor(){
+    // this.postUserInterest(true);
+    const { user } = this.props;
+    axios.post('/readr/interest', {
+      userID: user.id,
+      isbn: this.state.authorBooks.isbn,
+      // this is true or false value, passed in on click
+      toRead: true,
+    });
+    this.clearBookSuggestion();
+    this.getBookSuggestion();
+    axios.post('/readr/insertIntoBookDb', {
+      isbn: this.state.authorBooks.isbn,
+      title: this.state.authorBooks.title,
+      author: this.state.authorBooks.author,
+      description: null,
+      coverURL: null,
+      buyLink: null,
+      genre: null,
+      urlSnippet: null,
+      availability: null,
+    });
+    this.setState({authorBooks: [], authorClicked: false})
+  }
+
   handleAuthorClick(author) {
     // console.log('clicked');
     // console.log(author);
-    const optionsAuthor = {
-      url: 'https://openlibrary.org/search/authors.json',
+    const options = {
+      url: 'http://localhost:3000/readr/authorTopWorks',
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -106,52 +132,23 @@ class SuggestionView extends React.Component {
       },
       params: {
         q: author,
-        limit: 5,
       },
     };
 
-    axios(optionsAuthor)
+    axios(options)
       .then(({ data }) => {
-        // console.log(data);
-        // const { key } = data.data.docs[0];
-        // console.log(data.docs[0].key);
-        const { key } = data.docs[0];
-        return key;
+        // console.log(data)
+        if(data) {
+          data.author = Array.isArray(data.author) ? data.author[0] : data.author 
+          this.setState({ authorBooks: data });
+          console.log(this.state)
+        }
       })
-      .then((key) => {
-        // console.log(key);
-        const optionsAuthorWorks = {
-          url: `https://openlibrary.org/authors/${key}/works.json`,
-          method: 'GET',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-          },
-          params: {
-            limit: 5,
-          },
-        };
-        axios(optionsAuthorWorks)
-          .then(({ data }) => {
-            // console.log(data.entries);
-            // console.log(author);
-            const newAuthorBooks = data.entries.map((entry) => ({
-              title: entry.title,
-              author,
-              description: '',
-              coverURL: 'https://covers.openlibrary.org/b/id/240727-L.jpg',
-            }));
-            console.log(newAuthorBooks);
-            this.setState({
-              authorClicked: true,
-              authorBooks: newAuthorBooks,
-            });
-          });
-      });
+
     // things i ned to make a book component
     // title, author, description, coverURL
   }
-
+  // {authorBooks.length ? authorBooks.map((entry) => <Book bookSuggestion={entry} />) : null}
   render() {
     const { bookSuggestion, authorBooks } = this.state;
     // console.log(bookSuggestion, 'SUGGEST');
@@ -184,10 +181,32 @@ class SuggestionView extends React.Component {
                     </div>
                   )}
                 />
-                {authorBooks.length ? authorBooks.map((entry) => <Book bookSuggestion={entry} />) : null}
+                {authorBooks.isbn ? <Slider
+                  handleNoClick={this.handleNoClick}
+                  handleYesClick={this.handleYesClickAuthor}
+                  book={(
+                    <div>
+                    {console.log(this.state.authorBooks)}
+                    {this.state.authorBooks.author}'s Top Book
+                      <Book
+                        bookSuggestion={{
+                          title: this.state.authorBooks.title,
+                          author: this.state.authorBooks.author,
+                          description: '',
+                          coverURL: `https://covers.openlibrary.org/b/isbn/${this.state.authorBooks.isbn}-L.jpg`
+                        }}
+                        handleNoClick={this.handleNoClick}
+                        handleYesClick={this.handleYesClickAuthor}
+                        handleAuthorClick={this.handleAuthorClick}
+                      />
+                    </div>
+                  )}
+                /> : null}
+
               </Grid>
             </Grid>
           </Zoom>
+          
         )}
       </div>
     );
