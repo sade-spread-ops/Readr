@@ -414,4 +414,16 @@ router.post('/clubInvite', async (req, res) => {
   await joinUserBookclub();
 });
 
+router.patch('/theme', (req, res) => {
+  let { theme, user_id } = req.body;
+  User.update(
+    { theme: theme },
+    { where: { id: user_id }},
+  )
+  .then(() => {
+    res.sendStatus(204);
+  })
+})
+
+
 module.exports = router;

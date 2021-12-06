@@ -48,6 +48,7 @@ const User = db.define('user', {
   isQuizzed: Sequelize.BOOLEAN,
   chosenName: Sequelize.STRING,
   email: Sequelize.STRING,
+  theme: Sequelize.BOOLEAN,
 });
 
 

@@ -74,8 +74,9 @@ class App extends React.Component {
     this.updateUrlSnippet = this.updateUrlSnippet.bind(this);
     this.updateUser = this.updateUser.bind(this);
     this.setTheme = this.setTheme.bind(this);
+    this.themePatch = this.themePatch.bind(this);
+    this.themeGet = this.themeGet.bind(this);
   }
-
 
   /* Sends request to server to get a book suggestion from google books API.
   * If the book suggestion is already in the logged in user's
@@ -83,6 +84,29 @@ class App extends React.Component {
   * We could also do this server side, by getting the response and checking
   * the user's database. Send back the first item in the Query to Googls API
   * */
+  themeGet(){
+    if(this.state.user !== null){
+      return Boolean(this.state.user.theme);
+    }
+    return false;
+  }
+
+  setTheme(theme){
+    if(theme === true){
+      this.setState({currentTheme: themeDark});
+    }
+    else{
+      this.setState({currentTheme: themeLight});
+    }
+  }
+
+  themePatch(bool){
+    const { id } = this.state.user;
+    return axios.patch('readr/theme', {'user_id': `${id}`, 'theme': bool})
+    .catch((err) => {
+      console.error(err);
+    })
+  }
 
   componentDidMount() {
     axios.get('/auth/user').then((response) => {
@@ -91,6 +115,7 @@ class App extends React.Component {
           isLoggedIn: true,
           user: response.data.user,
         });
+        this.setTheme(this.themeGet());
       } else {
         this.setState({
           isLoggedIn: false,
@@ -106,15 +131,6 @@ class App extends React.Component {
 
   updateUrlSnippet(urlSnippet) {
     this.setState({ urlSnippet });
-  }
-
-  setTheme(){
-    if(this.state.currentTheme === themeLight){
-      this.setState({currentTheme: themeDark});
-    }
-    if(this.state.currentTheme === themeDark){
-      this.setState({currentTheme: themeLight});
-    }
   }
 
   render() {
@@ -133,7 +149,7 @@ class App extends React.Component {
             {/* conditional rendering of the components based on if the user is logged in */}
             {isLoggedIn ? (
               <div>
-                <NavBar user={user} setTheme={this.setTheme}/>
+                <NavBar user={user} setTheme={this.setTheme} themePatch={this.themePatch} themeGet={this.themeGet}/>
                 <div className="mainViews">
                     {/* // this is our default route */}
                     <Route

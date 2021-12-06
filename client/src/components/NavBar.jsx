@@ -17,6 +17,9 @@ import { Link } from 'react-router-dom';
 import WelcomeToast from './SnackBar.jsx';
 import BigBar from './NavBarMenus/BigBar.jsx';
 import SmallBar from './NavBarMenus/SmallBar.jsx';
+import axios from 'axios';
+import { ContactsOutlined } from '@material-ui/icons';
+import { useState } from 'react';
 
 // This allows custom styling of the buttons, over-riding the root theme
 const useStyles = makeStyles((theme) => ({
@@ -46,23 +49,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 const NavBar = (props) => {
+
+  const [checked, setChecked] = React.useState(props.themeGet());
+
   const classes = useStyles();
   const { username, id } = props.user;
   const firstName = username.split(' ')[0];
-  
 
-
-  const handleToggle = () => {
-    props.setTheme();
+  const handleToggle = (event) => {
+    setChecked(event.target.checked);
+    props.setTheme(event.target.checked);
+    props.themePatch(event.target.checked);
   };
-
-
-
-
-
-
 
   return (
     <div className={classes.root}>
@@ -88,7 +87,7 @@ const NavBar = (props) => {
           >
             Readr 2.0
           </Typography>
-          <Switch className='toggleTheme' onChange={() => handleToggle()}/>
+          <Switch className='toggleTheme' checked={checked} onChange={handleToggle}/>
           <div className={classes.bigBar}>
             <BigBar />
           </div>
