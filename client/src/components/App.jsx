@@ -151,7 +151,9 @@ class App extends React.Component {
               <div>
                 <NavBar user={user} setTheme={this.setTheme} themePatch={this.themePatch} themeGet={this.themeGet}/>
                 <div className="mainViews">
+                <Switch>
                     {/* // this is our default route */}
+                    
                     <Route
                       exact
                       path="/"
