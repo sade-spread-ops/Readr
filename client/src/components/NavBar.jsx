@@ -20,6 +20,8 @@ import SmallBar from './NavBarMenus/SmallBar.jsx';
 import axios from 'axios';
 import { ContactsOutlined } from '@material-ui/icons';
 import { useState } from 'react';
+import Search from './SearchByBook.jsx';
+
 
 // This allows custom styling of the buttons, over-riding the root theme
 const useStyles = makeStyles((theme) => ({

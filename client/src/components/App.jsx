@@ -16,7 +16,7 @@ import AddFriend from './AddFriend.jsx';
 import ClubList from './Chatroom/ClubList.jsx';
 import BookClub from './BookClub/BookClub.jsx';
 import Followers from './Followers.jsx';
-// import ThemeSwitcher from '/ThemeSwitcher.jsx';
+import Search from './SearchByBook.jsx';
 
 const themeLight = createTheme({
   palette: {
@@ -174,6 +174,8 @@ class App extends React.Component {
                     <Route exact path="/bookclubs" render={(props) => <ClubList {...props} user={user} />} />
                     <Route exact path="/bookclubinvite" render={(props) => <BookClub {...props} user={user} />} />
                     <Route exact path="/followers" render={(props) => <Followers {...props} user={user} />} />
+                    <Route exact path="/books" render={(props) => <Search {...props} user={user} />} />
+                  </Switch>
                 </div>
               </div>
             ) : null }

@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 const Sequelize = require('sequelize');
 
 require('dotenv').config();
@@ -31,6 +33,7 @@ const db = new Sequelize('readr', 'root', 'pw', {
 db.authenticate().then(() => {
   console.log('connected to database');
 }).catch((err) => console.log(err, 'error hitting'));
+// const db = new Sequelize('postgres://postgres@localhost:5432/readr');
 
 // forces data base drop
 // db.sync({ force: true });
