@@ -30,6 +30,9 @@ Readr develops an algorithm unique to each user. The more you use it, the better
 > ***NOTE:*** Make sure to install the following separateley
 
 ```npm i gapi ```
+    
+
+```nvm install 10 ```and ```nvm use 10 ``` to run the application.
 
 #### User Experience
 
@@ -51,6 +54,10 @@ Readr develops an algorithm unique to each user. The more you use it, the better
       we are using [ReactReader powerd by ePub.js](https://github.com/gerhardsletten/react-reader)
     - If not avaliable, they will be directed to an outside link to a public domain copy of the book. 
     - If in app, the user should be able to exit the ebook and be back on the suggestion page. 
+* #### If the user clicks "Search Books":
+    - The user will be taken to search page where the user can search books based on the title.
+    - The search functionality only renders top 10 book results.
+    - The user can also add a book from the search to their reading lists.
 
 #### Reading List
 
