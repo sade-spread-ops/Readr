@@ -1,5 +1,4 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-undef */
+/* eslint-disable */
 const Sequelize = require('sequelize');
 
 require('dotenv').config();
@@ -15,24 +14,27 @@ const {
   DB_PORT,
 } = process.env;
 
-const db = new Sequelize({
-  database: DATABASE,
-  username: USER_NAME,
-  password: USER_PASSWORD,
-  host: HOST,
-  port: DB_PORT,
+// const db = new Sequelize({
+//   database: DATABASE,
+//   username: USER_NAME,
+//   password: USER_PASSWORD,
+//   host: HOST,
+//   port: DB_PORT,
+//   dialect: 'postgres',
+//   logging: false,
+// });
+const db = new Sequelize('readr', 'postgres', 'pw', {// password: 'pw',
+  host: 'localhost',
   dialect: 'postgres',
   logging: false,
 });
-// const db = new Sequelize('readr', 'root', 'pw', {
-//   host: 'localhost',
-//   dialect: 'postgres'
-// });
-
-// console.log(db.authenticate());
 db.authenticate().then(() => {
   console.log('connected to database');
-}).catch((err) => console.log(err, 'error hitting'));
+}).catch((err) => console.log(err));
+// // console.log(db.authenticate());
+// db.authenticate().then(() => {
+//   console.log('connected to database');
+// }).catch((err) => console.log(err, 'error hitting'));
 // const db = new Sequelize('postgres://postgres@localhost:5432/readr');
 
 // forces data base drop
@@ -240,7 +242,8 @@ const autopopulate = async () => {
   }
 };
 
-autopopulate();
+// autopopulate();
+
 
 User.sync();
 Book.sync();
@@ -256,9 +259,6 @@ UserBookClubs.sync();
 // forces data base drop
 // db.sync({ force: true });
 // console.log(db.authenticate());
-// db.authenticate().then(() => {
-//   console.log('connected to database');
-// }).catch((err) => console.log(err));
 
 module.exports.User = User;
 module.exports.Book = Book;
