@@ -21,7 +21,7 @@ passport.deserializeUser((id, next) => {
   })
     .then((user) => {
       next(null, user);
-    });
+    }).catch((err) => { console.log(err); });
 });
 const { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET } = process.env;
 passport.use(
@@ -60,7 +60,7 @@ passport.use(
             .then((newUser) => {
               dbHelpers.createPreferences(newUser.dataValues.id);
               next(null, newUser);
-            });
+            }).catch((err) => { console.log(err); });
         }
       });
   }),
