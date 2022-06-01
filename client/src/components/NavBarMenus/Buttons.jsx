@@ -81,6 +81,14 @@ const Buttons = () => {
       </Button>
       <Button
         size="large"
+        component={Link}
+        to="/audiobooks"
+        className={classes.button}
+      >
+        Audio Books
+      </Button>
+      <Button
+        size="large"
         href="/auth/logout"
         className={classes.button}
       >
