@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-expressions */
-/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
@@ -132,7 +130,7 @@ const InfoCardEntry = ({ book }) => {
                     item
                     container
                     direction="row"
-                    justify="center"
+                    justifycontent="center"
                     alignItems="center"
                   >
                     <Typography variant="subtitle1">
@@ -143,7 +141,7 @@ const InfoCardEntry = ({ book }) => {
                     item
                     container
                     direction="row"
-                    justify="center"
+                    justifycontent="center"
                     alignItems="center"
                   >
                     <Typography variant="subtitle2" style={{ marginBottom: '10px' }}>
