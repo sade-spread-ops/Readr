@@ -7,27 +7,27 @@ require('dotenv').config();
 // pull requests for this spefic file
 
 const {
-  DATABASE,
-  USER_NAME,
-  USER_PASSWORD,
-  HOST,
+  DB_DATABASE,
+  DB_USERNAME,
+  DB_PASSWORD,
+  DB_HOST,
   DB_PORT,
 } = process.env;
 
-// const db = new Sequelize({
-//   database: DATABASE,
-//   username: USER_NAME,
-//   password: USER_PASSWORD,
-//   host: HOST,
-//   port: DB_PORT,
-//   dialect: 'postgres',
-//   logging: false,
-// });
-const db = new Sequelize('readr', 'postgres', 'pw', {// password: 'pw',
-  host: 'localhost',
+const db = new Sequelize({
+  database: DB_DATABASE,
+  username: DB_USERNAME,
+  password: DB_PASSWORD,
+  host: DB_HOST,
+  port: DB_PORT,
   dialect: 'postgres',
   logging: false,
 });
+// const db = new Sequelize('readr', 'postgres', 'pw', {// password: 'pw',
+//   host: 'localhost',
+//   dialect: 'postgres',
+//   logging: false,
+// });
 db.authenticate().then(() => {
   console.log('connected to database');
 }).catch((err) => console.log(err));
