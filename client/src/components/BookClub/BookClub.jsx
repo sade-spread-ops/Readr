@@ -149,7 +149,7 @@ const BookClub = ({ user }) => {
       console.log('loaded client');
       gapi.client.init({
         apiKey: `${process.env.API_KEY}`,
-        clientId: `${process.env.clientID}`,
+        clientId: `${process.env.GOOGLE_CLIENT_ID}`,
         discoveryDocs: DISCOVERY_DOCS,
         scope: SCOPES,
       });

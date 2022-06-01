@@ -23,12 +23,12 @@ passport.deserializeUser((id, next) => {
       next(null, user);
     });
 });
-
+const { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET } = process.env;
 passport.use(
   new GoogleStrategy({
     callbackURL: '/auth/google/redirect',
-    clientID: '831550743885-7a7f8m0t6pli22clvmresvbqg1uncdi1.apps.googleusercontent.com',
-    clientSecret: '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',
+    clientID: GOOGLE_CLIENT_ID,//'831550743885-7a7f8m0t6pli22clvmresvbqg1uncdi1.apps.googleusercontent.com',
+    clientSecret: GOOGLE_CLIENT_SECRET,//'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',
   }, (accessToken, refreshToken, profile, next) => {
     console.log(accessToken);
     console.log(profile);
