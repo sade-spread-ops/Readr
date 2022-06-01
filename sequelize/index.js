@@ -257,7 +257,7 @@ UserBookClubs.sync();
 
 
 // forces data base drop
-// db.sync({ force: true });
+//db.sync({ force: true });
 // console.log(db.authenticate());
 
 module.exports.User = User;
