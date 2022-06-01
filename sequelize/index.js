@@ -14,31 +14,24 @@ const {
   DB_PORT,
 } = process.env;
 
-const db = new Sequelize({
-  database: DB_DATABASE,
-  username: DB_USERNAME,
-  password: DB_PASSWORD,
-  host: DB_HOST,
-  port: DB_PORT,
-  dialect: 'postgres',
-  logging: false,
-});
-// const db = new Sequelize('readr', 'postgres', 'pw', {// password: 'pw',
-//   host: 'localhost',
+// const db = new Sequelize({
+//   database: DB_DATABASE,
+//   username: DB_USERNAME,
+//   password: DB_PASSWORD,
+//   host: DB_HOST,
+//   port: DB_PORT,
 //   dialect: 'postgres',
 //   logging: false,
 // });
+const db = new Sequelize('readr', 'postgres', 'pw', {// password: 'pw',
+  host: 'localhost',
+  dialect: 'postgres',
+  logging: false,
+});
 db.authenticate().then(() => {
   console.log('connected to database');
 }).catch((err) => console.log(err));
-// // console.log(db.authenticate());
-// db.authenticate().then(() => {
-//   console.log('connected to database');
-// }).catch((err) => console.log(err, 'error hitting'));
-// const db = new Sequelize('postgres://postgres@localhost:5432/readr');
 
-// forces data base drop
-// db.sync({ force: true });
 
 
 // creating the table for the user
