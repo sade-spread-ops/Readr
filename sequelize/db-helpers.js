@@ -80,7 +80,7 @@ const getPreferences = (userID) => models.UserPreference.findOne({
     userID,
   },
 });
-
+/* eslint-disable camelcase*/
 // ----------USER_BOOKS----------
 // Takes a userID and a toRead boolean and returns list of all books on toRead / not toRead list
 let resultIsbn;
