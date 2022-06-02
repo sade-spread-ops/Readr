@@ -22,6 +22,7 @@ import Followers from './Followers.jsx';
 import Dropdown from './Dropdown.jsx';
 import BookGenreView from './BookGenreView.jsx';
 import Search from './SearchByBook.jsx';
+import ReadList from './ReadList/ReadList.jsx';
 
 
 const themeLight = createTheme({
@@ -189,6 +190,7 @@ class App extends React.Component {
                     <Route exact path="/followers" render={(props) => <Followers {...props} user={user} />} />
                     <Route exact path="/genres" render={() => <BookGenreView/>} />
                     <Route exact path="/books" render={(props) => <Search {...props} user={user} />} />
+                    <Route exact path="/listofreadbooks" render={(props) => <ReadList {...props} user={user} />} />
 
                   </Switch>
                 </div>
