@@ -33,7 +33,7 @@ app.use('/auth', authRoutes);
 app.use('/readr', readrRoutes);
 // app.use('/bc', BcRoutes);
 
-app.use('/audiobooks', require('./audiobook-routes'));
+app.use('/api/audiobooks', require('./audiobook-routes'));
 
 // catch all for refresh issues
 app.get('/*', (req, res) => {
