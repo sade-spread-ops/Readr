@@ -110,7 +110,7 @@ const BookClub = ({ user }) => {
       {friendsList.map((friend) => (
         <Grid
           className={classes.item}
-          justify="center"
+          justifycontent="center"
           alignItems="center"
           item
           container
@@ -201,7 +201,7 @@ const BookClub = ({ user }) => {
       <Grid
         container
         direction="row"
-        justify="center"
+        justifycontent="center"
         alignItems="center"
       >
         <Grid item container direction="column">
@@ -232,14 +232,14 @@ const BookClub = ({ user }) => {
               xs
               direction="column"
               className={classes.test}
-              justify="center"
+              justifycontent="center"
               alignItems="center"
             >
               <Grid
                 item
                 container
                 direction="row"
-                justify="center"
+                justifycontent="center"
                 alignItems="center"
                 style={{ padding: '10px' }}
               >
@@ -249,7 +249,7 @@ const BookClub = ({ user }) => {
                 item
                 container
                 direction="row"
-                justify="center"
+                justifycontent="center"
                 alignItems="center"
               >
                 {renderFollowingView()}
@@ -291,7 +291,7 @@ const BookClub = ({ user }) => {
             item
             container
             direction="row"
-            justify="center"
+            justifycontent="center"
             alignItems="center"
             className={classes.buttontest}
           >
@@ -361,7 +361,7 @@ const BookClub = ({ user }) => {
           <Grid
             container
             direction="column"
-            justify="center"
+            justifycontent="center"
             alignItems="center"
             className={classes.dialog}
           >

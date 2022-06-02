@@ -116,7 +116,13 @@ export default function SmallBar() {
         >
           Book Club
         </MenuItem>
-
+        <MenuItem
+          onClick={handleClose}
+          component={Link}
+          to="/audiobooks"
+        >
+          Audio Books
+        </MenuItem>
         <MenuItem
           onClick={handleClose}
         >

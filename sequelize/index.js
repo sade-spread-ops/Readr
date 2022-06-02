@@ -29,7 +29,7 @@ const db = new Sequelize('readr', 'postgres', 'pw', {// password: 'pw',
   logging: false,
 });
 db.authenticate().then(() => {
-  console.log('connected to database');
+  console.log('🚀 connected to database');
 }).catch((err) => console.log(err));
 
 

@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import * as React from 'react';
 import axios from 'axios';
 import Box from '@mui/material/Box';

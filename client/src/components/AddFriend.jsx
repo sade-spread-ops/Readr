@@ -44,7 +44,7 @@ const AddFriend = ({ user }) => {
     <Grid
       container
       direction="column"
-      justify="center"
+      justifycontent="center"
       alignItems="center"
       style={{ padding: '10px', width: '500px' }}
     >
@@ -52,7 +52,7 @@ const AddFriend = ({ user }) => {
         item
         container
         direction="row"
-        justify="center"
+        justifycontent="center"
         alignItems="center"
         style={{ padding: '10px' }}
       >
@@ -60,7 +60,7 @@ const AddFriend = ({ user }) => {
           item
           container
           direction="row"
-          justify="center"
+          justifycontent="center"
           alignItems="center"
           style={{ padding: '10px' }}
         >
@@ -71,14 +71,14 @@ const AddFriend = ({ user }) => {
             item
             container
             direction="column"
-            justify="center"
+            justifycontent="center"
             alignItems="center"
           >
             <Button
               color="primary"
               variant="outlined"
               style={{ width: '50px', marginTop: '10px' }}
-              onClick={() => { handleSubmit(); onSubmit(); }}
+              onClick={() => { handleSubmit(); setFriend(''); }}
             >
                 Search
             </Button>
