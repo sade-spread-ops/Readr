@@ -112,6 +112,14 @@ export default function SmallBar() {
 
         <MenuItem
           onClick={handleClose}
+          component={Link}
+          to="/filmReviews"
+        >
+          Film Adaptation Reviews
+        </MenuItem>
+
+        <MenuItem
+          onClick={handleClose}
         >
           <a
             href="/auth/logout"
