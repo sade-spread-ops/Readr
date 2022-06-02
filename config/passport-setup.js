@@ -30,9 +30,7 @@ passport.use(
     clientID: GOOGLE_CLIENT_ID,//'831550743885-7a7f8m0t6pli22clvmresvbqg1uncdi1.apps.googleusercontent.com',
     clientSecret: GOOGLE_CLIENT_SECRET,//'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',
   }, (accessToken, refreshToken, profile, next) => {
-    console.log(accessToken);
-    console.log(profile);
-    console.log('checking shit');
+      console.log({google_id: profile.id, displayName: profile.displayName, email: profile.emails[0].value, photos: profile.photos[0].value});
     // check if user already exists in DB
     // find user with matching googleId and profile.id
     User.findOne({
@@ -43,13 +41,13 @@ passport.use(
       .then((currentUser) => {
         if (currentUser) {
           // if user exists
-          console.log('if the user exists')
+          console.log('user returning')
           next(null, currentUser);
         } else {
           // if user doesn't exist
           // use profile.id & profile.displayName for saving in db
           // create new sequelize User given ^
-          console.log('didnt have user');
+          console.log('create user');
           User.create({
             username: profile.displayName,
             googleId: profile.id,

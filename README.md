@@ -113,12 +113,4 @@ This app uses PostgreSQL
 
 ##### To include in environmental variables:
 * #### .env
-    - A clientID and clientSecret from google for authentication
-    - To include with developer determined values
-    - clientID
-    - USER_NAME
-    - USER_PASSWORD
-    - DATABASE=readr
-    - PORT=3000
-    - clientSecret
-    - API_KEY <= from GOOGLE
+    - see .env.example for an example of how to set up environmental variables

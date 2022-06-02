@@ -10,7 +10,7 @@ function Landing({ user, updateUser }) {
 
   return (
     <Box m={1} mx="auto">
-      <Grid justify="center">
+      <Grid justifycontent="center">
         { isQuizzed ? (
           <div>
             <SuggestionView />

@@ -24,7 +24,7 @@ BcRoutes.get('/getBookclubs', async (req, res) => {
   }).then(() => {
     console.log('what the ACTUAL fuck TWO');
     console.log(req.user.dataValues, 'user');
-  })
+  });
   // get list of bookclubs using bookclubIDs
   // send back list of bookclubs as array
   res.send('bookclubIds');

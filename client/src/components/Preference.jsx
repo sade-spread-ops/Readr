@@ -85,7 +85,7 @@ export default function SelectGenre(props) {
     <Grid
       container
       className={classes.root}
-      justify="center"
+      justifycontent="center"
     >
       <FormControl component="fieldset" className={classes.formControl}>
         <FormLabel component="legend">Sign up for Readr!</FormLabel>
