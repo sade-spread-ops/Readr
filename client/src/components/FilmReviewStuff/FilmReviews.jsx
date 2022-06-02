@@ -10,8 +10,8 @@ const FilmReviews = (props) => {
   // useEffect(() => {
 
   // });
- //color for textfield // sx={{color: '#f44336'}}
-
+  //color for textfield // sx={{color: '#f44336'}}
+  //padding and margin
   return (
     <div>
       <br></br>

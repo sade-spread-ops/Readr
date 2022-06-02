@@ -14,7 +14,6 @@ BcRoutes.post('/', (req, res) => {
 });
 
 BcRoutes.get('/getBookclubs', async (req, res) => {
-  console.log('what the ACTUAL fuck ONE');
   // get list of bookclubIDs using bookclub/user join  table
   await UserBookClubs.findAll({
     where: {
