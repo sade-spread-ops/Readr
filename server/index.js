@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
+const morgan = require('morgan');
 require('dotenv').config();
 
 const passport = require('passport');
@@ -26,11 +27,13 @@ app.use(passport.session());
 
 app.use(express.static(path.join(__dirname, '../client/dist')));
 app.use(bodyParser.json());
+app.use(morgan('tiny'));
 
 app.use('/auth', authRoutes);
 app.use('/readr', readrRoutes);
 // app.use('/bc', BcRoutes);
 
+app.use('/audiobooks', require('./audiobook-routes'));
 
 // catch all for refresh issues
 app.get('/*', (req, res) => {
@@ -38,5 +41,5 @@ app.get('/*', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Listening on port http://localhost:${PORT}`);
+  console.log(`✨ Listening locally at http://localhost:${PORT}`);
 });
