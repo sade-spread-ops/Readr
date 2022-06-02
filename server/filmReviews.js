@@ -3,12 +3,7 @@ const axios = require('axios');
 
 router.get('/', (req, res) => {
 
-  // .then(() => {
 
-  // })
-  // .catch(() => {
-
-  // })
 });
 
 
