@@ -54,7 +54,14 @@ const Buttons = () => {
       >
         Reading List
       </Button>
-
+      <Button
+        size="large"
+        component={Link}
+        to="/listofreadbooks"
+        className={classes.button}
+      >
+        LIST OF READ BOOKS
+      </Button>
       <Button
         size="large"
         component={Link}
