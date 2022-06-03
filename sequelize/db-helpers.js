@@ -189,6 +189,17 @@ const createUser = (username, googleId) => models.User.create({
   googleId,
 });
 
+const insertAudioBook = (book) => models.Book.create({
+  audiobookID: audiobook.audiobookID,
+  title: audiobook.title,
+  author: audiobook.author,
+  onlineLink: audiobook.onlineLink,
+  downloadLink: audiobook.downloadLink,
+  timeSeconds: audiobook.timeSeconds,
+}).then(data => console.log('audiobook success', data.toJSON()))
+  .catch(err => console.error(err));
+
+
 module.exports.insertBook = insertBook;
 module.exports.findBook = findBook;
 module.exports.createPreferences = createPreferences;
@@ -204,3 +215,5 @@ module.exports.getFollowing = getFollowing;
 module.exports.getFollowers = getFollowers;
 module.exports.createUser = createUser;
 module.exports.createUserRead = createUserRead;
+module.exports.insertAudioBook = insertAudioBook;
+
