@@ -7,9 +7,17 @@ const FilmReviews = (props) => {
   //setting review to an object for now. Data will depend on what is returned from backend
   // const [review, setFilmReview] = useState({});
 
-  // useEffect(() => {
+  useEffect(() => {
+    axios.get('https://api.nytimes.com/svc/movies/v2/reviews/search.json?=&a...', (req, res) => {
 
-  // });
+    })
+    .then(() => {
+      
+    });
+    .catch(() => {
+
+    });
+  })
   //color for textfield // sx={{color: '#f44336'}}
   //padding and margin
   return (
@@ -75,6 +83,14 @@ const FilmReviews = (props) => {
                 1.5
               </Typography>
             </Box>
+
+            <Button
+              // onClick={() => console.log('you clicked me')}
+              type='submit'
+              variant='contained'
+            >
+          Save Review
+            </Button>
           </Paper>
         </Grid>
       </Container>   
