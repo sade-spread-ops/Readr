@@ -162,6 +162,37 @@ const UserBookClubs = db.define('user_bookclubs', {
   userID: Sequelize.INTEGER,
 });
 
+const Audiobook = db.define('audiobook', {
+  audiobookID: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+  },
+  title: {
+    type: Sequelize.STRING,
+    unique: true,
+  },
+  author: Sequelize.STRING,
+  onlineLink: {
+    type: Sequelize.STRING,
+    unique: true,
+  },
+  downloadLink: {
+    type: Sequelize.STRING,
+    unique: true,
+  },
+  timeSeconds: Sequelize.INTEGER,
+});
+
+const UserAudiobook = db.define('user_audiobook', {
+  userID: {
+    type: Sequelize.INTEGER,
+  },
+  audiobookID: {
+    type: Sequelize.INTEGER,
+  },
+  favorite: Sequelize.BOOLEAN,
+});
+
 const autopopulate = async () => {
   const userOne = await User.findOne({ where: { id: 1 } })
     .then((user) => !!user);
@@ -247,7 +278,8 @@ UserPreference.sync();
 UserHaveRead.sync();
 Bookclubs.sync();
 UserBookClubs.sync();
-
+Audiobook.sync();
+UserAudiobook.sync();
 
 // forces data base drop
 // db.sync({ force: true });
@@ -262,3 +294,5 @@ module.exports.UserPreference = UserPreference;
 module.exports.UserHaveRead = UserHaveRead;
 module.exports.Bookclubs = Bookclubs;
 module.exports.UserBookClubs = UserBookClubs;
+module.exports.Audiobook = Audiobook;
+module.exports.UserAudiobook = UserAudiobook;
