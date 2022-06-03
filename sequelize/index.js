@@ -162,16 +162,19 @@ const UserBookClubs = db.define('user_bookclubs', {
   userID: Sequelize.INTEGER,
 });
 
-//creating model for film reviews
-
-const FilmReviews = db.define('', {
+//creating model for film reviews.
+const FilmReviews = db.define('film_reviews', {
   id: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
     primaryKey: true
   },
-  display_title: Sequelize.STRING
+  display_title: Sequelize.STRING,
+  headline: Sequelize.STRING
+  //foreignKey: (something with the book table's title)
 });
+
+//I think the code below is where the seeders are
 
 const autopopulate = async () => {
   const userOne = await User.findOne({ where: { id: 1 } })
@@ -258,7 +261,7 @@ UserPreference.sync();
 UserHaveRead.sync();
 Bookclubs.sync();
 UserBookClubs.sync();
-
+FilmReviews.sync();
 
 // forces data base drop
 //db.sync({ force: true }); //changes only the table in the database, not the model in the javascript side
@@ -273,3 +276,4 @@ module.exports.UserPreference = UserPreference;
 module.exports.UserHaveRead = UserHaveRead;
 module.exports.Bookclubs = Bookclubs;
 module.exports.UserBookClubs = UserBookClubs;
+module.exports.FilmReviews = FilmReviews;
