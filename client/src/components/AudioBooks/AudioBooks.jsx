@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import AudioBookView from './AudioBookView';
 import Button from '@mui/material/Button';
-import { TextField, Typography } from '@material-ui/core';
+import { TextField, Typography, Switch } from '@material-ui/core';
 import { MenuItem } from '@mui/material';
+// import { Checkbox } from '@material-ui/core';
 import axios from 'axios';
 const AudioBook = () => {
   const [audiobooks, setAudiobooks] = useState([]);
@@ -23,10 +24,15 @@ const AudioBook = () => {
     }
     if (option === 'time') {
       const sortByTime = [...audiobooks].sort((a, b) => (a.totaltimesecs - b.totaltimesecs));
-      console.log(sortByTime, '***********************');
       setAudiobooks(sortByTime);
     } 
   };  
+  // create a function to reverse order of books based on the sortBy function
+  const reverseSortBy = (option) => {
+    const reverseSort = [...audiobooks].reverse();
+    setAudiobooks(reverseSort);
+  };
+  console.log(audiobooks ? audiobooks : null);
   return (
     <div className='audio-book'>
       <Typography variant='h5'>Free Audio Books</Typography>
@@ -45,9 +51,25 @@ const AudioBook = () => {
         > 
           <MenuItem value='title'>Title</MenuItem>
           <MenuItem value='author'>Author</MenuItem>
-          <MenuItem value='time'>Time</MenuItem>
+          <MenuItem value='time'>Length</MenuItem>
         </TextField>
       </div>
+      {/* create a Switch using material ui to toggle reverseSortBy function */}
+      <div className='audio-book-reverse-sort'>
+        <Switch
+          checked={false}
+          onChange={(e) => reverseSortBy(audiobooks)}
+          value='reverse'
+          color="primary"
+          inputProps={{ 'aria-label': 'primary checkbox' }}
+        />
+      </div>
+      
+
+
+
+
+
       <div className='audio-book-view'>
         <AudioBookView audiobooks={audiobooks} sortBy={sortBy}/>
       </div>      
