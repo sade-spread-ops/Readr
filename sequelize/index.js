@@ -163,9 +163,14 @@ const UserBookClubs = db.define('user_bookclubs', {
 });
 
 const Audiobook = db.define('audiobook', {
-  audiobookID: {
+  id: {
+    allowNull: false,
     type: Sequelize.INTEGER,
+    autoIncrement: true,
     primaryKey: true,
+  },
+  audiobookID: {
+    type: Sequelize.STRING,
   },
   title: {
     type: Sequelize.STRING,
@@ -188,9 +193,9 @@ const UserAudiobook = db.define('user_audiobook', {
     type: Sequelize.INTEGER,
   },
   audiobookID: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.STRING,
   },
-  favorite: Sequelize.BOOLEAN,
+  // favorite: Sequelize.BOOLEAN,
 });
 
 const autopopulate = async () => {
