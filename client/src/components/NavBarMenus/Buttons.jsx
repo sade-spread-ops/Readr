@@ -54,7 +54,14 @@ const Buttons = () => {
       >
         Reading List
       </Button>
-
+      <Button
+        size="large"
+        component={Link}
+        to="/listofreadbooks"
+        className={classes.button}
+      >
+        LIST OF READ BOOKS
+      </Button>
       <Button
         size="large"
         component={Link}
@@ -82,10 +89,17 @@ const Buttons = () => {
       <Button
         size="large"
         component={Link}
+<<<<<<< HEAD
         to="/filmReviews"
         className={classes.button}
       >
         Film Reviews
+=======
+        to="/audiobooks"
+        className={classes.button}
+      >
+        Audio Books
+>>>>>>> 576e532fb1bbd0426af3806960a36a9992c0719a
       </Button>
       <Button
         size="large"

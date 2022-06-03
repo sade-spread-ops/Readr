@@ -8,7 +8,7 @@ const LoadingSuggestion = () => (
       spacing={0}
       direction="column"
       alignItems="center"
-      justify="center"
+      justifycontent="center"
       style={{ minHeight: '60vh' }}
     >
       <Grid item>

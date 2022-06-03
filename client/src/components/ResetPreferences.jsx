@@ -35,7 +35,7 @@ function ResetPreferences({ user }) {
     <Grid
       container
       className={classes.root}
-      justify="center"
+      justifycontent="center"
     >
       <Button
         variant="outlined"
