@@ -109,13 +109,13 @@ export default function SmallBar() {
         >
           Profile
         </MenuItem>
-        <MenuItem
+        {/* <MenuItem
           onClick={handleClose}
           component={Link}
           to="/bookclubinvite"
         >
           Book Club
-        </MenuItem>
+        </MenuItem> */}
         <MenuItem
           onClick={handleClose}
           component={Link}

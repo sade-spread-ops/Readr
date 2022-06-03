@@ -78,14 +78,14 @@ const Buttons = () => {
       >
         Profile
       </Button>
-      <Button
+      {/* <Button
         size="large"
         component={Link}
         to="/bookclubinvite"
         className={classes.button}
       >
         Book Club
-      </Button>
+      </Button> */}
       <Button
         size="large"
         component={Link}
