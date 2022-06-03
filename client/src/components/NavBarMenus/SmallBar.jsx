@@ -125,6 +125,13 @@ export default function SmallBar() {
         </MenuItem>
         <MenuItem
           onClick={handleClose}
+          component={Link}
+          to="/Map"
+        >
+          Map
+        </MenuItem>
+        <MenuItem
+          onClick={handleClose}
         >
           <a
             href="/auth/logout"
