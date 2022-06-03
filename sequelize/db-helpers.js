@@ -189,7 +189,7 @@ const createUser = (username, googleId) => models.User.create({
   googleId,
 });
 
-const insertAudioBook = (book) => models.Book.create({
+const insertAudioBook = (audiobook) => models.Book.create({
   audiobookID: audiobook.audiobookID,
   title: audiobook.title,
   author: audiobook.author,
