@@ -91,6 +91,13 @@ export default function SmallBar() {
         <MenuItem
           onClick={handleClose}
           component={Link}
+          to="/listofreadbooks"
+        >
+          LIST OF READ BOOKS
+        </MenuItem>
+        <MenuItem
+          onClick={handleClose}
+          component={Link}
           to="/addFriend"
         >
           Add Friends!
@@ -109,7 +116,13 @@ export default function SmallBar() {
         >
           Book Club
         </MenuItem>
-
+        <MenuItem
+          onClick={handleClose}
+          component={Link}
+          to="/audiobooks"
+        >
+          Audio Books
+        </MenuItem>
         <MenuItem
           onClick={handleClose}
         >

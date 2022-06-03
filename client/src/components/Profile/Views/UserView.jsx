@@ -61,7 +61,7 @@ const UserView = ({ user, book }) => {
           {friendsList.map((friend) => (
             <Grid
               className={classes.item}
-              justify="center"
+              justifycontent="center"
               alignItems="center"
               item
               container
@@ -82,7 +82,7 @@ const UserView = ({ user, book }) => {
           {followersList.map((follower) => (
             <Grid
               className={classes.item}
-              justify="center"
+              justifycontent="center"
               alignItems="center"
               item
               container
@@ -105,7 +105,7 @@ const UserView = ({ user, book }) => {
       <Paper className={classes.paper} elevation={3}>
         <Grid
           container
-          justify="center"
+          justifycontent="center"
           alignItems="center"
         >
           <Grid
@@ -113,7 +113,7 @@ const UserView = ({ user, book }) => {
             container
             className={classes.follow}
             direction="row"
-            justify="center"
+            justifycontent="center"
             alignItems="center"
           >
             <Grid
@@ -121,8 +121,7 @@ const UserView = ({ user, book }) => {
               container
               direction="row"
               className={classes.item}
-              direction="row"
-              justify="center"
+              justifycontent="center"
               alignItems="center"
             >
               <Typography variant="subtitle1">
@@ -132,11 +131,10 @@ const UserView = ({ user, book }) => {
             <Grid
               className={classes.item}
               direction="row"
-              justify="center"
+              justifycontent="center"
               alignItems="center"
               item
               container
-              direction="row"
             >
               <Typography variant="caption" color="textSecondary">
                 @{user.chosenName}
@@ -147,7 +145,7 @@ const UserView = ({ user, book }) => {
             item
             container
             direction="row"
-            justify="center"
+            justifycontent="center"
             alignItems="center"
             className={classes.item}
           >
@@ -157,12 +155,12 @@ const UserView = ({ user, book }) => {
                   item
                   xs
                   className={classes.item}
-                  justify="center"
+                  justifycontent="center"
                   alignItems="center"
                 >
                   <Grid
                     className={classes.item}
-                    justify="center"
+                    justifycontent="center"
                     alignItems="center"
                     item
                     container
@@ -181,7 +179,7 @@ const UserView = ({ user, book }) => {
                   </Grid>
                   <Grid
                     className={classes.item}
-                    justify="center"
+                    justifycontent="center"
                     alignItems="center"
                     item
                     container
@@ -196,12 +194,12 @@ const UserView = ({ user, book }) => {
                   item
                   xs
                   className={classes.item}
-                  justify="center"
+                  justifycontent="center"
                   alignItems="center"
                 >
                   <Grid
                     className={classes.item}
-                    justify="center"
+                    justifycontent="center"
                     alignItems="center"
                     item
                     container
@@ -220,7 +218,7 @@ const UserView = ({ user, book }) => {
                   </Grid>
                   <Grid
                     className={classes.item}
-                    justify="center"
+                    justifycontent="center"
                     alignItems="center"
                     item
                     container

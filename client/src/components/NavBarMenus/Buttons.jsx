@@ -54,7 +54,14 @@ const Buttons = () => {
       >
         Reading List
       </Button>
-
+      <Button
+        size="large"
+        component={Link}
+        to="/listofreadbooks"
+        className={classes.button}
+      >
+        LIST OF READ BOOKS
+      </Button>
       <Button
         size="large"
         component={Link}
@@ -78,6 +85,14 @@ const Buttons = () => {
         className={classes.button}
       >
         Book Club
+      </Button>
+      <Button
+        size="large"
+        component={Link}
+        to="/audiobooks"
+        className={classes.button}
+      >
+        Audio Books
       </Button>
       <Button
         size="large"

@@ -63,8 +63,8 @@ const ProfileView = ({ user, updateUser }) => {
 
   const renderview = () => (
     <div>
-      {bookData.map((book) => (
-        <UserView user={user} book={book} />
+      {bookData.map((book, i) => (
+        <UserView user={user} book={book} key={i}/>
       ))}
     </div>
   );
@@ -73,7 +73,7 @@ const ProfileView = ({ user, updateUser }) => {
     <Grid
       container
       direction="row"
-      justify="center"
+      justifycontent="center"
       alignItems="center"
       className={classes.paper}
       style={{ width: '500px' }}
@@ -82,8 +82,8 @@ const ProfileView = ({ user, updateUser }) => {
         item
         container
         direction="row"
-        justify="center"
-        alignItems="center"
+        justifycontent="center"
+        // alignItems="center"
         className={classes.search}
       >
         {renderview()}

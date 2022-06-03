@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import ClubListItem from './ClubListItem.jsx';
 
 const ClubList = ({ user }) => {
-  const [fakeData, setData] = useState([{ book: 'idk', friends: ['terry', 'bobart', 'Francine'], hangoutLink: 'https://hangouts.google.com/call/togytJk6UzTyS_nTVP3JACEE' }, { book: 'eat shit and die', friends: ['Jeremy', 'becky'], hangoutLink: 'nope' }]);
+  const [fakeData, setData] = useState([{ book: 'One Hundred Years of Solitude', friends: ['Raymond', 'Sam', 'Ryan', 'Royce'], hangoutLink: 'https://hangouts.google.com/call/togytJk6UzTyS_nTVP3JACEE' }, { book: 'The Count of Monte Cristo', friends: ['Royce', 'Sam'], hangoutLink: 'nope' }]);
   useEffect(() => {
     const params = { user };
     console.log(params, 'useEffect in ClubList');
