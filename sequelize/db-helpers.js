@@ -14,7 +14,7 @@ const insertBook = (book) => models.Book.create({
   availability: book.availability,
   buyLink: book.buyLink,
 }).then((data) => {
-  console.log('success', data.toJSON());
+  // console.log('success', data.toJSON());
 })
   .catch((err) => {
   // print the error details
