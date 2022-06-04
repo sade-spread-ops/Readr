@@ -30,14 +30,14 @@ const Buttons = () => {
       >
         Search Books
       </Button>
-      <Button
+      {/* <Button
         size="large"
         component={Link}
         to="/genres"
         className={classes.button}
       >
         Genres
-      </Button>
+      </Button> */}
       <Button
         size="large"
         component={Link}
@@ -62,30 +62,30 @@ const Buttons = () => {
       >
         LIST OF READ BOOKS
       </Button>
-      <Button
+      {/* <Button
         size="large"
         component={Link}
         to="/addFriend"
         className={classes.button}
       >
         Add Friends!
-      </Button>
-      <Button
+      </Button> */}
+      {/* <Button
         size="large"
         component={Link}
         to="/profile"
         className={classes.button}
       >
         Profile
-      </Button>
-      <Button
+      </Button> */}
+      {/* <Button
         size="large"
         component={Link}
         to="/bookclubinvite"
         className={classes.button}
       >
         Book Club
-      </Button>
+      </Button> */}
       <Button
         size="large"
         component={Link}

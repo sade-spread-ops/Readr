@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 const bookList = [
   {
     author: 'Shannon Messenger',
