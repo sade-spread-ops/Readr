@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-
+import axios from 'axios';
 
 
 const AudioBookView = (props) => {
-  // console.log(props);
-  const { audiobooks } = props;
+  console.log(props);
+  const { audiobooks, user, addAudioBook, deleteAudioBook } = props;
+  
+
   return (
     <div className="audiobook-view">
       {audiobooks && audiobooks.map((audiobook) => (
@@ -20,6 +22,9 @@ const AudioBookView = (props) => {
           </div>
           <div className="audiobook-view-item-librivox-listen">
             <a href={audiobook.url_librivox} target="_blank">Listen Online at Librivox</a>
+          </div>
+          <div className="audiobook-add-to-library">
+            <button onClick={() => addAudioBook(audiobook)}>Add to Library</button>
           </div>
           <div>
           **************************************************

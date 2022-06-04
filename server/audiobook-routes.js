@@ -87,7 +87,8 @@ router.post('/insert', (req, res) => {
     timeSeconds: req.body.timeSeconds,
   }).then(data => {
     console.log('winner winner chicken dinner');
-    res.sendStatus(201); 
+    res.status(201).send(data.dataValues);
+    // res.sendStatus(201); 
   }).catch(err => {
     console.error(err);
     res.sendStatus(500);

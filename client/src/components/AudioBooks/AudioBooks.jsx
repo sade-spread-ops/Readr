@@ -66,8 +66,32 @@ const AudioBook = ({user}) => {
     // handleAuthorSearch(searchVal); 
     setSearchVal('');
   };
-
   console.log(audiobooks, searchVal);
+
+  const [ userAudiobooks, setUserAudiobooks ] = useState([]);
+  // create function to add an audio book to the user's audiobooks list in the database
+  const addAudioBook = (audiobook) => {
+    // console.log(audiobook);
+    axios.post('/api/audiobooks/insert', {
+      audiobookID: audiobook.id,
+      title: audiobook.title,
+      author: audiobook.authors[0].first_name + ' ' + audiobook.authors[0].last_name,
+      onlineLink: audiobook.url_librivox,
+      downloadLink: audiobook.url_zip_file,
+      timeSeconds: audiobook.totaltimesecs,
+    }).then((data) => {
+      console.log(data.data);
+      // setUserAudiobooks(data.data.books);
+    }).catch(error => console.error(error));
+  };
+  // create function to delete an audio book from the user's audiobooks list in the database
+  const deleteAudioBook = (audiobook) => {
+    console.log(audiobook);
+    axios.delete('/api/audiobooks/delete', { audiobook }).then(({data}) => {
+      console.log(data);
+    }).catch(error => console.error(error));
+  };
+
   return (
     <div className='audio-book' style={{marginTop: '120px'}}>
       <Typography variant='h5'>Free Audio Books</Typography>
@@ -111,7 +135,7 @@ const AudioBook = ({user}) => {
         />
       </div>
       <div className='audio-book-view'>
-        <AudioBookView audiobooks={audiobooks} sortBy={sortBy}/>
+        <AudioBookView audiobooks={audiobooks} sortBy={sortBy} user={user} addAudioBook={addAudioBook} deleteAudioBook={deleteAudioBook}/>
       </div>      
     </div>
   );
