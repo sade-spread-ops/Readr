@@ -125,3 +125,10 @@ img {
 .menu-trigger img {
   border-radius: 90px;
 }
+
+.reviewImg {
+  /* width: 100%;
+  height: 5rem */
+  width: 250px;
+  height: 400px;
+}

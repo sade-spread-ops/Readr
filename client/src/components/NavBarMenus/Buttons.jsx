@@ -89,6 +89,10 @@ const Buttons = () => {
       <Button
         size="large"
         component={Link}
+        to="/filmReviews"
+        className={classes.button}
+      >
+        Film Reviews
         to="/audiobooks"
         className={classes.button}
       >
