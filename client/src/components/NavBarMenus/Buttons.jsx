@@ -89,10 +89,22 @@ const Buttons = () => {
       <Button
         size="large"
         component={Link}
+        to="/filmReviews"
+        className={classes.button}
+      >
+        Film Reviews
         to="/audiobooks"
         className={classes.button}
       >
         Audio Books
+      </Button>
+      <Button
+        size="large"
+        component={Link}
+        to="/map"
+        className={classes.button}
+      >
+        Map
       </Button>
       <Button
         size="large"
