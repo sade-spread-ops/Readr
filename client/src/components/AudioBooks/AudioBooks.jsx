@@ -28,11 +28,29 @@ const AudioBook = () => {
     } 
   };  
   // create a function to reverse order of books based on the sortBy function
-  const reverseSortBy = (option) => {
+  const reverseSortBy = () => {
     const reverseSort = [...audiobooks].reverse();
     setAudiobooks(reverseSort);
   };
-  console.log(audiobooks ? audiobooks : null);
+  
+
+  const getAudiobooksByTitle = (title) => {
+    axios.get(`/api/audiobooks/title/${title}`).then(({data}) => {
+      setAudiobooks(data.books);
+    }).catch(error => console.error(error));
+  };
+
+
+
+
+
+  const sortingOptions = [{value: 'title', label: 'Title'}, {value: 'author', label: 'Author'}, {value: 'time', label: 'Time'}];
+  const [sortingOption, setSortingOption] = useState('');
+  const handleSortingOptionChange = (event) => {
+    setSortingOption(event.target.value);
+    sortBy(event.target.value);
+  };
+  
   return (
     <div className='audio-book'>
       <Typography variant='h5'>Free Audio Books</Typography>
@@ -44,23 +62,23 @@ const AudioBook = () => {
           id="sort-by"
           select 
           label="Sort By"
-          value={''}
-          onChange={(e) => sortBy(e.target.value)}
+          value={sortingOption}
+          onChange={handleSortingOptionChange}
           helperText="Please select an option"
           margin="normal"
         > 
-          <MenuItem value='title'>Title</MenuItem>
-          <MenuItem value='author'>Author</MenuItem>
-          <MenuItem value='time'>Length</MenuItem>
+          {sortingOptions.map(option => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
         </TextField>
       </div>
       {/* create a Switch using material ui to toggle reverseSortBy function */}
       <div className='audio-book-reverse-sort'>
         <Switch
-          checked={false}
-          onChange={(e) => reverseSortBy(audiobooks)}
+          onChange={() => reverseSortBy(audiobooks)}
           value='reverse'
-          color="primary"
           inputProps={{ 'aria-label': 'primary checkbox' }}
         />
       </div>
