@@ -6,8 +6,9 @@ import { MenuItem } from '@mui/material';
 // import { Checkbox } from '@material-ui/core';
 import axios from 'axios';
 const AudioBook = ({user}) => {
-  // const [audiobooks, setAudiobooks] = useState([]);
+  const [audiobooks, setAudiobooks] = useState([]);
   const [sortingOption, setSortingOption] = useState('');
+  const [searchVal, setSearchVal] = useState('');
 
   const getAllAudioBooks = () => {
     axios.get('/api/audiobooks').then(({data}) => {
@@ -41,27 +42,31 @@ const AudioBook = ({user}) => {
     sortBy(event.target.value);
   };
   
-  const [audiobooks, setAudiobooks] = useState([]);
-  const [searchVal, setSearchVal] = useState('');
-  const handleSearch = (title) => {
-    console.log(`${title} was searched`);
+  const handleTitleSearch = (title) => {
+    console.log(`${title} was searched`, 'title');
     axios.get(`/api/audiobooks/title/?title=${title}`).then(({data}) => {
-      console.log(data.books, 'audiobooks');
       setAudiobooks(data.books);
     }).catch(error => console.error(error));
   };
+  const handleAuthorSearch = (author) => {
+    console.log(`${author} was searched`, 'author');
+    axios.get(`/api/audiobooks/author/?author=${author}`).then(({data}) => {
+      setAudiobooks(data.books);
+    }).catch(error => console.error(error));
+  };
+
   const handleChange = (event) => {
     const searchVal = event.target.value;
     setSearchVal(searchVal);
   };
 
   const handleClick = (event) => {
-    console.log(event.target.value);
-    // console.log(audiobooks);
     event.preventDefault();
-    handleSearch(searchVal);
+    handleTitleSearch(searchVal) ?? handleAuthorSearch(searchVal);
+    // handleAuthorSearch(searchVal); 
     setSearchVal('');
   };
+
   console.log(audiobooks, searchVal);
   return (
     <div className='audio-book' style={{marginTop: '120px'}}>
