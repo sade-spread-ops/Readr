@@ -15,6 +15,58 @@ const getAudioBooks = () => {
   };
   return axios(options);
 };
+// create function to get audiobooks from librivox by title 
+const getAudioBooksByTitle = (title) => {
+  const options = {
+    method: 'get',
+    url: `https://librivox.org/api/feed/audiobooks?format=json&title=${title}`,
+    headers: {
+      'User-Agent': 'request',
+      'Content-Type': 'application/json',
+    },
+  };
+  return axios(options);
+};
+// create function to get audiobooks from librivox by author
+const getAudioBooksByAuthor = (author) => { // <-- author last name
+  const options = {
+    method: 'get',
+    url: `https://librivox.org/api/feed/audiobooks?format=json&author=${author}`, 
+    headers: {
+      'User-Agent': 'request',
+    },
+  };
+  return axios(options);
+};
+// use express router to get audiobooks from librivox using title or author
+router.get('/title', (req, res) => {
+  console.log(req.query.title);
+  console.log(req.query);
+  getAudioBooksByTitle(req.query.title) //req.query.title
+    .then((response) => {
+      console.log(req.query);
+      res.send(response.data);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
+router.get('/author', (req, res) => {
+  getAudioBooksByAuthor(req.query.author)
+    .then((response) => {
+      res.send(response.data);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
+
+
+
+
+
 
 router.get('/', (req, res) => {
   getAudioBooks().then(({data}) => {
