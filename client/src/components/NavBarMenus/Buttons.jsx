@@ -93,6 +93,10 @@ const Buttons = () => {
         className={classes.button}
       >
         Film Reviews
+      </Button>
+      <Button
+        size="large"
+        component={Link}
         to="/audiobooks"
         className={classes.button}
       >
