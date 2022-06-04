@@ -5,8 +5,10 @@ import { TextField, Typography, Switch } from '@material-ui/core';
 import { MenuItem } from '@mui/material';
 // import { Checkbox } from '@material-ui/core';
 import axios from 'axios';
-const AudioBook = () => {
-  const [audiobooks, setAudiobooks] = useState([]);
+const AudioBook = ({user}) => {
+  // const [audiobooks, setAudiobooks] = useState([]);
+  const [sortingOption, setSortingOption] = useState('');
+
   const getAllAudioBooks = () => {
     axios.get('/api/audiobooks').then(({data}) => {
       setAudiobooks(data.books);
@@ -26,36 +28,57 @@ const AudioBook = () => {
       const sortByTime = [...audiobooks].sort((a, b) => (a.totaltimesecs - b.totaltimesecs));
       setAudiobooks(sortByTime);
     } 
-  };  
-  // create a function to reverse order of books based on the sortBy function
+  };
+
   const reverseSortBy = () => {
     const reverseSort = [...audiobooks].reverse();
     setAudiobooks(reverseSort);
   };
   
-
-  const getAudiobooksByTitle = (title) => {
-    axios.get(`/api/audiobooks/title/${title}`).then(({data}) => {
-      setAudiobooks(data.books);
-    }).catch(error => console.error(error));
-  };
-
-
-
-
-
   const sortingOptions = [{value: 'title', label: 'Title'}, {value: 'author', label: 'Author'}, {value: 'time', label: 'Time'}];
-  const [sortingOption, setSortingOption] = useState('');
   const handleSortingOptionChange = (event) => {
     setSortingOption(event.target.value);
     sortBy(event.target.value);
   };
   
+  const [audiobooks, setAudiobooks] = useState([]);
+  const [searchVal, setSearchVal] = useState('');
+  const handleSearch = (title) => {
+    console.log(`${title} was searched`);
+    axios.get(`/api/audiobooks/title/?title=${title}`).then(({data}) => {
+      console.log(data.books, 'audiobooks');
+      setAudiobooks(data.books);
+    }).catch(error => console.error(error));
+  };
+  const handleChange = (event) => {
+    const searchVal = event.target.value;
+    setSearchVal(searchVal);
+  };
+
+  const handleClick = (event) => {
+    console.log(event.target.value);
+    // console.log(audiobooks);
+    event.preventDefault();
+    handleSearch(searchVal);
+    setSearchVal('');
+  };
+  console.log(audiobooks, searchVal);
   return (
-    <div className='audio-book'>
+    <div className='audio-book' style={{marginTop: '120px'}}>
       <Typography variant='h5'>Free Audio Books</Typography>
+
+      <div className='audio-book-search'>
+        <TextField value={searchVal} onChange={handleChange} id="outlined-basic" label="Search Audiobooks" variant="outlined" size="small" />
+      </div>
+      <div className='audio-book-search-button'>
+        <Button onClick={handleClick} variant="contained" id="outlined-basic" color="primary" sx={{ marginY: 0.5 }}
+        >Search</Button>
+        
+      </div>
+
+
       <div className='audio-book-button'>
-        <Button onClick={getAllAudioBooks} variant="contained" id="outlined-basic" color="primary">Get Audio Books</Button>
+        <Button onClick={getAllAudioBooks} variant="contained" id="outlined-basic" color="primary" sx={{ marginY: 0.5 }}>Get Audio Books</Button>
       </div>
       <div className='audio-book-sort'>
         <TextField
@@ -82,12 +105,6 @@ const AudioBook = () => {
           inputProps={{ 'aria-label': 'primary checkbox' }}
         />
       </div>
-      
-
-
-
-
-
       <div className='audio-book-view'>
         <AudioBookView audiobooks={audiobooks} sortBy={sortBy}/>
       </div>      
