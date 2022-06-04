@@ -169,7 +169,7 @@ const FilmReviews = db.define('film_reviews', {
     autoIncrement: true,
     primaryKey: true
   },
-  displayTitle: Sequelize.STRING,
+  display_title: Sequelize.STRING,
   headline: Sequelize.STRING
   //foreignKey: (something with the book table's title)
 });

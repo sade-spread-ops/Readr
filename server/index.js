@@ -36,7 +36,7 @@ app.use(morgan('tiny'));
 app.use('/auth', authRoutes);
 app.use('/readr', readrRoutes);
 // app.use('/bc', BcRoutes);
-app.use('/filmReviews', require('./filmReviews.js'));
+app.use('/api/filmReviews', require('./filmReviews.js'));
 
 app.use('/api/audiobooks', require('./audiobook-routes'));
 

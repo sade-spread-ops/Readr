@@ -4,6 +4,7 @@ const FilmReviews = require('../sequelize/index.js');
 require('dotenv').config();
 const { NYTAPI } = process.env;
 
+//console.log(NYTAPI);
 
 
 
@@ -13,19 +14,17 @@ const { NYTAPI } = process.env;
 router.get('/', (req, res) => {
   //console.log(req.body, 'body here');//{}
   console.log(req, 'req on 15'); //params {}
-  //console.log(NYTAPI);
-  res.send('hello');
-  // FilmReviews.findAll({where: 
-  //   {
-  //     displayTitle: req.body.displayTitle
-  //   }
-  // })
-  //   .then((data) => {
-  //     res.status(200);
-  //   })
-  //   .catch((err) => {
-  //     res.status(500);
-  //   });
+  const title = req.query.title;
+  //Don't use a database call yet because it's empty and doesn't know the information
+  console.log('squirrel', req.query);
+  axios.get(`https://api.nytimes.com/svc/movies/v2/reviews/search.json?query=${title}&api-key=${NYTAPI}`)
+    .then((response) => {
+      console.log(response);
+      res.send(response.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    }); 
 });
 
 

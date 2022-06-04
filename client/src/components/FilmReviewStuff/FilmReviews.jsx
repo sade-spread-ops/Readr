@@ -1,23 +1,50 @@
 import React, { useState, useEffect } from 'react';
 //import Review from './Review.jsx';
+import axios from 'axios'
 import { Paper, Container, Grid, Typography, Box, Rating, TextField, Button } from '@mui/material';
 
-
+console.log('hi');
 const FilmReviews = (props) => {
   //setting review to an object for now. Data will depend on what is returned from backend
-  // const [review, setFilmReview] = useState({});
+  const [review, setFilmReview] = useState({});
+  const [reviewRevealed, setReviewRevealed] = useState(false);
+  console.log('hello');
+  // useEffect(() => {
+  //   //make sure you figure out the correct endpoint with Arnulfo
+  //   axios.get('/filmReview', {
+      
+  //   })
+  //     .then((results) => {
+  //     //setFilmReview: results.data?
+  //     })
+  //     .catch((error) => {
+  //       console.log('error with film review change');
+  //     });
+  // }, []);
 
-  useEffect(() => {
-    axios.get('https://api.nytimes.com/svc/movies/v2/reviews/search.json?=&a...', (req, res) => {
+  const getFilmReview = (title) => {
+    // TODO: have routes include /api/filmReviews
+    // /filmReviews show this page but its also a call to the front end 
+    axios.get('http://localhost:3000/api/filmReviews', {params: {title: title }}).then((response) => {
+      // console.log('response');
+      // console.log(response);
+      /*
+        TODO:
+
+        a) in SERVER
+            -make call to NYT api with param.title
+            -RESPOND BACK with found item
+        b) in HERE
+            -store the response in the state
+            -use conditionals in your views to show with proper attributes
+      */
+      //response.results
+      setFilmReview();
 
     })
-    .then(() => {
-      
-    });
-    .catch(() => {
+    
+  };
 
-    });
-  })
   //color for textfield // sx={{color: '#f44336'}}
   //padding and margin
   return (
@@ -35,7 +62,7 @@ const FilmReviews = (props) => {
         </form>
 
         <Button
-          // onClick={() => console.log('you clicked me')}
+          onClick={() => getFilmReview('lolita')}
           type='submit'
           variant='contained'
         >
