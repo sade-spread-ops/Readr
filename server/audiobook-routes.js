@@ -55,6 +55,7 @@ router.get('/title', (req, res) => {
 router.get('/author', (req, res) => {
   getAudioBooksByAuthor(req.query.author)
     .then((response) => {
+      console.log(req.query);
       res.send(response.data);
     })
     .catch((err) => {
@@ -94,10 +95,20 @@ router.post('/insert', (req, res) => {
 
 });
 
-// axios.get('https://librivox.org/api/feed/audiobooks?format=json')
-//   .then(({data}) => console.log(data.books, '******'))
-//   .catch(error => console.log(error));
-
-// console.log(getAudioBooks());
+router.delete('/delete', (req, res) => {
+  Audiobook.destroy({
+    where: {
+      audiobookID: req.body.audiobookID,
+    },
+  }).then(data => {
+    console.log('successfully deleted');
+    res.sendStatus(200);
+  }
+  ).catch(err => {
+    console.error(err);
+    res.sendStatus(500);
+  }
+  );
+});
 
 module.exports = router;
