@@ -34,7 +34,7 @@ db.authenticate().then(() => {
 
 
 
-// creating the table for the user
+// creating the table for the userG
 const User = db.define('user', {
   id: {
     type: Sequelize.INTEGER,
