@@ -101,7 +101,7 @@ const UserBlocked = db.define('user_blocked', {
 });
 
 
-// creating the fields on the table
+// creating the fields on the table 
 const UserBook = db.define('user_book', {
   userID: {
     type: Sequelize.INTEGER,
@@ -160,6 +160,17 @@ const UserBookClubs = db.define('user_bookclubs', {
   },
   bookclubID: Sequelize.INTEGER,
   userID: Sequelize.INTEGER,
+});
+
+//creating model for film reviews
+
+const FilmReviews = db.define('', {
+  id: {
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    primaryKey: true
+  },
+  display_title: Sequelize.STRING
 });
 
 const autopopulate = async () => {
@@ -250,7 +261,7 @@ UserBookClubs.sync();
 
 
 // forces data base drop
-// db.sync({ force: true });
+//db.sync({ force: true }); //changes only the table in the database, not the model in the javascript side
 // console.log(db.authenticate());
 
 module.exports.User = User;

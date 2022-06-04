@@ -33,6 +33,9 @@ Readr develops an algorithm unique to each user. The more you use it, the better
     
 
 ```nvm install 10 ```and ```nvm use 10 ``` to run the application.
+#### Update pg to version 8
+
+```npm install pg@8```
 
 #### User Experience
 
