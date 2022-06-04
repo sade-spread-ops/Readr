@@ -5,7 +5,7 @@
 // const getBookMap = () => {
 //   const options = {
 //     method: 'get',
-//     url: 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=29.951439,-90.081970&radius=24140.2&type=book_store&key=AIzaSyAS-HMapD9XWpzBRRAiAvKtXjXQ5oRHP78',
+//     url: `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=29.951439,-90.081970&radius=24140.2&type=book_store&key=${GOOGLE_MAPS_API_KEY}`,
 //     headers: {
 //       'Map-Agent': 'request',
 //     },

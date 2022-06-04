@@ -14,14 +14,15 @@ const center = {
   lng: -90.081970
 };
 const mapContainerStyle = {
+  padding: '4rem',
   width: '50vw',
   height: '50vh'
 };
 
 
-var service;
-var infowindow;
-var map;
+let service;
+let infowindow;
+let map;
 
 const Map = () => {
 
@@ -30,6 +31,7 @@ const Map = () => {
     const superdome = new google.maps.LatLng(center.lat, center.lng);
   
     map = new google.maps.Map(document.getElementById('map'), {
+      padding: '4rem',
       mapContainerStyle: mapContainerStyle,
       width: '50vw',
       height: '50vh',
@@ -82,7 +84,7 @@ const Map = () => {
   return (
     <div id='map' style={{paddingTop: '6rem', width: '50vw', height: '50vh'}}>
       <GoogleMap
-        padding='4rem'
+        padding={'4rem'}
         mapContainerStyle={mapContainerStyle}
         bootstrapURLKeys={{ key: process.env.GOOGLE_MAPS_API_KEY }}
         center={ center }
