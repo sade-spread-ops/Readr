@@ -38,11 +38,11 @@ const getAudioBooksByAuthor = (author) => { // <-- author last name
   };
   return axios(options);
 };
-// use express router to get audiobooks from librivox using title or author
+
 router.get('/title', (req, res) => {
   console.log(req.query.title);
   console.log(req.query);
-  getAudioBooksByTitle(req.query.title) //req.query.title
+  getAudioBooksByTitle(req.query.title) 
     .then((response) => {
       console.log(req.query);
       res.send(response.data);
@@ -63,18 +63,26 @@ router.get('/author', (req, res) => {
     });
 });
 
-
-
-
-
-
-
 router.get('/', (req, res) => {
   getAudioBooks().then(({data}) => {
     res.status(200).send(data);
   }).catch(err => console.error(err));
-
 });
+
+//create function to get audiobooks from database
+router.get('/db', (req, res) => {
+  Audiobook.findAll()
+    .then((response) => {
+      // console.log(response.map(audiobook => audiobook.dataValues));
+      res.status(200).send(response.map(audiobook => audiobook.dataValues));
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+});
+
+
 
 router.post('/insert', (req, res) => {
   // console.log('req.body', req.body);
@@ -99,7 +107,7 @@ router.post('/insert', (req, res) => {
 router.delete('/delete', (req, res) => {
   Audiobook.destroy({
     where: {
-      audiobookID: req.body.audiobookID,
+      id: req.body.id,
     },
   }).then(data => {
     console.log('successfully deleted');

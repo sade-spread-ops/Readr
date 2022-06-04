@@ -5,8 +5,25 @@ import axios from 'axios';
 const AudioBookView = (props) => {
   console.log(props);
   const { audiobooks, user, addAudioBook, deleteAudioBook } = props;
+  const [userLibrary, setUserLibrary] = useState([]);
   
-
+  const getUserLibrary = () => {
+    axios.get('api/audiobooks/db').then(({data}) => {
+      console.log(data);
+      setUserLibrary(data);  
+    }).then(() => {
+      console.log(userLibrary, '****userLibrary****');
+    }).catch(error => console.error(error));
+  };
+  // getUserLibrary();
+  
+  
+  const handleChange = () => {
+    addAudioBook();
+    getUserLibrary();
+    
+  };
+  // console.log(userLibrary);
   return (
     <div className="audiobook-view">
       {audiobooks && audiobooks.map((audiobook) => (
@@ -24,7 +41,7 @@ const AudioBookView = (props) => {
             <a href={audiobook.url_librivox} target="_blank">Listen Online at Librivox</a>
           </div>
           <div className="audiobook-add-to-library">
-            <button onClick={() => addAudioBook(audiobook)}>Add to Library</button>
+            <button onClick={() => { addAudioBook(audiobook); getUserLibrary(); }}>Add to Library</button>
           </div>
           <div>
           **************************************************
