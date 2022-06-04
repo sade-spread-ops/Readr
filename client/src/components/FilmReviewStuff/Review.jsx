@@ -1,24 +1,28 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Container from '@mui/material/Container';
+import { Container, Grid } from '@mui/material/Container';
 
-import {
-  Grid, Paper, Typography
-} from '@material-ui/core';
+// import {
+//   Grid, Paper, Typography
+// } from '@material-ui/core';
 
-const Review = () => {
+const Review = (props) => {
   //review will be set to the data coming from backend. May not be an object but setting it to an object for now
-  const [review, setReview] = useState({});
-
   
-  //this is where we'll use the axios routing will take place
+  // const [reviewRevealed, setReviewRevealed] = useState(false);//this will work with deleted reviews
+  const [review, setReview] = useState([]);
+  // useEffect(() => {
+  //   axios.get('http://localhost:3000/filmReviews', {})
+  // })  
+ 
+
 
 
   return (
     <div>
       <Container>
         <Grid>
-          hello
+          {/* {reviews.map((review) => <Review user={user} review={review} />)} */}
         </Grid>
       </Container>
     </div>
@@ -27,16 +31,3 @@ const Review = () => {
 
 
 export default Review;
-
-
-/*
-return (
-  <div>
-      <Grid container spacing={5}>
-        <Paper elevation={3}>
-          
-        </Paper>
-      </Grid>
-  </div>
-)
-*/

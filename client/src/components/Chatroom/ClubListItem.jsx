@@ -7,8 +7,7 @@ const ClubListItem = ({ club }) => {
     borderStyle: 'solid',
     margin: '5px',
     padding: '3px',
-  }
-
+  };
   return (
     <div style={aBorder}>
       Book: {club.book} <br />

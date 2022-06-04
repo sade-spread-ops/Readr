@@ -1,36 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 //import Review from './Review.jsx';
-import axios from 'axios'
+import axios from 'axios';
 import { Paper, Container, Grid, Typography, Box, Rating, TextField, Button } from '@mui/material';
 
-console.log('hi');
+
 const FilmReviews = (props) => {
   //setting review to an object for now. Data will depend on what is returned from backend
-  const [review, setFilmReview] = useState({});
+  const [filmReview, setFilmReview] = useState({});
   const [reviewRevealed, setReviewRevealed] = useState(false);
-  console.log('hello');
-  // useEffect(() => {
-  //   //make sure you figure out the correct endpoint with Arnulfo
-  //   axios.get('/filmReview', {
-      
-  //   })
-  //     .then((results) => {
-  //     //setFilmReview: results.data?
-  //     })
-  //     .catch((error) => {
-  //       console.log('error with film review change');
-  //     });
-  // }, []);
+  const [title, setTitle] = useState('');
 
-  const getFilmReview = (title) => {
+  const getFilmReview = (input) => {
     // TODO: have routes include /api/filmReviews
     // /filmReviews show this page but its also a call to the front end 
-    axios.get('http://localhost:3000/api/filmReviews', {params: {title: title }}).then((response) => {
+    //use relative enpoints!
+    console.log('input')
+    console.log(input)
+    axios.get('http://localhost:3000/api/filmReviews', {params: { title: input }}).then((response) => {
       // console.log('response');
-      // console.log(response);
+      console.log(response);
       /*
         TODO:
-
         a) in SERVER
             -make call to NYT api with param.title
             -RESPOND BACK with found item
@@ -38,11 +28,12 @@ const FilmReviews = (props) => {
             -store the response in the state
             -use conditionals in your views to show with proper attributes
       */
-      //response.results
-      setFilmReview();
-
+      //check if this is right
+      setFilmReview(response.data.results[0]);///////////
     })
-    
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   //color for textfield // sx={{color: '#f44336'}}
@@ -57,19 +48,24 @@ const FilmReviews = (props) => {
           <TextField 
             label='Note Title'
             variant='outlined'
-            
+            onChange={(e) => setTitle(e.target.value)}
           />
         </form>
 
         <Button
-          onClick={() => getFilmReview('lolita')}
+          onClick={() => getFilmReview(title)}
+          //onClick={() => console.log({...props.params})}
           type='submit'
           variant='contained'
+          
         >
           Submit
         </Button>
+        <Button onClick={() => console.log(title, filmReview)}>
+          props
+        </Button>
         
-        <Grid container spacing={4} alignItems="center"
+        { Object.keys(filmReview).length && <Grid container spacing={4} alignItems="center"
           justifyContent="center"
           style={{ minHeight: '100vh' }}>
           <Paper elevation={2} square>
@@ -77,13 +73,13 @@ const FilmReviews = (props) => {
             <br></br>
             <br></br>
             <img 
-              src="https://images-na.ssl-images-amazon.com/images/I/81KCnYSMMxL.jpg"
+              src={filmReview.multimedia.src}
               alt=""
               className="reviewImg"
             />
             <Box paddingX={1}>
               <Typography variant="h4" component="h2">
-              Static Title Here
+              {filmReview.display_title}
               </Typography>
             </Box>
             <Box
@@ -91,11 +87,7 @@ const FilmReviews = (props) => {
                 display: 'flex',
                 alignItems: 'center'
               }}>
-              <p>Certainly not life changing or anything. The plot was hard to follow and the editing was horrible. 
-                The characters were painfully one-dimensional and this Jesus guy delivered some of the worst dialogue I've ever read. 
-                All in all, I found it way too long and that it took itself way too seriously. The fact that it sells so well is beyond me. 
-                And the way people hold it up, you'd think God Himself wrote the damn thing. 
-              </p>
+              {filmReview.summary_short}
             </Box>
             <Box
               sx={{
@@ -119,7 +111,7 @@ const FilmReviews = (props) => {
           Save Review
             </Button>
           </Paper>
-        </Grid>
+        </Grid> }
       </Container>   
       {/* <Review /> */}
     </div>
