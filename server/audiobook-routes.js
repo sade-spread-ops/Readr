@@ -104,14 +104,13 @@ router.post('/insert', (req, res) => {
 
 });
 
-router.delete('/delete', (req, res) => {
+router.delete('/delete/:audiobookID', (req, res) => {
   Audiobook.destroy({
     where: {
-      id: req.body.id,
-    },
+      audiobookID: req.params.audiobookID, },
   }).then(data => {
     console.log('successfully deleted');
-    res.sendStatus(200);
+    res.sendStatus(204);
   }
   ).catch(err => {
     console.error(err);
