@@ -15,7 +15,7 @@ const ReadList = (props) => {
     })
       .then(({ data }) => {
         setReadBooks(data);
-      })
+      });
   }, []);
 
   return (
