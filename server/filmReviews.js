@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const axios = require('axios');
-const FilmReviews = require('../sequelize/index.js');
+const { FilmReviews } = require('../sequelize/index.js');
 require('dotenv').config();
 const { NYTAPI } = process.env;
 
@@ -36,27 +36,42 @@ router.get('/', (req, res) => {
 //CREATE ROUTE THAT ALLOWS USER TO SAVE/BOOKMARK FILM REVIEWS (Remember to create button in the front end that will do this too);
 //use findOrCreate
 router.post('/', (req, res) => {
-  // const title = req.query.title;
-  // axios.get('/', (request, response) => {
-  //   FilmReviews.findOrCreate({ where: {
+  //res.send('hello there');
+  /*
+    byline: "Lena Wilson"
+    critics_pick: 1
+    date_updated: "2022-06-02 11:03:02"
+    display_title: "Watcher"
+    headline: "‘Watcher’ Review: Terror, at a Glance"
+    link: {type: 'article', url: 'https://www.nytimes.com/2022/06/02/movies/watcher-review.html', suggested_link_text: 'Read the New York Times Review of Watcher'}
+    mpaa_rating: "R"
+    multimedia: {type: 'mediumThreeByTwo210', src: 'https://static01.nyt.com/images/2022/06/03/arts/watcher1/watcher1-mediumThreeByTwo440.jpg', height: 140, width: 210}
+    opening_date: "2022-06-03"
+    publication_date: "2022-06-02"
+    summary_short: "In C
+*/
+  console.log(req.body);
+  review = req.body;
 
-  //   }
-  //   }).then(()=> {
+  const mappedFilmReview = {
+    display_title: review.display_title,
+    image_url: review.multimedia.src,
+    link: review.link.url,
+    rating: review.mpaa_rating,
+    summary_short: review.summar_short
+  }
 
-  //   }).catch(() => {
+  console.log(FilmReviews);
+  console.log(typeof FilmReviews);
 
-  //   });
-  // })
-  // // FilmReviews.findOrCreate({where: {
-  // //   headline: req.something.headline
-  // //  }
-  // // })
-  // .then(() => {
-
-  // })
-  // .catch(() => {
-
-  // })
+  FilmReviews.create(mappedFilmReview)
+    .then((response) => {
+      console.log(response);
+      res.send(200);
+    }).catch((err) => {
+      console.log(err);
+      res.send(500);
+    });
 });
 //CREATE ROUTE THAT ALLOWS USER TO Delete FOR specific FILM REVIEW
 

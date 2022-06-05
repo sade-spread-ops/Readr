@@ -170,8 +170,11 @@ const FilmReviews = db.define('film_reviews', {
     primaryKey: true
   },
   display_title: Sequelize.STRING,
-  headline: Sequelize.STRING
-  //foreignKey: (something with the book table's title)
+  image_url: Sequelize.STRING,
+  link: Sequelize.STRING,
+  rating: Sequelize.STRING,
+  summary_short: Sequelize.STRING
+
 });
 
 //I think the code below is where the seeders are

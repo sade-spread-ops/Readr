@@ -14,8 +14,8 @@ const FilmReviews = (props) => {
     // TODO: have routes include /api/filmReviews
     // /filmReviews show this page but its also a call to the front end 
     //use relative enpoints!
-    console.log('input')
-    console.log(input)
+    console.log('input');
+    console.log(input);
     axios.get('http://localhost:3000/api/filmReviews', {params: { title: input }}).then((response) => {
       // console.log('response');
       console.log(response);
@@ -35,6 +35,17 @@ const FilmReviews = (props) => {
         console.log(err);
       });
   };
+
+  const saveFilmReview = (review) => {
+    axios.post('/api/filmReviews', review).then((response) => {
+      console.log(response);
+    })
+      .catch((err) => {
+        console.log(err);
+      });
+
+  }; 
+
 
   //color for textfield // sx={{color: '#f44336'}}
   //padding and margin
@@ -79,7 +90,7 @@ const FilmReviews = (props) => {
             />
             <Box paddingX={1}>
               <Typography variant="h4" component="h2">
-              {filmReview.display_title}
+                {filmReview.display_title}
               </Typography>
             </Box>
             <Box
@@ -104,7 +115,7 @@ const FilmReviews = (props) => {
             </Box>
 
             <Button
-              // onClick={() => console.log('you clicked me')}
+              onClick={() => saveFilmReview(filmReview)}
               type='submit'
               variant='contained'
             >
