@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 
@@ -7,23 +7,24 @@ const AudioBookView = (props) => {
   const { audiobooks, user, addAudioBook, deleteAudioBook } = props;
   const [userLibrary, setUserLibrary] = useState([]);
   
-  const getUserLibrary = () => {
-    axios.get('api/audiobooks/db').then(({data}) => {
-      console.log(data);
-      setUserLibrary(data);  
-    }).then(() => {
-      console.log(userLibrary, '****userLibrary****');
-    }).catch(error => console.error(error));
-  };
-  // getUserLibrary();
-  
+  useEffect(() => {
+    const getUserLibrary = () => {
+      axios.get('api/audiobooks/db').then(({data}) => {
+        console.log(data);
+        setUserLibrary(data);  
+      }).then(() => {
+        console.log(userLibrary, '****userLibrary****');
+      }).catch(error => console.error(error));
+    };
+    getUserLibrary();
+  }, []);
   
   const handleChange = () => {
     addAudioBook();
     getUserLibrary();
     
   };
-  // console.log(userLibrary);
+  console.log(userLibrary);
   return (
     <div className="audiobook-view">
       {audiobooks && audiobooks.map((audiobook) => (
@@ -40,9 +41,24 @@ const AudioBookView = (props) => {
           <div className="audiobook-view-item-librivox-listen">
             <a href={audiobook.url_librivox} target="_blank">Listen Online at Librivox</a>
           </div>
-          <div className="audiobook-add-to-library">
-            <button onClick={() => { addAudioBook(audiobook); getUserLibrary(); }}>Add to Library</button>
+          <div className="audiobook-view-item-duration">
+            <i>{audiobook.totaltime.split(':').map((time, index) => {
+              if (index === 0) { 
+                return `${time} hours `; 
+              } else if (index === 1) { return `${time} minutes`; }
+            })}</i>
           </div>
+          <div className="audiobook-add-to-library">
+            <button onClick={() => { addAudioBook(audiobook); }}>
+              Add to Library</button>
+          </div>
+          {userLibrary.find((userAudiobook) => userAudiobook.audiobookID === audiobook.id) && (
+            <div className="audiobook-delete-from-library">
+              <button onClick={() => { deleteAudioBook(audiobook); }}>
+                Delete from Library
+              </button>
+            </div>
+          )}
           <div>
           **************************************************
           </div>
