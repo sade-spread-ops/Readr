@@ -20,8 +20,8 @@ router.get('/', (req, res) => {
   //Don't use a database call yet because it's empty and doesn't know the information
   //console.log('squirrel', req.query);
   //axios.get('http://localhost:3000/')
-  console.log('title')
-  console.log(title)
+  console.log('title');
+  console.log(title);
   axios.get(`https://api.nytimes.com/svc/movies/v2/reviews/search.json?query=${title}&api-key=${NYTAPI}`)
     .then((response) => {
       console.log(response);
@@ -55,14 +55,15 @@ router.post('/', (req, res) => {
 
   const mappedFilmReview = {
     display_title: review.display_title,
+    headline: review.headline,
     image_url: review.multimedia.src,
     link: review.link.url,
     rating: review.mpaa_rating,
-    summary_short: review.summar_short
-  }
+    summary_short: review.summary_short
+  };
 
-  console.log(FilmReviews);
-  console.log(typeof FilmReviews);
+  // console.log(FilmReviews);
+  // console.log(typeof FilmReviews);
 
   FilmReviews.create(mappedFilmReview)
     .then((response) => {

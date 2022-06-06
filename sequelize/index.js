@@ -170,6 +170,7 @@ const FilmReviews = db.define('film_reviews', {
     primaryKey: true
   },
   display_title: Sequelize.STRING,
+  headline: Sequelize.STRING,
   image_url: Sequelize.STRING,
   link: Sequelize.STRING,
   rating: Sequelize.STRING,

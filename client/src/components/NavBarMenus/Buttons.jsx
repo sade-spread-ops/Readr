@@ -96,6 +96,14 @@ const Buttons = () => {
       </Button>
       <Button
         size="large"
+        component={Link}
+        to="/filmReviews"
+        className={classes.button}
+      >
+        Film Adaptation Reviews
+      </Button>
+      <Button
+        size="large"
         href="/auth/logout"
         className={classes.button}
       >
