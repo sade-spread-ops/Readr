@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-//import Review from './Review.jsx';
+import Review from './Review.jsx';
 import axios from 'axios';
 import { Paper, Container, Grid, Typography, Box, Rating, TextField, Button } from '@mui/material';
 
@@ -25,10 +25,9 @@ const FilmReviews = (props) => {
     //use relative enpoints!
     console.log('input');
     console.log(input);
-    axios.get('http://localhost:3000/api/filmReviews', {params: { title: input }}).then((response) => {
+    axios.get('/api/filmReviews', {params: { title: input }}).then((response) => {
       // console.log('response');
       console.log(response);
-      //check if this is right
       setFilmReview(response.data.results[0]);
     })
       .catch((err) => {

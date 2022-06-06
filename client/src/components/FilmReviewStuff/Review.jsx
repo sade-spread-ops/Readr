@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Container, Grid } from '@mui/material/Container';
+import { Container, Grid } from '@mui/material';
 import FilmReviews from './FilmReviews';
 
 
@@ -15,8 +15,10 @@ const Review = (props) => {
 
   useEffect(() => {
     console.log(props);
-    axios.post('http://localhost:3000/filmReviews', {
-     
+    axios.post('/api/filmReviews', { 
+      params: {
+
+      }
     })
       .then((results) => {
         setSavedReview(results.data);
@@ -24,9 +26,11 @@ const Review = (props) => {
   });
 
   const getSavedReview = (review) => {
-    axios.post('http://localhost:3000/api/filmReviews', FilmReviews).then((response) => {
-      console.log(response);
-      /////
+    console.log('review');
+    console.log(review);
+    axios.post('/api/filmReviews', FilmReviews).then((response) => {
+      //console.log(response);
+      {response.data}
     })
       .catch((err) => {
         console.log(err);
@@ -34,8 +38,8 @@ const Review = (props) => {
   };
 
   const deleteReview = (review) => {
-    axios.delete('http://localhost:3000/filmReviews', {
-      //////
+    axios.delete('/api/filmReviews', {
+      /////////
     }).then((response) => {
       setSavedReview();//////
     })
@@ -52,7 +56,7 @@ const Review = (props) => {
       <Container sx={{marginY: 5}}>
         <Grid container spacing={5}>
           {savedReviews.map((review => 
-            <Review review={review} deleteMessage={deleteMessage}/>))}
+            <Review review={review} getSavedReview={getSavedReview} deleteMessage={deleteMessage}/>))}
         </Grid>
       </Container>
     </div>
