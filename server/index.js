@@ -13,8 +13,11 @@ const readrRoutes = require('./readr-routes');
 // const { BcRoutes } = require('./bookClub-routes');
 // const filmReviews = require('./filmReviews.js');
 
+//const NYT = process.env.NYTAPI;
+const { NYTAPI } = process.env;
 const PORT = process.env.PORT || 3000;
 const app = express();
+
 
 // initialize cookie session
 app.use(cookieSession({
@@ -33,7 +36,7 @@ app.use(morgan('tiny'));
 app.use('/auth', authRoutes);
 app.use('/readr', readrRoutes);
 // app.use('/bc', BcRoutes);
-app.use('/filmReviews', require('./filmReviews.js'));
+app.use('/api/filmReviews', require('./filmReviews.js'));
 
 app.use('/api/audiobooks', require('./audiobook-routes'));
 

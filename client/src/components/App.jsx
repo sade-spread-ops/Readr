@@ -192,9 +192,9 @@ class App extends React.Component {
                     <Route exact path="/followers" render={(props) => <Followers {...props} user={user} />} />
                     <Route exact path="/genres" render={() => <BookGenreView/>} />
                     <Route exact path="/books" render={(props) => <Search {...props} user={user} />} />
-                    <Route exact path="/filmReviews" render={(props) => <FilmReviews {...props} user={user} />} />
                     <Route exact path="/audiobooks" render={(props) => <AudioBooks {...props} user={user} />} />
                     <Route exact path="/listofreadbooks" render={(props) => <ReadList {...props} user={user} />} />
+                    <Route exact path="/filmReviews" render={(props) => <FilmReviews {...props} user={user} />} />
                     <Route exact path="/map" render={(props) => <Map {...props} user={user} />} />
                   </Switch>
                 </div>
