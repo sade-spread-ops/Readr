@@ -109,13 +109,13 @@ export default function SmallBar() {
         >
           Profile
         </MenuItem>
-        <MenuItem
+        {/* <MenuItem
           onClick={handleClose}
           component={Link}
           to="/bookclubinvite"
         >
           Book Club
-        </MenuItem>
+        </MenuItem> */}
         <MenuItem
           onClick={handleClose}
           component={Link}
@@ -126,11 +126,17 @@ export default function SmallBar() {
         <MenuItem
           onClick={handleClose}
           component={Link}
+          to="/Map"
+        >
+          Map
+        </MenuItem>
+        <MenuItem
+          onClick={handleClose}
+          component={Link}
           to="/filmReviews"
         >
           Film Adaptation Reviews
         </MenuItem>
-
         <MenuItem
           onClick={handleClose}
         >

@@ -13,7 +13,7 @@ const Search = ({ user }) => {
       .then(({ data }) => {
         // console.log(data, 'DATA');
         setBookData(data);
-      }).catch((err) => console.error('Err'));
+      }).catch((err) => console.error(err));
   };
   return (
     <div>

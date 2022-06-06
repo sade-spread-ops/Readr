@@ -34,7 +34,7 @@ db.authenticate().then(() => {
 
 
 
-// creating the table for the user
+// creating the table for the userG
 const User = db.define('user', {
   id: {
     type: Sequelize.INTEGER,
@@ -162,8 +162,44 @@ const UserBookClubs = db.define('user_bookclubs', {
   userID: Sequelize.INTEGER,
 });
 
-//creating model for film reviews.
-const FilmReviews = db.define('film_reviews', {
+const Audiobook = db.define('audiobook', {
+  id: {
+    allowNull: false,
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+  },
+  audiobookID: {
+    type: Sequelize.STRING,
+  },
+  title: {
+    type: Sequelize.STRING,
+    unique: true,
+  },
+  author: Sequelize.STRING,
+  onlineLink: {
+    type: Sequelize.STRING,
+    unique: true,
+  },
+  downloadLink: {
+    type: Sequelize.STRING,
+    unique: true,
+  },
+  timeSeconds: Sequelize.INTEGER,
+});
+
+const UserAudiobook = db.define('user_audiobook', {
+  userID: {
+    type: Sequelize.INTEGER,
+  },
+  audiobookID: {
+    type: Sequelize.STRING,
+  },
+  // favorite: Sequelize.BOOLEAN,
+  });
+
+//creating model for film reviews
+const FilmReviews = db.define('', {
   id: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
@@ -266,6 +302,8 @@ UserHaveRead.sync();
 Bookclubs.sync();
 UserBookClubs.sync();
 FilmReviews.sync();
+Audiobook.sync();
+UserAudiobook.sync();
 
 // forces data base drop
 //db.sync({ force: true }); //changes only the table in the database, not the model in the javascript side
@@ -281,3 +319,5 @@ module.exports.UserHaveRead = UserHaveRead;
 module.exports.Bookclubs = Bookclubs;
 module.exports.UserBookClubs = UserBookClubs;
 module.exports.FilmReviews = FilmReviews;
+module.exports.Audiobook = Audiobook;
+module.exports.UserAudiobook = UserAudiobook;
