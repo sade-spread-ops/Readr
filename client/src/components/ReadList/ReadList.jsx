@@ -2,6 +2,7 @@ import { PropaneSharp } from '@mui/icons-material';
 import Axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import ReadBook from './ReadBook.jsx';
+import { Container, Grid } from '@mui/material';
 
 const ReadList = (props) => {
   const { id } = props.user;
@@ -15,13 +16,20 @@ const ReadList = (props) => {
     })
       .then(({ data }) => {
         setReadBooks(data);
+      })
+      .catch((error) => {
+        console.log(error);
       });
   }, []);
 
   return (
-    <div>
-      {readBooks.map((readBook) => <ReadBook readBook={readBook} />)}
-    </div>
+    <Container sx={{
+      marginY: 5
+    }}>
+      <Grid container spacing={5}>
+        {readBooks.map((readBook) => <ReadBook readBook={readBook} user={props.user} />)}
+      </Grid>
+    </Container>
   );
 };
 

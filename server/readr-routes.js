@@ -12,7 +12,7 @@ const {
 } = require('./suggestion');
 const dbHelpers = require('../sequelize/db-helpers');
 const {
-  User, UserFollower, UserHaveRead, UserBookClubs, Bookclubs,
+  User, UserFollower, UserHaveRead, UserBookClubs, Bookclubs, UserReview
 } = require('../sequelize/index');
 const { grabBooksByGenre, createBook } = require('./genre');
 
@@ -144,7 +144,7 @@ router.post('/haveread', (req, res) => {
     description,
     haveRead,
   } = req.body;
-  dbHelpers.createUserRead(userID, isbn, haveRead, title, author, description, coverURL);
+  dbHelpers.createUserRead(userID, isbn, coverURL, title, author, description, haveRead);
 });
 
 router.get('/haveread', async (req, res) => {
@@ -537,6 +537,61 @@ router.post('/insertIntoBookDb', (req, res) => {
   };
   return dbHelpers.insertBook(book);
 });
+
+router.post('/reviews', (req, res) => {
+  UserReview.findOrCreate({
+    where: {
+      userID: req.body.userID,
+      title: req.body.title,
+    }
+  })
+    .then((results) => {
+      UserReview.upsert({
+        id: results[0].dataValues.id,
+        userID: req.body.userID,
+        title: req.body.title,
+        author: req.body.author,
+        review: req.body.review
+      });
+      res.sendStatus(201);
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+});
+
+router.get('/reviews', (req, res) => {
+  UserReview.findAll({
+    where: {
+      title: req.query.title,
+      author: req.query.author
+    }
+  })
+    .then((results) => {
+      res.status(200);
+      res.send(results);
+    })
+   .catch((error) => {
+      console.log(error);
+    });
+});
+
+router.get('/users', (req, res) => {
+  User.findOne({
+    where: {
+      id: req.query.userID
+    }
+  })
+    .then((result) => {
+      console.log(result);
+      res.status(200);
+      res.send(result);
+    })
+    .catch((error) => {
+      res.sendStatus(500);
+      console.log(error);
+    })
+})
 
 
 module.exports = router;
