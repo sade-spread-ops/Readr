@@ -134,6 +134,21 @@ const UserHaveRead = db.define('user_read', {
   have_read: Sequelize.BOOLEAN,
 });
 
+const UserReview = db.define('user_review', {
+  userID: {
+    type: Sequelize.INTEGER
+  },
+  title: {
+    type: Sequelize.STRING
+  },
+  author: {
+    type: Sequelize.STRING
+  },
+  review: {
+    type: Sequelize.STRING
+  }
+});
+
 const UserPreference = db.define('user_preference', {
   userID: Sequelize.INTEGER,
   comedy: Sequelize.FLOAT,
@@ -301,6 +316,7 @@ UserPreference.sync();
 UserHaveRead.sync();
 Bookclubs.sync();
 UserBookClubs.sync();
+UserReview.sync();
 FilmReviews.sync();
 Audiobook.sync();
 UserAudiobook.sync();
@@ -318,6 +334,7 @@ module.exports.UserPreference = UserPreference;
 module.exports.UserHaveRead = UserHaveRead;
 module.exports.Bookclubs = Bookclubs;
 module.exports.UserBookClubs = UserBookClubs;
+module.exports.UserReview = UserReview;
 module.exports.FilmReviews = FilmReviews;
 module.exports.Audiobook = Audiobook;
 module.exports.UserAudiobook = UserAudiobook;

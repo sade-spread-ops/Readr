@@ -143,7 +143,7 @@ function BookListItem(props) {
             size="small"
             className={classes.button}
             onClick={() => {
-              handleAddToReadList(book.isbn, book.coverURL, book.title, book.author, book.description, true);
+              handleAddToReadList(book.isbn, true, book.title, book.author, book.description, book.coverURL);
               handleRemoveClick(book.isbn, false);
             }}
             startIcon
