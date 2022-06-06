@@ -205,8 +205,16 @@ const FilmReviews = db.define('', {
     autoIncrement: true,
     primaryKey: true
   },
-  display_title: Sequelize.STRING
+  display_title: Sequelize.STRING,
+  headline: Sequelize.STRING,
+  image_url: Sequelize.STRING,
+  link: Sequelize.STRING,
+  rating: Sequelize.STRING,
+  summary_short: Sequelize.STRING
+
 });
+
+//I think the code below is where the seeders are
 
 const autopopulate = async () => {
   const userOne = await User.findOne({ where: { id: 1 } })
@@ -293,6 +301,7 @@ UserPreference.sync();
 UserHaveRead.sync();
 Bookclubs.sync();
 UserBookClubs.sync();
+FilmReviews.sync();
 Audiobook.sync();
 UserAudiobook.sync();
 
@@ -309,5 +318,6 @@ module.exports.UserPreference = UserPreference;
 module.exports.UserHaveRead = UserHaveRead;
 module.exports.Bookclubs = Bookclubs;
 module.exports.UserBookClubs = UserBookClubs;
+module.exports.FilmReviews = FilmReviews;
 module.exports.Audiobook = Audiobook;
 module.exports.UserAudiobook = UserAudiobook;
