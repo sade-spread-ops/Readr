@@ -89,32 +89,28 @@ const Buttons = () => {
       <Button
         size="large"
         component={Link}
-<<<<<<< HEAD
-=======
         to="/filmReviews"
         className={classes.button}
       >
+
         Film Reviews
->>>>>>> 488c6f77240c218b25f080f2b01e62a0a97ee11b
+      </Button>
+
+      <Button
+        size="large"
+        component={Link}
         to="/audiobooks"
-        className={classes.button}
+        className={classes.button}  
       >
         Audio Books
       </Button>
       <Button
         size="large"
         component={Link}
-<<<<<<< HEAD
-        to="/filmReviews"
-        className={classes.button}
-      >
-        Film Adaptation Reviews
-=======
         to="/map"
         className={classes.button}
       >
         Map
->>>>>>> 488c6f77240c218b25f080f2b01e62a0a97ee11b
       </Button>
       <Button
         size="large"
