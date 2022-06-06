@@ -121,8 +121,8 @@ const AudioBook = ({user}) => {
           ))}
         </TextField>
       </div>
-      <div className='audio-book-reverse-sort'>
-        <Switch
+      <div className='audio-book-reverse-sort' style={{ margin: '0.5rem'}}>
+        <Switch 
           onChange={() => reverseSortBy(audiobooks)}
           value='reverse'
           inputProps={{ 'aria-label': 'primary checkbox' }}
