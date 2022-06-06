@@ -109,14 +109,34 @@ export default function SmallBar() {
         >
           Profile
         </MenuItem>
-        <MenuItem
+        {/* <MenuItem
           onClick={handleClose}
           component={Link}
           to="/bookclubinvite"
         >
           Book Club
+        </MenuItem> */}
+        <MenuItem
+          onClick={handleClose}
+          component={Link}
+          to="/audiobooks"
+        >
+          Audio Books
         </MenuItem>
-
+        <MenuItem
+          onClick={handleClose}
+          component={Link}
+          to="/Map"
+        >
+          Map
+        </MenuItem>
+        <MenuItem
+          onClick={handleClose}
+          component={Link}
+          to="/filmReviews"
+        >
+          Film Adaptation Reviews
+        </MenuItem>
         <MenuItem
           onClick={handleClose}
         >

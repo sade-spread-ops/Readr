@@ -79,7 +79,7 @@ const InfoCardEntry = () => {
             <Grid item container direction="column">
               <Grid item>
                 <Typography gutterBottom variant="subtitle1">
-                  <div onClick={handleClick} style={{ textAlign: 'justify' }}>
+                  <div onClick={handleClick} style={{ textAlign: 'justifycontent' }}>
                     {isClicked ? string : string.substring(0, 250)}
                   </div>
                 </Typography>

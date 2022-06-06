@@ -33,6 +33,9 @@ Readr develops an algorithm unique to each user. The more you use it, the better
     
 
 ```nvm install 10 ```and ```nvm use 10 ``` to run the application.
+#### Update pg to version 8
+
+```npm install pg@8```
 
 #### User Experience
 
@@ -110,12 +113,4 @@ This app uses PostgreSQL
 
 ##### To include in environmental variables:
 * #### .env
-    - A clientID and clientSecret from google for authentication
-    - To include with developer determined values
-    - clientID
-    - USER_NAME
-    - USER_PASSWORD
-    - DATABASE=readr
-    - PORT=3000
-    - clientSecret
-    - API_KEY <= from GOOGLE
+    - see .env.example for an example of how to set up environmental variables

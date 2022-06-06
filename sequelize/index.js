@@ -29,12 +29,12 @@ const db = new Sequelize('readr', 'postgres', 'pw', {// password: 'pw',
   logging: false,
 });
 db.authenticate().then(() => {
-  console.log('connected to database');
+  console.log('🚀 connected to database');
 }).catch((err) => console.log(err));
 
 
 
-// creating the table for the user
+// creating the table for the userG
 const User = db.define('user', {
   id: {
     type: Sequelize.INTEGER,
@@ -101,7 +101,7 @@ const UserBlocked = db.define('user_blocked', {
 });
 
 
-// creating the fields on the table
+// creating the fields on the table 
 const UserBook = db.define('user_book', {
   userID: {
     type: Sequelize.INTEGER,
@@ -176,6 +176,60 @@ const UserBookClubs = db.define('user_bookclubs', {
   bookclubID: Sequelize.INTEGER,
   userID: Sequelize.INTEGER,
 });
+
+const Audiobook = db.define('audiobook', {
+  id: {
+    allowNull: false,
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+  },
+  audiobookID: {
+    type: Sequelize.STRING,
+  },
+  title: {
+    type: Sequelize.STRING,
+    unique: true,
+  },
+  author: Sequelize.STRING,
+  onlineLink: {
+    type: Sequelize.STRING,
+    unique: true,
+  },
+  downloadLink: {
+    type: Sequelize.STRING,
+    unique: true,
+  },
+  timeSeconds: Sequelize.INTEGER,
+});
+
+const UserAudiobook = db.define('user_audiobook', {
+  userID: {
+    type: Sequelize.INTEGER,
+  },
+  audiobookID: {
+    type: Sequelize.STRING,
+  },
+  // favorite: Sequelize.BOOLEAN,
+  });
+
+//creating model for film reviews
+const FilmReviews = db.define('', {
+  id: {
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    primaryKey: true
+  },
+  display_title: Sequelize.STRING,
+  headline: Sequelize.STRING,
+  image_url: Sequelize.STRING,
+  link: Sequelize.STRING,
+  rating: Sequelize.STRING,
+  summary_short: Sequelize.STRING
+
+});
+
+//I think the code below is where the seeders are
 
 const autopopulate = async () => {
   const userOne = await User.findOne({ where: { id: 1 } })
@@ -263,10 +317,12 @@ UserHaveRead.sync();
 Bookclubs.sync();
 UserBookClubs.sync();
 UserReview.sync();
-
+FilmReviews.sync();
+Audiobook.sync();
+UserAudiobook.sync();
 
 // forces data base drop
-// db.sync({ force: true });
+//db.sync({ force: true }); //changes only the table in the database, not the model in the javascript side
 // console.log(db.authenticate());
 
 module.exports.User = User;
@@ -279,3 +335,6 @@ module.exports.UserHaveRead = UserHaveRead;
 module.exports.Bookclubs = Bookclubs;
 module.exports.UserBookClubs = UserBookClubs;
 module.exports.UserReview = UserReview;
+module.exports.FilmReviews = FilmReviews;
+module.exports.Audiobook = Audiobook;
+module.exports.UserAudiobook = UserAudiobook;
