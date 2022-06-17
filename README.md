@@ -29,13 +29,25 @@ Readr develops an algorithm unique to each user. The more you use it, the better
 
 > ***NOTE:*** Make sure to install the following separateley
 
-```npm i gapi ```
+```
+npm i gapi
+ ```
     
 
-```nvm install 10 ```and ```nvm use 10 ``` to run the application.
+```
+nvm install 10
+ ```
+ and 
+ ```
+ nvm use 10 
+ ``` 
+ to run the application.
+
 #### Update pg to version 8
 
-```npm install pg@8```
+```
+npm install pg@8
+```
 
 #### User Experience
 
@@ -114,3 +126,11 @@ This app uses PostgreSQL
 ##### To include in environmental variables:
 * #### .env
     - see .env.example for an example of how to set up environmental variables
+
+##### Features added as Part of the Legacy Version of the Project (Spring 2022)
+  * An AudioBooks Page
+    - Gives the user an interface to Search or Browse for free audiobooks, save them to their personal digital library, and download them to enjoy later.
+  * A Reviews Feature 
+    - Give the user an opportunity to write reviews on the books that they have read.
+    - Allows the user to read reviews on books written by any user. 
+ 
